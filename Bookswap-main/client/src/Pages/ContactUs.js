@@ -6,21 +6,23 @@ import {
   Box,
   Heading,
   Text,
-  Stack,
   Grid,
   GridItem,
-  Button,
   FormControl,
   FormLabel,
   Input,
   Textarea,
   Select,
-  Icon,
+  Button,
   Alert,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 function ContactUs() {
-  const bgColor = useColorModeValue("gray.50", "gray.800");
+  const bgColor = useColorModeValue("gray.50", "gray.900"); // Lighter background for this design
+  const secondaryColor = "gray.700"; // Secondary color for text and borders
+  const primaryColor = "teal"; // Choose your primary color
+  const textColor = useColorModeValue(secondaryColor, "gray.200"); // Adjust text color
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,83 +30,92 @@ function ContactUs() {
     message: "",
   });
   const [isSent, setIsSent] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure(); // For success message
 
   const handleChange = (e) => {
     setFormData((prevData) => ({ ...prevData, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic (e.g., send email)
-    // Assuming a successful submission:
     setIsSent(true);
+    onOpen(); // Open success message
     console.log(formData); // Log form data for debugging
   };
 
   return (
     <div>
       <Header />
-      <Box p={4} bg={bgColor}>
-        <Stack spacing={4} align="center">
-          <Heading fontSize="3xl" color={useColorModeValue("teal.500", "yellow.400")}>
-            Get in Touch
-          </Heading>
-          <Text fontSize="lg" color={useColorModeValue("gray.700", "gray.200")}>
-            Have questions or feedback? We're here to listen!
-          </Text>
-          {isSent && (
-            <Alert status="success" mx="auto" mb={4}>
-              Your message has been sent!
-            </Alert>
-          )}
-          <form onSubmit={handleSubmit}>
-            <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))" gap={4}>
-              <GridItem>
-                <FormControl isRequired>
-                  <FormLabel htmlFor="name">Your Name</FormLabel>
-                  <Input id="name" type="text" name="name" value={formData.name} onChange={handleChange} />
-                </FormControl>
-              </GridItem>
-              <GridItem>
-                <FormControl isRequired>
-                  <FormLabel htmlFor="email">Your Email</FormLabel>
-                  <Input id="email" type="email" name="email" value={formData.email} onChange={handleChange} />
-                </FormControl>
-              </GridItem>
-              <GridItem>
-                <FormControl isRequired>
-                  <FormLabel htmlFor="subject">Subject</FormLabel>
-                  <Select // Ensure correct binding
-                    id="subject"
-                    value={formData.subject} // Bind to state variable
-                    onChange={handleChange}
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Support Request">Support Request</option>
-                    <option value="Feedback">Feedback</option>
-                    <option value="Other">Other</option>
-                  </Select>
-                </FormControl>
-              </GridItem>
-              <GridItem>
-                <FormControl isRequired>
-                  <FormLabel htmlFor="message">Message</FormLabel>
-                  <Textarea id="message" value={formData.message} onChange={handleChange} />
-                </FormControl>
-              </GridItem>
-            </Grid>
-            <Button type="submit" colorScheme="teal" variant="solid" mt={4}>
-              Send Message
-              <Icon as={Icon} ml={2} name="paper-plane" />
-            </Button>
-          </form>
-          <console.log>
-            {/* Added for debugging purposes */}
-            {formData.subject && <p>Selected Subject: {formData.subject}</p>}
-            {formData.message && <p>Message: {formData.message}</p>}
-          </console.log>
-        </Stack>
+      <Box p={4} bg={bgColor} borderRadius="md">
+        <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={4}>
+          <GridItem>
+            <Heading fontSize="3xl" mb={2}color={primaryColor}>
+              Get in Touch
+            </Heading>
+            <Text fontSize="lg"  color={textColor}>
+              Have questions or feedback? We're here to listen!
+            </Text>
+          </GridItem>
+          <GridItem>
+            {isSent && (
+              <Alert status="success" mx="auto" mb={4} onDismiss={onClose}>
+                Your message has been sent!
+              </Alert>
+            )}
+            <form onSubmit={handleSubmit}>
+              <FormControl isRequired mb={7}>
+                <FormLabel htmlFor="name">Your Name</FormLabel>
+                <Input
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                />
+              </FormControl>
+              <FormControl isRequired mb={7}>
+                <FormLabel htmlFor="email">Your Email</FormLabel>
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email address"
+                />
+              </FormControl>
+              <FormControl isRequired mb={7}>
+                <FormLabel htmlFor="subject">Subject</FormLabel>
+                <Select
+                  id="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                >
+                  <option value="">Select a subject</option>
+                  <option value="General Inquiry">General Inquiry</option>
+                  <option value="Support Request">Support Request</option>
+                  <option value="Feedback">Feedback</option>
+                  <option value="Other">Other</option>
+                </Select>
+              </FormControl>
+              <FormControl isRequired mb={7}>
+                <FormLabel htmlFor="message">Message</FormLabel>
+                <Textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Write your message here"
+                  height="250px"
+                />
+              </FormControl>
+              <Button type="submit" colorScheme={primaryColor} variant="solid" >
+                Send Message
+              </Button>
+            </form>
+          </GridItem>
+        </Grid>
       </Box>
     </div>
   );
