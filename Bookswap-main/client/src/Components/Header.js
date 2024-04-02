@@ -325,12 +325,12 @@ const NAV_ITEMS = [
     children: [
       {
         label: "Our Team",
-        subLabel: "We are so epic",
+        subLabel: "Who are we?",
         href: "/aboutteam",
       },
       {
         label: "Our Story",
-        subLabel: "An epic saga",
+        subLabel: "A BSIS team",
         href: "/aboutstory",
       },
     ],
