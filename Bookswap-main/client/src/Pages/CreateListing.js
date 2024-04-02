@@ -166,7 +166,7 @@ function CreateListing() {
     e.preventDefault();
     try {
       const responseProfile = await axios.get(
-        process.env.REACT_APP_API_BASE + "/createlisting",
+        process.env.REACT_APP_API_BASE + "/user",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -195,7 +195,6 @@ function CreateListing() {
     }
   };
 
-  
   return (
     <>
       <Header></Header>
