@@ -11,7 +11,7 @@ function AboutTeam() {
     {
       name: "Ian Bautista",
       jobTitle: "Researcher",
-      src: "https://via.placeholder.com/150", 
+      imageUrl: "https://i.ibb.co/FnznzVK/cz-M6-Ly9t-ZWRp-YS1wcml2-YXRl-Lm-Nhbn-Zh-Lm-Nvb-S9-XRXI0-RS9-NQUZu-OWt-XRXI0-RS8x-L3-Auc-G5n.png", 
     },
     {
       name: "Milton Bautista",
@@ -21,17 +21,17 @@ function AboutTeam() {
     {
       name: "Michael Angelo Magante",
       jobTitle: "Backend Developer",
-      src: "https://via.placeholder.com/150", 
+      imageUrl: "https://i.ibb.co/tLHgpms/cz-M6-Ly9t-ZWRp-YS1wcml2-YXRl-Lm-Nhbn-Zh-Lm-Nvb-S9-KMj-Nq-OC9-NQUZu-OWp-KMj-Nq-OC8x-L3-Auc-G5n.png", 
     },
     {
       name: "Jay Gerardo",
       jobTitle: "Documentation Lead",
-      imageUrl: "https://via.placeholder.com/150", 
+      imageUrl: "https://i.ibb.co/vQBtxzp/cz-M6-Ly9t-ZWRp-YS1wcml2-YXRl-Lm-Nhbn-Zh-Lm-Nvb-S95-WUhf-OC9-NQUZu-OXF5-WUhf-OC8x-L3-Auc-G5n.png", 
     },
     {
       name: "Jomar Catalino",
       jobTitle: "Front-end Developer",
-      imageUrl: "https://via.placeholder.com/150", 
+      imageUrl: "https://i.ibb.co/yN2FFC7/cz-M6-Ly9t-ZWRp-YS1wcml2-YXRl-Lm-Nhbn-Zh-Lm-Nvb-S9-DMj-ZTOC9-NQUZu-OXZDMj-ZTOC8x-L3-Auc-G5n.webp", 
     },
   ];
 
