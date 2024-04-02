@@ -22,7 +22,7 @@ users_collection = db.users_collection
 
 
 jwt = JWTManager(app) # initialize JWTManager
-app.config['JWT_SECRET_KEY'] = 'DanialxRatherxYJ'
+app.config['JWT_SECRET_KEY'] = 'MiltonxBOknoyxJomar'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1) # define the life span of the token
 
 # Register API route
