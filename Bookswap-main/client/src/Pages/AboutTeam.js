@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../Components/Header"; 
+import Header from "../Components/Header";
 import { useColorModeValue } from "@chakra-ui/react";
-import { Box, Heading, Text, Stack, Image, Grid, GridItem, Button, Spacer } from "@chakra-ui/react";
+import { Box, Heading, Text, Stack, Image, Grid, GridItem, Button, Container } from "@chakra-ui/react";
 
 function AboutTeam() {
   const bgColor = useColorModeValue("gray.50", "gray.800");
@@ -37,53 +37,60 @@ function AboutTeam() {
 
   return (
     <div>
-      <Header /> 
-      <Box p={4} bg={bgColor}>
-        <Stack spacing={8} align="center">
-          <Heading fontSize={"3xl"} color={useColorModeValue("teal.500", "yellow.400")}>
-            Our Amazing Team
-          </Heading>
-          <Text fontSize={"lg"} color={useColorModeValue("gray.700", "white")}>
-            Meet the passionate individuals who make this all possible.
-          </Text>
-          <Grid
-            templateColumns={{
-              base: "repeat(1, 1fr)", 
-              md: "repeat(2, 1fr)", 
-              lg: "repeat(5, 1fr)", // Adjust for 5 columns
-            }}
-            gap={6} // Adjust spacing between members
-          >
-            {teamMembers.map((member) => (
-              <GridItem key={member.name}>
-                <Image
-                  src={member.imageUrl}
-                  alt={member.name}
-                  borderRadius="full"
-                  boxSize="150px"
-                  objectFit="cover"
-                  mb={2}
-                  border={useColorModeValue("gray.200", "white")}
-                />
-                <Heading fontSize="md" textAlign="center">
-                  {member.name}
-                </Heading>
-                <Text fontSize="sm" color={useColorModeValue("gray.600", "white")} textAlign="center">
-                  {member.jobTitle}
-                </Text>
-              </GridItem>
-            ))}
-          </Grid>
-          <Button
-            as={Link} 
-            to="/" 
-            colorScheme={useColorModeValue("teal", "yellow")} 
-            variant="outline" 
-          >
-            Back to Home
-          </Button>
-        </Stack>
-      </Box>
+      <Header />
+      <Container maxW="container.x1" p={12} display="flex" justifyContent="center"> 
+        <Box
+          bg="white"
+          width="1000px"
+          p={10} // Add some padding inside the container
+          borderRadius="10px" 
+        >
+          <Stack spacing={8} align="center">
+            <Heading fontSize={"3xl"} color={useColorModeValue("teal.500", "yellow.400")}>
+              Our Amazing Team
+            </Heading>
+            <Text fontSize={"lg"} color={useColorModeValue("gray.700", "white")}>
+              Meet the passionate individuals who make this all possible.
+            </Text>
+            <Grid
+              templateColumns={{
+                base: "repeat(1, 1fr)", 
+                md: "repeat(2, 1fr)", 
+                lg: "repeat(5, 1fr)", // Adjust for 5 columns
+              }}
+              gap={6} // Adjust spacing between members
+            >
+              {teamMembers.map((member) => (
+                <GridItem key={member.name}>
+                  <Image
+                    src={member.imageUrl}
+                    alt={member.name}
+                    borderRadius="full"
+                    boxSize="150px"
+                    objectFit="cover"
+                    mb={2}
+                    border={useColorModeValue("gray.200", "white")}
+                  />
+                  <Heading fontSize="md" textAlign="center">
+                    {member.name}
+                  </Heading>
+                  <Text fontSize="sm" color={useColorModeValue("gray.600", "white")} textAlign="center">
+                    {member.jobTitle}
+                  </Text>
+                </GridItem>
+              ))}
+            </Grid>
+            <Button
+              as={Link} 
+              to="/" 
+              colorScheme={useColorModeValue("teal", "yellow")} 
+              variant="outline" 
+            >
+              Back to Home
+            </Button>
+          </Stack>
+        </Box>
+      </Container>
     </div>
   );
 }
