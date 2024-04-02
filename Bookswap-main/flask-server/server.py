@@ -87,7 +87,7 @@ def parse_json(data):
 # Members API route
 @app.route("/members")
 def members():
-    return {"members": ["Danial", "Rather", "YJ"]}
+    return {"members": ["Milton", "BOknoy", "Jomar"]}
 
 # Get listings API route
 # Get listings for given user_id
