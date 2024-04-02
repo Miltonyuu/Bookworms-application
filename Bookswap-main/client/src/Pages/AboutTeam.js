@@ -20,9 +20,11 @@ function AboutTeam() {
           </Text>
           <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))" gap={6}>
             {/* Team member sections */}
+
+
             <GridItem>
             <Image // Add image using Image component (replace URL)
-      src="https://via.placeholder.com/150"
+      src="https://via.placeholder.com/150" 
       alt="Team Member 1"
       borderRadius="full"
       boxSize="150px"
@@ -60,7 +62,12 @@ function AboutTeam() {
         </Stack>
       </Box>
     </div>
+
+    
+
   );
 }
+
+
 
 export default AboutTeam;
