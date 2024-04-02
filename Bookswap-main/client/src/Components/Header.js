@@ -326,12 +326,12 @@ const NAV_ITEMS = [
       {
         label: "Our Team",
         subLabel: "We are so epic",
-        href: "#",
+        href: "/aboutteam",
       },
       {
         label: "Our Story",
         subLabel: "An epic saga",
-        href: "#",
+        href: "/aboutstory",
       },
     ],
   },

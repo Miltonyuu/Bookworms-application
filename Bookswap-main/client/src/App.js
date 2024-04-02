@@ -4,6 +4,8 @@ import CreateListing from './Pages/CreateListing';
 import Home from './Pages/Home';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
+import AboutStory from './Pages/AboutStory';
+import AboutTeam from './Pages/AboutTeam';
 
 function App() {
 
@@ -14,6 +16,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/createlisting" element={<CreateListing />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/aboutstory" element={<AboutStory />} />
+        <Route path="/aboutteam" element={<AboutTeam />} />
       </Routes>
     </div>
   )
