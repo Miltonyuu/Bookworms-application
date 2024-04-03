@@ -90,8 +90,8 @@ function YourListings() {
         </Skeleton>
       )}
 
-       {listingId && (
-                <EditListingForm listingId={listingId} /> // Assuming you'll create this
+            {listingId && ( 
+                <EditListingForm listingId={listingId} /> // Pass listingId directly
             )}
 
       <SimpleGrid
@@ -131,15 +131,15 @@ function YourListings() {
               <Divider />
               <CardFooter>
                 <ButtonGroup spacing="2">
-                    <Button 
-                      variant="solid" 
-                      colorScheme="blue"
-                      onClick={() => {
-                          setSearchParams({ listingId: listing._id.toString() }); // Extract the string representation
-                      }}
-                  >
-                      Edit
-                  </Button>
+                                              <Button 
+                                  variant="solid" 
+                                  colorScheme="blue"
+                                  onClick={() => {
+                                      setSearchParams({ listingId: listing._id.$oid }); // Extract the $oid property
+                                  }}
+                              >
+                                  Edit
+                              </Button> 
 
 
 

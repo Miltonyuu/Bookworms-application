@@ -25,28 +25,35 @@ const EditListingForm = ({ listingId }) => {
   const { token } = useAuth();
 
   // Fetch initial listing data
-  useEffect(() => {
+ useEffect(() => {
+    console.log("useEffect triggered, listingId:", listingId); // Log the value
+
     const fetchListing = async () => {
-      try{
-        console.log(listingId); // Added this line to inspect the listingId value
-        const response = await axios.get(`/listings/${listingId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        if (!listingId) {
+            console.log("ListingId not yet available");
+            return; 
+        }
 
-        if (response.status === 200) {
-          setPrice(response.data.price);
-          setCondition(response.data.condition);
-          setDescription(response.data.description);
-        } 
+        try {
+          const response = await axios.get(`/listings/${listingId.toString()}`, {
+              headers: { Authorization: `Bearer ${token}` },
+          });
 
-      } catch (error) {
-        console.error("Error fetching listing data:", error);
-        // Handle fetching errors appropriately 
-      }
+            if (response.status === 200) {
+                setPrice(response.data.price);
+                setCondition(response.data.condition);
+                setDescription(response.data.description);
+            } 
+
+        } catch (error) {
+            console.error("Error fetching listing data:", error);
+            // Handle fetching errors appropriately 
+        }
     };
 
     fetchListing(); 
-}, [listingId, token]);
+}, [listingId, token]); 
+
 
 
   // Handle form submission

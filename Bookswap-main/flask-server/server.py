@@ -126,11 +126,16 @@ if __name__ == "__main__":
 def update_listing(listing_id):
     try:
         updated_data = request.get_json()
+        print("Received updated data:", updated_data)
+
+        # Convert listing_id to ObjectID
+        _id = ObjectId(listing_id) 
 
         result = listings_collection.update_one(
-            {"_id": ObjectId(listing_id)}, 
+            {"_id.$oid": _id},  
             {"$set": updated_data} 
         )
+        print("Update result:", result) 
 
         if result.matched_count == 1:
             return jsonify({"message": "Listing updated successfully!"}), 200
