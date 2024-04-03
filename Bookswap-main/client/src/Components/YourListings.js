@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../Hooks/useAuth";
+import EditListingForm from './EditListingForm'; // Assuming EditListingForm.js is in the same directory
 import {
   Box,
   Button,
@@ -18,11 +19,14 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { useSearchParams } from 'react-router-dom';
 
 function YourListings() {
   const [listings, setListings] = useState();
   const {isAuthenticated, token} = useAuth();
   const [listingDeleted, setListingDeleted] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const listingId = searchParams.get('listingId');
 
   useEffect(() => {
     const getListingsForCurrentUser = async () => {
@@ -86,6 +90,10 @@ function YourListings() {
         </Skeleton>
       )}
 
+       {listingId && (
+                <EditListingForm listingId={listingId} /> // Assuming you'll create this
+            )}
+
       <SimpleGrid
         spacing={4}
         templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
@@ -123,9 +131,18 @@ function YourListings() {
               <Divider />
               <CardFooter>
                 <ButtonGroup spacing="2">
-                  <Button variant="solid" colorScheme="blue">
-                    Edit
+                    <Button 
+                      variant="solid" 
+                      colorScheme="blue"
+                      onClick={() => {
+                          setSearchParams({ listingId: listing._id.toString() }); // Extract the string representation
+                      }}
+                  >
+                      Edit
                   </Button>
+
+
+
                   <Button
                     variant="ghost"
                     colorScheme="red"

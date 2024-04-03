@@ -119,3 +119,24 @@ def getusername():
     
 if __name__ == "__main__":
     app.run(debug=True)
+
+# for updating the listings
+@app.route("/listings/<listing_id>", methods=["PUT"])
+@jwt_required()
+def update_listing(listing_id):
+    try:
+        updated_data = request.get_json()
+
+        result = listings_collection.update_one(
+            {"_id": ObjectId(listing_id)}, 
+            {"$set": updated_data} 
+        )
+
+        if result.matched_count == 1:
+            return jsonify({"message": "Listing updated successfully!"}), 200
+        else:
+            return jsonify({"message": "Listing not found"}), 404
+
+    except Exception as e:
+        print(f"Error updating listing: {e}")
+        return jsonify({"message": "Error updating listing"}), 500
