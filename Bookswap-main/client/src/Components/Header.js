@@ -41,6 +41,7 @@ export default function Header() {
 
   return (
     <Box>
+      
       <Flex
         bg={useColorModeValue("white", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
@@ -91,7 +92,7 @@ export default function Header() {
             <>
               <Center>
                 <Link
-                  href={"#"}
+                  href={"/home"}
                   fontSize={"sm"}
                   fontWeight={500}
                   color={linkColor}
