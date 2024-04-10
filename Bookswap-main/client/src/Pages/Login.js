@@ -44,7 +44,7 @@ function Login() {
     e.preventDefault();
     try {
       const responseStatus = await auth.login(username, password);
-      if (responseStatus === 200) navigate("/");
+      if (responseStatus === 200) navigate("/home2");
     } catch {
       setError(true);
     }

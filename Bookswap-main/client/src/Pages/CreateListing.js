@@ -4,7 +4,7 @@ import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-import Header from "../Components/Header";
+import Header2 from "../Components/Header2";
 import axios from "axios";
 import { useAuth } from "../Hooks/useAuth";
 import S3 from "react-aws-s3";
@@ -197,7 +197,7 @@ function CreateListing() {
 
   return (
     <>
-      <Header></Header>
+      <Header2 />
       <form onSubmit={tryCreateListing} style={{ paddingTop: "30px" }}>
         <SimpleGrid columns={2} spacing={10} px={10}>
           <Box>
