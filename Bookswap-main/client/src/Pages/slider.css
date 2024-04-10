@@ -1,0 +1,12 @@
+.carousel .slider-wrapper{
+    width: 80%;
+}
+
+.carousel .thumb{
+    width: 5%;
+    height: 50px;
+}
+
+.carousel{
+    text-align: center;
+}
