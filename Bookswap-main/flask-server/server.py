@@ -97,6 +97,14 @@ def listing():
     user_id = args.get("user_id")
     return parse_json(listings_collection.find({ "user_id": ObjectId(user_id) }))
 
+# Get listings API route
+# Get listings for all users
+@app.route("/alistings", methods=["GET"])
+def alistings():
+    # Find all listings without any user_id filter
+    alistings = listings_collection.find({})
+    return parse_json(alistings)
+
 # Get listings that match (with usernames fetched from user ID)
 @app.route("/searchlistings", methods=["GET"])
 def searchlistings():
@@ -145,3 +153,5 @@ def update_listing(listing_id):
     except Exception as e:
         print(f"Error updating listing: {e}")
         return jsonify({"message": "Error updating listing"}), 500
+    
+#

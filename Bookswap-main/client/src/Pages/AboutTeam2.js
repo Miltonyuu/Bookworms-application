@@ -4,8 +4,8 @@ import Header2 from "../Components/Header2";
 import { useColorModeValue } from "@chakra-ui/react";
 import { Box, Heading, Text, Stack, Image, Grid, GridItem, Button, Container } from "@chakra-ui/react";
 
-function AboutTeam2() {
-  
+function AboutTeam() {
+  const bgColor = useColorModeValue("gray.50", "gray.800");
 
   const teamMembers = [
     {
@@ -82,7 +82,7 @@ function AboutTeam2() {
             </Grid>
             <Button
               as={Link} 
-              to="/home2" 
+              to="/" 
               colorScheme={useColorModeValue("teal", "yellow")} 
               variant="outline" 
             >
@@ -94,4 +94,4 @@ function AboutTeam2() {
     </div>
   );
 }
-export default AboutTeam2;
+export default AboutTeam;

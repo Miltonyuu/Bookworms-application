@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Components/Header'
-import YourListings from '../Components/YourListings'
+import AListings from '../Components/AListings';
 import SearchBar from '../Components/SearchBar'
 import { useAuth } from '../Hooks/useAuth';
 import { Carousel } from 'react-responsive-carousel';
@@ -35,8 +35,8 @@ function Home() {
                 </div>
             </Carousel>
         </div>
-
-            {isAuthenticated && <YourListings />}
+            <AListings />
+            
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Header2 from '../Components/Header2'
 import SearchBar from '../Components/SearchBar'
+import AListings from '../Components/AListings';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -9,6 +10,7 @@ import "../Pages/slider.css";
 import img1  from "../Images/rezimage1.jpg";
 import img2  from "../Images/rezimage2.jpg";
 import img3  from "../Images/rezimage3.jpg";
+
 
 function Home2() {
     
@@ -33,6 +35,7 @@ function Home2() {
                 </Carousel>
 
         </div>
+            <AListings />
             
             
         </div>
