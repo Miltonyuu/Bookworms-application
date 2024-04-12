@@ -18,25 +18,25 @@ function Home() {
     return (
         <div>
             <Header />
-            <div style={{paddingTop: "50px", paddingBottom: "50px"}}>
+            <div style={{paddingTop: "50px", paddingBottom: "10px"}}>
                 <SearchBar />
             </div>
+
+        <div className="card">
+            <Carousel className='main-carousel'>
+                <div>
+                    <img src={img1} style={{height:"500px", width:"2000px"}} alt="promoteImg1" />
+                </div>
+                <div>
+                    <img src={img2} style={{height:"500px", width:"2000px"}} alt="promoteImg2" />
+                </div>
+                <div>
+                    <img src={img3} style={{height:"500px", width:"2000px"}} alt="promoteImg3" />
+                </div>
+            </Carousel>
+        </div>
+
             {isAuthenticated && <YourListings />}
-
-            <div className="card">
-                <Carousel className='main-carousel'>
-                    <div>
-                        <img src={img1} style={{height:"500px", width:"2000px"}} />
-                    </div>
-                    <div>
-                        <img src={img2} style={{height:"500px", width:"2000px"}} />
-                    </div>
-                    <div>
-                        <img src={img3} style={{height:"500px", width:"2000px"}} />
-                    </div>
-                </Carousel>
-            </div>
-
         </div>
     );
 }
