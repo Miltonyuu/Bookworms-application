@@ -82,7 +82,7 @@ function AboutTeam() {
             </Grid>
             <Button
               as={Link} 
-              to="/" 
+              to="/home2" 
               colorScheme={useColorModeValue("teal", "yellow")} 
               variant="outline" 
             >

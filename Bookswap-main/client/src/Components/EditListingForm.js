@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { 
+import {
   Box,
   FormControl,
   FormLabel,
@@ -10,121 +10,152 @@ import {
   Button,
   Alert,
   InputLeftAddon,
+  Flex,
 } from "@chakra-ui/react";
 import { useAuth } from "../Hooks/useAuth";
-import axios from 'axios';
+import axios from "axios";
 
-
-const EditListingForm = ({ listingId }) => {
+const EditListingForm = ({ listing_id, onListingUpdated }) => {
   // States for form data
-  const [price, setPrice] = useState("");  
-  const [condition, setCondition] = useState(""); 
-  const [description, setDescription] = useState(""); 
+  const [price, setPrice] = useState("");
+  const [condition, setCondition] = useState("");
+  const [description, setDescription] = useState("");
   const [success, setSuccess] = useState(false);
-
   const { token } = useAuth();
 
-  // Fetch initial listing data
- useEffect(() => {
-    console.log("useEffect triggered, listingId:", listingId); // Log the value
-
+   // Fetch initial listing data
+   useEffect(() => {
     const fetchListing = async () => {
-        if (!listingId) {
-            console.log("ListingId not yet available");
-            return; 
-        }
+      if (!listing_id) {
+        return;
+      }
 
-        try {
-          const response = await axios.get(`/listings/${listingId.toString()}`, {
-              headers: { Authorization: `Bearer ${token}` },
-          });
-
-            if (response.status === 200) {
-                setPrice(response.data.price);
-                setCondition(response.data.condition);
-                setDescription(response.data.description);
-            } 
-
-        } catch (error) {
-            console.error("Error fetching listing data:", error);
-            // Handle fetching errors appropriately 
-        }
+      try {
+        const response = await axios.get(`/createlistingform/${listing_id}`);
+        setPrice(response.data.price);
+        setCondition(response.data.condition);
+        setDescription(response.data.description);
+      } catch (error) {
+        console.error("Error fetching listing data:", error);
+      }
     };
 
-    fetchListing(); 
-}, [listingId, token]); 
+    fetchListing();
+  }, [listing_id]);
 
-
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
+   // Handle form submission
+   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        const response = await axios.put(
-          `/listings/${listingId}`,
-          { price, condition, description }, 
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+      const response = await axios.put(`/editlistingform${listing_id}`, {
+        price,
+        condition,
+        description,
+      });
 
-        if (response.status === 200) { 
-          setSuccess(true);
-          // (Optional) Refetch listings in YourListings component
-        } 
+      if (response.status === 200) {
+        setSuccess(true);
+        if (onListingUpdated) {
+          onListingUpdated(); // Trigger callback to refetch listings
+        }
+      }
     } catch (error) {
       console.error("Error updating listing:", error);
-      // Handle updating errors appropriately 
     }
-};
-
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Box>
+    <Flex
+      alignItems="center"
+      justifyContent="center"
+      width="100%"
+      height="100vh"
+      bg="#f5f5f5" // White background color
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      width="100%"
+      height="100vh" // Set height to 100% of viewport height
+      position="fixed" // Position the form fixed so it floats above other content
+      top="0"
+      left="0"
+      zIndex="9999" // Ensure it's above other content
+      bg="rgba(34, 34, 34, 0.8)" // Set background color with 30% transparency
+      color="black" // Set text color
+      padding="20px" // Add padding for content
+      borderRadius="10px" // Add rounded corners
+    >
+      <Flex
+        as="form"
+        flexDirection="column"
+        alignItems="center"
+        width="100%"
+        maxWidth="400px"
+        padding="20px"
+        bg="#fff" // Set background color for the form
+        borderRadius="10px" // Add rounded corners
+        boxShadow="0 0 10px rgba(0, 0, 0, 0.1)" // Add subtle light effect
+      >   
+        <Box textAlign="center" mb={4}>
+          <h2 style={{ fontSize: "24px", fontWeight: "bold", color: "#333" }}>
+            Edit Listing
+          </h2>
+        </Box>
+        
         <FormControl isRequired>
           <FormLabel>Price</FormLabel>
           <InputGroup>
             <InputLeftAddon children="$" />
-            <Input 
-              type="number" // Or type="text" if needed
-              placeholder="00.00" 
-              value={price} 
-              onChange={(e) => setPrice(e.target.value)} 
-             />
+            <Input
+              type="number"
+              placeholder="00.00"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
           </InputGroup>
         </FormControl>
 
-        <FormControl isRequired>
+        <FormControl isRequired marginTop={4}>
           <FormLabel>Condition</FormLabel>
-          <Select 
+          <Select
             placeholder="Select condition"
-            value={condition} 
-            onChange={(e) => setCondition(e.target.value)}>
-            {/* Add your <option> elements for conditions here */}
-            <option value="0">New</option> 
+            value={condition}
+            onChange={(e) => setCondition(e.target.value)}
+          >
+            <option value="0">New</option>
             <option value="1">Like New</option>
             <option value="2">Used</option>
             <option value="3">Acceptable</option>
           </Select>
         </FormControl>
 
-         <FormControl isRequired>
+        <FormControl isRequired marginTop={4}>
           <FormLabel>Description</FormLabel>
-          <Textarea 
-            value={description} 
+          <Textarea
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </FormControl>
 
-        {success && ( 
-          <Alert status="success">
+        {success && (
+          <Alert status="success" marginTop={4}>
             Listing updated successfully!
           </Alert>
         )}
 
-        <Button colorScheme="blue" type="submit">Update Listing</Button>
-      </Box>
-    </form>
+        <Flex justifyContent="center">
+          <Button colorScheme="blue" type="submit" marginTop={4}>
+            Update
+          </Button>
+
+          <Button colorScheme="blue" type="submit" marginTop={4} marginLeft={4}>
+            Cancel
+          </Button>
+        </Flex>
+        
+      </Flex>
+    </Flex>
   );
 };
 

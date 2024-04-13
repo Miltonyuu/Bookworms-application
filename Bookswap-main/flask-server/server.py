@@ -71,6 +71,7 @@ def createlisting():
     new_listing = request.get_json() # store the json body request
     new_listing["user_id"] = ObjectId(new_listing["user_id"])
     listings_collection.insert_one(new_listing)
+
     return jsonify({'msg': 'Listing created successfully'}), 202
 
 @app.route("/deletelisting", methods=["GET"])
@@ -128,30 +129,33 @@ def getusername():
 if __name__ == "__main__":
     app.run(debug=True)
 
-# for updating the listings
-@app.route("/listings/<listing_id>", methods=["PUT"])
-@jwt_required()
-def update_listing(listing_id):
-    try:
-        updated_data = request.get_json()
-        print("Received updated data:", updated_data)
+@app.route("/editlistingform", methods=["GET", "PUT"])
+@jwt_required()  # Implement JWT authentication middleware if needed
+def editlistingform(listing_id):
+    if request.method == "GET":
+        try:
+            _id = ObjectId(listing_id)
+            listing = listings_collection.find_one({"_id": _id})
+            if listing:
+                return jsonify(listing), 200
+            else:
+                return jsonify({"message": "Listing not found"}), 404
+        except Exception as e:
+            print(f"Error fetching listing: {e}")
+            return jsonify({"message": "Internal server error"}), 500
 
-        # Convert listing_id to ObjectID
-        _id = ObjectId(listing_id) 
-
-        result = listings_collection.update_one(
-            {"_id.$oid": _id},  
-            {"$set": updated_data} 
-        )
-        print("Update result:", result) 
-
-        if result.matched_count == 1:
-            return jsonify({"message": "Listing updated successfully!"}), 200
-        else:
-            return jsonify({"message": "Listing not found"}), 404
-
-    except Exception as e:
-        print(f"Error updating listing: {e}")
-        return jsonify({"message": "Error updating listing"}), 500
+    elif request.method == "PUT":
+        try:
+            _id = ObjectId(listing_id)
+            updated_data = request.get_json()
+            update_result = listings_collection.update_one(
+                {"_id": _id}, {"$set": updated_data}
+            )
+            if update_result.matched_count == 1:
+                return jsonify({"message": "Listing updated successfully!"}), 200
+            else:
+                return jsonify({"message": "Listing not found"}), 404
+        except Exception as e:
+            print(f"Error updating listing: {e}")
+            return jsonify({"message": "Error updating listing"}), 500
     
-#

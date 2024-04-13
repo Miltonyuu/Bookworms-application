@@ -15,6 +15,8 @@ import Dashboard from './Components/Dashboard';
 import UserProfile from './Components/UserProfile';
 import MyListing from './Pages/MyListing';
 import AListings from './Components/AListings';
+
+
 function App() {
 
   return (
@@ -35,7 +37,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/alistings" element={<AListings />} />
-        
+
       </Routes>
     </div>
   )
