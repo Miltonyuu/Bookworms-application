@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { RepeatIcon, SearchIcon } from "@chakra-ui/icons";
 import {
   SimpleGrid,
   Skeleton,
@@ -11,12 +12,14 @@ import {
   Stack,
   Heading,
   Box,
+  Button,
+  CardFooter,
+  HStack,
 } from "@chakra-ui/react";
 
 function AListings() {
   const [listings, setListings] = useState();
   
-
   useEffect(() => {
     const getListings = async () => {
       try {
@@ -52,9 +55,9 @@ function AListings() {
       )}
 
       <SimpleGrid
-        spacing={4}
+        spacing={3}
         templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-        paddingInline={10}
+        p={10}
       >
         {!listings && <p>Loading listings...</p>}
         {listings && (
@@ -87,6 +90,19 @@ function AListings() {
                       </Text>
                     </Stack>
                   </CardBody>
+                  <CardFooter pl={2}>
+                        <HStack>
+                          <Button variant="solid" colorScheme="blue">
+                            View listing
+                          </Button>
+                          <Button leftIcon={<RepeatIcon />} variant="solid" colorScheme="green">
+                            Swap
+                          </Button>
+                          <Button leftIcon={<Text>$</Text>} variant="solid" colorScheme="green">
+                            Buy
+                          </Button>
+                        </HStack>
+                  </CardFooter>
                 </Card>
               ))
             )}

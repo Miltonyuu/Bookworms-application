@@ -17,11 +17,7 @@ function Home2() {
     return (
         <div>
             <Header2 />
-            <div style={{paddingTop: "50px", paddingBottom: "10px"}}>
-                <SearchBar />
-            </div>
-
-            <div className="card">
+            <div className="card" style={{paddingTop:"50px"}}>
                 <Carousel className='main-carousel'>
                     <div>
                         <img src={img1} style={{height:"500px", width:"2000px"}} alt="promoteImg1" />
@@ -33,6 +29,10 @@ function Home2() {
                         <img src={img3} style={{height:"500px", width:"2000px"}} alt="promoteImg3" />
                     </div>
                 </Carousel>
+
+            <div style={{paddingTop: "40px", paddingBottom: "10px"}}>
+                <SearchBar />
+            </div>
 
         </div>
             <AListings />
