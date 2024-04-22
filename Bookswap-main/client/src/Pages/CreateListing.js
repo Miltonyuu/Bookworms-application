@@ -52,7 +52,6 @@ function CreateListing() {
   const [success, setSuccess] = useState(false);
   const [bookResponse, setBookResponse] = useState();
   const [authors, setAuthors] = useState([]);
-  const [seller, setSellerName] = useState([]);
 
   const handleChangeTitle = (input) => {
     if (input && input !== "") setTitle(input);
@@ -133,11 +132,6 @@ function CreateListing() {
     setCondition(e.target.value); //set name to e.target.value (event)
   };
 
-  const handleChangeSellername = (e) => {
-    e.preventDefault(); //prevent the default action
-    setSellerName(e.target.value); //set name to e.target.value (event)
-  };
-
   const uploadFiles = async (files) => {
     console.log("Starting upload");
     const ReactS3Client = new S3(awsConfig);
@@ -178,7 +172,8 @@ function CreateListing() {
         }
       );
       console.log("PROFILE RESPONSE:", responseProfile);
-      const userId = responseProfile.data.profile._id; 
+      const userId = responseProfile.data.profile._id;
+      const username = responseProfile.data.profile.username;  
       const imageUrls = await uploadFiles(images);
       const responseCreateListing = await axios.post(
         process.env.REACT_APP_API_BASE + "/createlisting",
@@ -189,7 +184,7 @@ function CreateListing() {
           price: price,
           description: description,
           condition: condition,
-          seller: seller,
+          seller: username,
           img: imageUrls,
         },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -285,7 +280,7 @@ function CreateListing() {
                 <Textarea />
               </FormControl>
 
-              <FormControl onChange={handleChangeSellername}>
+              <FormControl>
                 <FormLabel>Seller's Name</FormLabel>
                   <Input placeholder="Name" type="text" /> 
               </FormControl>
