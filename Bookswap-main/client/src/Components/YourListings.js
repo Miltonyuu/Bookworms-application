@@ -26,7 +26,7 @@ function YourListings() {
   const {isAuthenticated, token} = useAuth();
   const [listingDeleted, setListingDeleted] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const listingId = searchParams.get('listingId');
+  const listing_Id = searchParams.get('listing_Id');
 
   useEffect(() => {
     const getListingsForCurrentUser = async () => {
@@ -90,8 +90,8 @@ function YourListings() {
         </Skeleton>
       )}
 
-            {listingId && ( 
-                <EditListingForm listingId={listingId} /> // Pass listingId directly
+            {listing_Id && ( 
+                <EditListingForm listing_Id={listing_Id} /> // Pass listingId directly
             )}
 
       <SimpleGrid
@@ -135,7 +135,7 @@ function YourListings() {
                                   variant="solid" 
                                   colorScheme="blue"
                                   onClick={() => {
-                                      setSearchParams({ listingId: listing._id.$oid }); // Extract the $oid property
+                                      setSearchParams({ listing_Id: listing._id.$oid }); // Extract the $oid property
                                   }}
                               >
                                   Edit
@@ -144,7 +144,7 @@ function YourListings() {
 
 
                   <Button
-                    variant="ghost"
+                    variant="solid"
                     colorScheme="red"
                     onClick={deleteListing(listing._id)}
                   >

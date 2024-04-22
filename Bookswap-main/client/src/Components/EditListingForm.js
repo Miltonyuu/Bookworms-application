@@ -70,12 +70,7 @@ const EditListingForm = ({ listing_id, onListingUpdated }) => {
       alignItems="center"
       justifyContent="center"
       width="100%"
-      height="100vh"
-      bg="#f5f5f5" // White background color
       flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      width="100%"
       height="100vh" // Set height to 100% of viewport height
       position="fixed" // Position the form fixed so it floats above other content
       top="0"
@@ -89,7 +84,6 @@ const EditListingForm = ({ listing_id, onListingUpdated }) => {
       <Flex
         as="form"
         flexDirection="column"
-        alignItems="center"
         width="100%"
         maxWidth="400px"
         padding="20px"

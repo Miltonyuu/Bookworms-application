@@ -173,6 +173,7 @@ function CreateListing() {
       );
       console.log("PROFILE RESPONSE:", responseProfile);
       const userId = responseProfile.data.profile._id;
+      const username = responseProfile.data.profile.username;  
       const imageUrls = await uploadFiles(images);
       const responseCreateListing = await axios.post(
         process.env.REACT_APP_API_BASE + "/createlisting",
@@ -183,6 +184,7 @@ function CreateListing() {
           price: price,
           description: description,
           condition: condition,
+          seller: username,
           img: imageUrls,
         },
         { headers: { Authorization: `Bearer ${token}` } }
@@ -276,6 +278,11 @@ function CreateListing() {
               <FormControl onChange={handleChangeDescription}>
                 <FormLabel>Description</FormLabel>
                 <Textarea />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Seller's Name</FormLabel>
+                  <Input placeholder="Name" type="text" /> 
               </FormControl>
 
               {success && (

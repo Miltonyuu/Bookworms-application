@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { RepeatIcon, SearchIcon } from "@chakra-ui/icons";
+import { RepeatIcon, ViewIcon } from "@chakra-ui/icons";
 import {
   SimpleGrid,
   Skeleton,
@@ -88,12 +88,13 @@ function AListings() {
                       <Text color="blue.600" fontSize="2xl">
                         ${Number(listing.price).toFixed(2)}
                       </Text>
+                      <Text>Seller's Name: {listing.seller}</Text>
                     </Stack>
                   </CardBody>
-                  <CardFooter pl={2}>
+                  <CardFooter pl={5}>
                         <HStack>
-                          <Button variant="solid" colorScheme="blue">
-                            View listing
+                          <Button leftIcon={<ViewIcon/>} variant="solid" colorScheme="blue">
+                            View
                           </Button>
                           <Button leftIcon={<RepeatIcon />} variant="solid" colorScheme="green">
                             Swap
