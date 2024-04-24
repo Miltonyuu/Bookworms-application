@@ -91,15 +91,15 @@ function AListings() {
                       <Text>Seller's Name: {listing.seller}</Text>
                     </Stack>
                   </CardBody>
-                  <CardFooter pl={2} pr={6}>
-                        <HStack mt="1" spacing="1">
-                          <Button leftIcon={<ViewIcon/>} variant="solid" colorScheme="blue">
+                  <CardFooter pl={1}>
+                        <HStack mt="1" spacing="1" pl={1}>
+                          <Button p={4}  leftIcon={<ViewIcon/>} variant="solid" colorScheme="blue">
                             View
                           </Button>
-                          <Button leftIcon={<PlusSquareIcon/>} variant="solid" colorScheme="yellow" color={'white'}>
+                          <Button p={4}  leftIcon={<PlusSquareIcon/>} variant="solid" colorScheme="yellow" color={'white'}>
                             Bookmark
                           </Button>
-                          <Button leftIcon={<Text>$</Text>} variant="solid" colorScheme="green">
+                          <Button p={4}  leftIcon={<Text>$</Text>} variant="solid" colorScheme="green">
                             Buy
                           </Button>
                         </HStack>
