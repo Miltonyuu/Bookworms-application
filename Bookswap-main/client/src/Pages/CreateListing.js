@@ -52,6 +52,7 @@ function CreateListing() {
   const [success, setSuccess] = useState(false);
   const [bookResponse, setBookResponse] = useState();
   const [authors, setAuthors] = useState([]);
+  const {currentUser,} = useAuth();
 
   const handleChangeTitle = (input) => {
     if (input && input !== "") setTitle(input);
@@ -281,8 +282,19 @@ function CreateListing() {
               </FormControl>
 
               <FormControl>
-                <FormLabel>Seller's Name</FormLabel>
-                  <Input placeholder="Name" type="text" /> 
+                <FormLabel>Seller's Name:</FormLabel>
+                <Text
+                  href={"/home2"}
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  
+                  _hover={{
+                    textDecoration: "none",
+
+                  }}
+                >
+                {currentUser}
+                </Text>
               </FormControl>
 
               {success && (

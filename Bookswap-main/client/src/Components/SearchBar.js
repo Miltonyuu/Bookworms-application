@@ -16,7 +16,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { RepeatIcon, SearchIcon } from "@chakra-ui/icons";
+import {PlusSquareIcon, ViewIcon, SearchIcon } from "@chakra-ui/icons";
+
 
 function SearchBar() {
   const [search, setSearch] = useState();
@@ -87,17 +88,17 @@ function SearchBar() {
                   </CardBody>
 
                   <CardFooter>
-                    <HStack>
-                      <Button variant="solid" colorScheme="blue">
-                        View listing
-                      </Button>
-                      <Button leftIcon={<RepeatIcon />} variant="solid" colorScheme="green">
-                        Swap
-                      </Button>
-                      <Button leftIcon={<Text>$</Text>} variant="solid" colorScheme="green">
-                        Buy
-                      </Button>
-                    </HStack>
+                      <HStack mt="1" spacing="1">
+                          <Button leftIcon={<ViewIcon/>} variant="solid" colorScheme="blue">
+                            View
+                          </Button>
+                          <Button leftIcon={<PlusSquareIcon/>} variant="solid" colorScheme="yellow" color={'white'}>
+                            Bookmark
+                          </Button>
+                          <Button leftIcon={<Text>$</Text>} variant="solid" colorScheme="green">
+                            Buy
+                          </Button>
+                      </HStack>
                   </CardFooter>
                 </Stack>
               </Card>

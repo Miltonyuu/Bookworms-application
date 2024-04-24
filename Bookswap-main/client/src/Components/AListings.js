@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { RepeatIcon, ViewIcon } from "@chakra-ui/icons";
+import { PlusSquareIcon, ViewIcon } from "@chakra-ui/icons";
 import {
   SimpleGrid,
   Skeleton,
@@ -69,8 +69,8 @@ function AListings() {
               </Text>
             ) : (
               listings.map((listing, i) => (
-                <Card maxW="xs" key={i}>
-                  <CardBody>
+                <Card maxW="xs" key={i}pr={6}>
+                  <CardBody pr={6}>
                     <Center>
                       {listing.img && (
                         <Image
@@ -91,13 +91,13 @@ function AListings() {
                       <Text>Seller's Name: {listing.seller}</Text>
                     </Stack>
                   </CardBody>
-                  <CardFooter pl={5}>
-                        <HStack>
+                  <CardFooter pl={2} pr={6}>
+                        <HStack mt="1" spacing="1">
                           <Button leftIcon={<ViewIcon/>} variant="solid" colorScheme="blue">
                             View
                           </Button>
-                          <Button leftIcon={<RepeatIcon />} variant="solid" colorScheme="green">
-                            Swap
+                          <Button leftIcon={<PlusSquareIcon/>} variant="solid" colorScheme="yellow" color={'white'}>
+                            Bookmark
                           </Button>
                           <Button leftIcon={<Text>$</Text>} variant="solid" colorScheme="green">
                             Buy
