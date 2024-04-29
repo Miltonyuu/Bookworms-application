@@ -149,7 +149,7 @@ def editlistingform(listing_id):
             _id = ObjectId(listing_id)
             updated_data = request.get_json()
             update_result = listings_collection.update_one(
-                {"_id": _id}, {"$set": updated_data}
+                {"_id": _id}, {"$set": request.get_json()} 
             )
             if update_result.matched_count == 1:
                 return jsonify({"message": "Listing updated successfully!"}), 200
@@ -159,3 +159,22 @@ def editlistingform(listing_id):
             print(f"Error updating listing: {e}")
             return jsonify({"message": "Error updating listing"}), 500
     
+@app.route("/ViewListing/<listing_id>", methods=["GET"]) 
+def viewlisting(listing_id):
+    try:
+        # Search directly using the string ID (no ObjectId conversion)
+        listing = listings_collection.find_one({"_id": listing_id}) 
+
+        if listing:
+            return jsonify(listing), 200
+        else:
+            return jsonify({"message": "Listing not found"}), 404
+
+    except ValueError:  # Catch the potential error in ObjectId parsing
+        return jsonify({"message": "Invalid listing ID format"}), 400
+
+    except Exception as e:
+        print(f"Error fetching listing: {e}")
+        return jsonify({"message": "Internal server error"}), 500
+
+

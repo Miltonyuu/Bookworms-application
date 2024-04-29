@@ -31,7 +31,7 @@ const EditListingForm = ({ listing_id, onListingUpdated }) => {
       }
 
       try {
-        const response = await axios.get(`/createlistingform/${listing_id}`);
+        const response = await axios.get(`/editlistingform/${listing_id}`);
         setPrice(response.data.price);
         setCondition(response.data.condition);
         setDescription(response.data.description);
@@ -47,8 +47,12 @@ const EditListingForm = ({ listing_id, onListingUpdated }) => {
    const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("Price:", price);
+    console.log("Condition:", condition);
+    console.log("Description:", description);
+
     try {
-      const response = await axios.put(`/editlistingform${listing_id}`, {
+      const response = await axios.put(`/editlistingform/${listing_id}`, {
         price,
         condition,
         description,
@@ -139,7 +143,7 @@ const EditListingForm = ({ listing_id, onListingUpdated }) => {
         )}
 
         <Flex justifyContent="center">
-          <Button colorScheme="blue" type="submit" marginTop={4}>
+          <Button colorScheme="blue" type="submit" marginTop={4} onClick={handleSubmit}>
             Update
           </Button>
 
