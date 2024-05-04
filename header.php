@@ -42,7 +42,8 @@ if(isset($message)){
          <a href="home.php" class="logo">Bookworms Connect.</a>
 
          <nav class="navbar">
-         <a href="about.php"class="button-34" id="special-color">about</a>
+         <a href="home.php"class="button-34" id="special-color">home</a>
+            <a href="about.php"class="button-34" id="special-color">about</a>
             <a href="shop.php"class="button-34" id="special-color">shop</a>
             <a href="contact.php"class="button-34" id="special-color">contact</a>
             <a href="orders.php"class="button-34" id="special-color">buys</a>
