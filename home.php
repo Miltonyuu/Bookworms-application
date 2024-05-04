@@ -52,8 +52,8 @@ if(isset($_POST['add_to_cart'])){
 <section class="home">
 
    <div class="content">
-      <h3>Hand Picked Book to your door.</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, quod? Reiciendis ut porro iste totam.</p>
+   <h3>Unleash hidden gems in your bookshelf.</h3>
+      <p>Discover new stories waiting to be loved. Buy, sell, and trade books in a thriving community.</p>
       <a href="about.php" class="white-btn">discover more</a>
    </div>
 
@@ -128,7 +128,7 @@ if(isset($_POST['add_to_cart'])){
 
       <div class="content">
          <h3>about us</h3>
-         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit quos enim minima ipsa dicta officia corporis ratione saepe sed adipisci?</p>
+         <p>Looking for a new adventure? Explore a world of used books with Bookworms Connect! Buy, sell, and trade with other book lovers. It's like a treasure hunt for your bookshelf &#8209 find hidden gems and give your pre-loved stories a new home. All built by a TUP student who loves books just as much as you!</p>
          <a href="about.php" class="btn">read more</a>
       </div>
 
@@ -140,7 +140,7 @@ if(isset($_POST['add_to_cart'])){
 
    <div class="content">
       <h3>have any questions?</h3>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque cumque exercitationem repellendus, amet ullam voluptatibus?</p>
+      <p> If you have any questions about buying, selling, or trading books on Bookworms Connect, feel free to browse our Help Center or contact our friendly support team. They're happy to assist you!</p>
       <a href="contact.php" class="white-btn">contact us</a>
    </div>
 

@@ -21,6 +21,8 @@ if(isset($message)){
 ?>
 
 
+<link rel="stylesheet" href="css/header.css">
+
 <header class="header">
 
    <div class="header-1">
@@ -40,17 +42,16 @@ if(isset($message)){
          <a href="home.php" class="logo">Bookworms Connect.</a>
 
          <nav class="navbar">
-            <a href="home.php">home</a>
-            <a href="about.php">about</a>
-            <a href="shop.php">shop</a>
-            <a href="contact.php">contact</a>
-            <a href="orders.php">buys</a>
-            <a href="user_orders.php">selling</a>
-            <a href="user_products.php">products</a>
+         <a href="about.php"class="button-34" id="special-color">about</a>
+            <a href="shop.php"class="button-34" id="special-color">shop</a>
+            <a href="contact.php"class="button-34" id="special-color">contact</a>
+            <a href="orders.php"class="button-34" id="special-color">buys</a>
+            <a href="user_orders.php"class="button-34" id="special-color">selling</a>
+            <a href="user_products.php"class="button-34" id="special-color">products</a>
             
          </nav>
 
-         <div class="icons">
+         <div class="icons" style="display:flex; margin:0;">
             <div id="menu-btn" class="fas fa-bars"></div>
             <a href="search_page.php" class="fas fa-search"></a>
             <div id="user-btn" class="fas fa-user"></div>
@@ -65,7 +66,7 @@ if(isset($message)){
            
                
             ?>
-          <div class="icons">
+          <div class="icons" style="display:flex; margin:0;">
                <?php 
                      if (isset($_SESSION['user_id'])) {
                         $user_id = $_SESSION['user_id'];
@@ -77,7 +78,7 @@ if(isset($message)){
 
          </div>
 
-         <div class="user-box">
+         <div class="user-box" style="margin:0;">
             <p>username : <span><?php echo $_SESSION['user_name']; ?></span></p>
             <p>email : <span><?php echo $_SESSION['user_email']; ?></span></p>
             <a href="user_profile.php" class="profile-btn">Profile Details</a>
