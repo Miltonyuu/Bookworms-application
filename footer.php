@@ -3,23 +3,16 @@
    <div class="box-container">
 
       <div class="box">
-         <h3>quick links</h3>
-         <a href="home.php">home</a>
-         <a href="about.php">about</a>
-         <a href="shop.php">shop</a>
-         <a href="contact.php">contact</a>
+         <h3>About Bookworms</h3>
+         <a href="home.php">Home</a>
+         <a href="shop.php">Shop</a>
+         <a href="about.php">About</a>
+         <a href="contact.php">Contact</a>
+         <a href="policies.php">Policies</a>
       </div>
 
       <div class="box">
-         <h3>extra links</h3>
-         <a href="login.php">login</a>
-         <a href="register.php">register</a>
-         <a href="cart.php">cart</a>
-         <a href="orders.php">orders</a>
-      </div>
-
-      <div class="box">
-         <h3>contact info</h3>
+         <h3>Contact Information</h3>
          <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
          <p> <i class="fas fa-phone"></i> +111-222-3333 </p>
          <p> <i class="fas fa-envelope"></i> miltonbautista60@gmail.com </p>
@@ -27,11 +20,10 @@
       </div>
 
       <div class="box">
-         <h3>follow us</h3>
-         <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
-         <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
-         <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
-         <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+         <h3>Follow Us</h3>
+         <a href="#"> <i class="fab fa-facebook-f"></i> Facebook </a>
+         <a href="#"> <i class="fab fa-twitter"></i> Twitter </a>
+         <a href="#"> <i class="fab fa-instagram"></i> Instagram </a>
       </div>
 
    </div>

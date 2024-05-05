@@ -60,7 +60,7 @@ if(isset($_POST['add_to_cart'])){
 </section>
 
 <section class="products">
-  <h1 class="title">Available Books</h1>
+  <h1 class="title">Listed Books</h1>
   <div class="box-container">
 
     <?php

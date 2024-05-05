@@ -31,9 +31,8 @@ if(isset($message)){
             <a href="#" class="fab fa-facebook-f"></a>
             <a href="#" class="fab fa-twitter"></a>
             <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
          </div>
-         <p> new <a href="login.php">login</a> | <a href="register.php">register</a> </p>
+         <p> <a href="login.php">Login</a> | <a href="register.php">Register</a> </p>
       </div>
    </div>
 
@@ -42,13 +41,12 @@ if(isset($message)){
          <a href="home.php" class="logo">Bookworms Connect.</a>
 
          <nav class="navbar">
-         <a href="home.php"class="button-34" id="special-color">home</a>
-            <a href="about.php"class="button-34" id="special-color">about</a>
-            <a href="shop.php"class="button-34" id="special-color">shop</a>
-            <a href="contact.php"class="button-34" id="special-color">contact</a>
-            <a href="orders.php"class="button-34" id="special-color">buys</a>
-            <a href="user_orders.php"class="button-34" id="special-color">selling</a>
-            <a href="user_products.php"class="button-34" id="special-color">products</a>
+         <a href="home.php"class="button-34" id="special-color">Home</a>
+            <a href="shop.php"class="button-34" id="special-color">Listings</a>
+            <a href="user_products.php"class="button-34" id="special-color">Sell Book</a>
+            <a href="user_orders.php"class="button-34" id="special-color">Selling Transaction</a>
+            <a href="orders.php"class="button-34" id="special-color">Buying Transaction</a>
+            
             
          </nav>
 
