@@ -20,8 +20,7 @@ if(isset($message)){
     } 
 ?>
 
-
-<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="./css/style.css">
 
 <header class="header">
 

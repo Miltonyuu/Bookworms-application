@@ -315,8 +315,11 @@ section{
 }
 
 .header .header-2 .flex .navbar a:hover{
-   color:var(--purple);
+   color:var(--white);
    text-decoration: underline;
+   background-color: var(--purple);
+   border-radius: 3px;
+   padding: 3px;
 }
 
 .header .header-2 .flex .icons > *{

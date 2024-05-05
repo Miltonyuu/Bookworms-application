@@ -133,5 +133,8 @@ echo '<p class="empty">no products added yet!</p>';
 </section>
 
 <?php include 'footer.php'; ?>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
 </body>
 </html>

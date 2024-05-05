@@ -75,5 +75,8 @@ if(isset($_POST['update_profile'])){
 
 </section>
 
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
 </body>
 </html>

@@ -101,7 +101,8 @@ echo '<p class="empty">no orders placed yet!</p>';
 
 </section>
 
-<script src="js/admin_script.js"></script>
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
 
 </body>
 </html>
