@@ -47,11 +47,8 @@ if(isset($_POST['update_profile'])){
 <?php include 'header.php'; ?>
 
 <section class="user-profile">
-
- <h1 class="title">User Profile</h1>
-
- <div class="box-container">
-        <?php
+<div class="form_wrapper">
+<?php
             $message = [];
             if(isset($message)){
               foreach($message as $message){
@@ -59,20 +56,37 @@ if(isset($_POST['update_profile'])){
                 }
                 }
                  ?>
-        <div class="box">
-  <form action="" method="POST">
-                <input type="text" name="name" placeholder="Enter new name"  value="<?php echo $fetch_user['name']; ?>" class="box"> 
-                <input type="email" name="email" placeholder="Enter new email" value="<?php echo $fetch_user['email']; ?>" class="box">  
-                <input type="date" name="birthdate" value="<?php echo $fetch_user['birthdate']; ?>" class="box">  
-                <input type="text" name="bookshop_name" placeholder="Enter your bookshop name (optional)" value="<?php echo $fetch_user['bookshop_name']; ?>" class="box">  
+  <div class="form_container">
+    <div class="title_container">
+       <h1 class="title">User Profile</h1>
+    </div>
+    <div class="row clearfix">
+      <div class="">
+        <form action="" method="POST">
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"><p>Username</p></i></span>
+            <input type="text" name="name" placeholder="Email" value="<?php echo $fetch_user['name']; ?>"/>
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"><p>Email</p></i></span>
+            <input type="email" name="email" placeholder="Email" value=" <?php echo $fetch_user['email']; ?>" />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-cake"><p>Birthday</p></i></span>
+            <input type="date" name="birthdate"  value="<?php echo $fetch_user['birthdate']; ?>"/>
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"><p>Bookshop</p></i></span>
+            <input type="text" name="bookshop_name" placeholder="Enter your bookshop name (optional)" value="<?php echo $fetch_user['bookshop_name']; ?>" />
+          </div>
+            	<div class="input_field radio_option">
                 <select name="gender" class="box">
                     <option value="male" <?php if($fetch_user['gender'] == 'male') echo 'selected'; ?>>Male</option>
                     <option value="female" <?php if($fetch_user['gender'] == 'female') echo 'selected'; ?>>Female</option>
- <input type="submit" value="Update" name="update_profile" class="btn">
-</form>
-        </div>
+                </select>   
+              </div>
+          <input type="submit" value="Update" name="update_profile" class="button">
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-
 </section>
 
 <!-- custom js file link  -->
