@@ -1,0 +1,14 @@
+.show-products .box-container .box .book_desc{
+    font-size: 20px;
+    color: var(--light-color);
+ } 
+  
+ .show-products .box-container .box .box_ubd{
+    width: 100%;
+    font-size: 20px;
+    border: 3px solid rgb(0, 0, 0);
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 8px;
+    text-align: center;
+ }

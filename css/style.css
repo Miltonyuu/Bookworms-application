@@ -886,6 +886,8 @@ section{
    border-radius: .5rem;
 }
 
+/* css for the user profile starts here*/
+
 .form_wrapper {
 	background: #fff;
 	width: 800px;
@@ -1128,7 +1130,7 @@ section{
 		padding-bottom: 20px;
 	}
 }
-
+/* css for the user profile ends here*/
 
 
 .footer{
