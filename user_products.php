@@ -12,7 +12,10 @@ header('location:login.php');
 if(isset($_POST['add_product'])){
 
 $name = mysqli_real_escape_string($conn, $_POST['name']);
+$author_input = $_POST['author']; // Example: 'Bobby\'s Pizza'
+$escaped_author = mysqli_real_escape_string($conn, $author_input);
 $price = $_POST['price'];
+$bookcondition = $_POST['bookcondi'];
 $image = $_FILES['image']['name'];
 $image_size = $_FILES['image']['size'];
 $image_tmp_name = $_FILES['image']['tmp_name'];
@@ -23,7 +26,7 @@ $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE na
 if(mysqli_num_rows($select_product_name) > 0){
  $message[] = 'product name already added';
 }else{
- $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, price, image, seller_id) VALUES('$name', '$price', '$image', '$user_id')") or die('query failed');
+ $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$image', '$user_id')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
@@ -51,9 +54,11 @@ if(isset($_POST['update_product'])){
 
 $update_p_id = $_POST['update_p_id'];
 $update_name = $_POST['update_name'];
+$update_author = $_POST['update_author'];
 $update_price = $_POST['update_price'];
+$update_bookcondition = $_POST['update_bookcondition'];
 
-mysqli_query($conn, "UPDATE `products` SET name = '$update_name', price = '$update_price' WHERE id = '$update_p_id'") or die('query failed');
+mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition' WHERE id = '$update_p_id'") or die('query failed');
 
 $update_image = $_FILES['update_image']['name'];
 $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
@@ -83,9 +88,11 @@ header('location:user_products.php');
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>products</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link rel="stylesheet" href="css/admin_style.css">
-<link rel="stylesheet" href="css/update_book_process.css">
-<link rel="stylesheet" href="css/style.css">
+
+<!--  <link rel="stylesheet" href="css/admin_style.css">-->
+  <link rel="stylesheet" href="css/admin-section/admin_style.css">
+  <link rel="stylesheet" href="css/update_book_process.css">
+
   </head>
 <body>
   
@@ -93,12 +100,22 @@ header('location:user_products.php');
 
 <section class="add-products">
   <h1 class="title">shop products</h1>
-  <form action="" method="post" enctype="multipart/form-data">
-<h3>add product</h3>
- <input type="text" name="name" class="box" placeholder="enter product name" required>
- <input type="number" min="0" name="price" class="box" placeholder="enter product price" required>
-<input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required>
- <input type="submit" value="add product" name="add_product" class="btn">
+<form action="" method="post" enctype="multipart/form-data">
+  <h3>add product</h3>
+  <input type="text" name="name" class="box" placeholder="enter product name" required>
+  <input type="text" name="author" class="box" placeholder="enter book author" required>
+  <input type="number" min="0" name="price" class="box" placeholder="enter product price" required>
+  <div class="addproductsoption">
+    <select name="bookcondi" class="box">
+        <option value="" selected disabled hidden>Choose Book Condition</option>
+        <option value="Old">Old</option>
+        <option value="New">New</option>
+        <option value="Used">Used</option>
+    </select>   
+  </div>
+  <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required>
+
+  <input type="submit" value="add product" name="add_product" class="btn">
 </form>
 </section>
 
@@ -112,8 +129,10 @@ header('location:user_products.php');
       <div class="box">
       <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
       <div class="name"><?php echo $fetch_products['name']; ?></div>
+      <div class="author">By: <?php echo $fetch_products['author']; ?></div>
       <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
-      <!--<a href="user_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">update</a>-->
+      <div class="author">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
+      <a style="display: none;" href="user_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">UPDATE</a>
       <!--<a href="user_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>-->
       
         <p>___________________________________</p>
@@ -124,10 +143,19 @@ header('location:user_products.php');
             <input type="hidden" name="update_old_image" value="<?php echo $fetch_products['image']; ?>">
             <span class="book_desc">Book Title:</span>
             <input type="text" name="update_name" value="<?php echo $fetch_products['name']; ?>" class="box_ubd" required>
+            <span class="book_desc">Book Author:</span>
+            <input type="text" name="update_author" value="<?php echo $fetch_products['author']; ?>" class="box_ubd" required>
             <!--<label for="" class="box">Book Title:</label> --> 
             <!--<input type="text" name="update_name" value="<?php echo $fetch_products['name']; ?>" class="box_ubd" required>-->
             <span class="book_desc">Book Price:</span>
             <input type="number" name="update_price" value="<?php echo $fetch_products['price']; ?>" min="0" class="box_ubd" required>
+            <span class="book_desc">Book Condition:</span>
+              <select name="update_bookcondition" class="box_ubd">
+                <option value="" selected="selected" hidden="hidden">Choose Here</option>
+                <option value="Old">Old</option>
+                <option value="New">New</option>
+                <option value="Used">Used</option>
+              </select> 
             <span class="book_desc">Book Image:</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box_ubd">
             <input type="submit" value="update" name="update_product" class="option-btn">
