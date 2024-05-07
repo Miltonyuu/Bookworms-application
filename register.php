@@ -8,7 +8,9 @@ if(isset($_POST['submit'])){
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+   $gender = $_POST['gender'];
    $user_type = $_POST['user_type'];
+   $birthdate = $_POST['birthdate'];
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -18,7 +20,7 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $message[] = 'confirm password not matched!';
       }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
+         mysqli_query($conn, "INSERT INTO `users`(name, email, cpass, gender, birthday, user_type) VALUES('$name', '$email', '$cpass', '$gender', '$birthdate', '$user_type')") or die('query failed');
          $message[] = 'registered successfully!';
          header('location:login.php');
       }
@@ -64,16 +66,29 @@ if(isset($message)){
 
    <form action="" method="post">
       <h3>register now</h3>
+      <p required class="name">Full Name</p>
       <input type="text" name="name" placeholder="enter your name" required class="box">
+      <p required class="email">Email Address</p>
       <input type="email" name="email" placeholder="enter your email" required class="box">
+      <p required class="password">Password</p>
       <input type="password" name="password" placeholder="enter your password" required class="box">
       <input type="password" name="cpassword" placeholder="confirm your password" required class="box">
+      <p required class="gender">Gender</p>
+      <select name="gender" class="box">
+         <option value="" selected disabled>Select Gender</option>
+         <option value="male">male</option>
+         <option value="female">female</option>
+      </select>
+      <p required class="type">Role Type</p>
       <select name="user_type" class="box">
+         <option value="" selected disabled>Select Type</option>
          <option value="user">user</option>
          <option value="admin">admin</option>
       </select>
+      <p required class="birthdate">Date of Birth</p>
+      <input type="date" name="birthdate" required class="box">
       <input type="submit" name="submit" value="register now" class="btn">
-      <p>already have an account? <a href="login.php">login now</a></p>
+      <p>Already have an account? <a href="login.php">login now</a></p>
    </form>
 
 </div>

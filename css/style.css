@@ -232,6 +232,42 @@ section{
    margin:1rem 0;
 }
 
+.form-container form .name{
+   text-align: left;
+   display: block;
+   margin-bottom: 2px;
+}
+
+.form-container form .email{
+   text-align: left;
+   display: block;
+   margin-bottom: 2px;;
+}
+
+.form-container form .password{
+   text-align: left;
+   display: block;
+   margin-bottom: 2px;;
+}
+
+.form-container form .gender{
+   text-align: left;
+   display: block;
+   margin-bottom: 2px;;
+}
+
+.form-container form .type{
+   text-align: left;
+   display: block;
+   margin-bottom: 2px;;
+}
+
+
+.form-container form .birthdate{
+   text-align: left;
+   display: block;
+   margin-bottom: 2px;;
+}
 .form-container form p{
    padding-top: 1.5rem;
    font-size: 2rem;

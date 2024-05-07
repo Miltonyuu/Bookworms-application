@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2024 at 07:44 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: May 07, 2024 at 07:44 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,14 +34,15 @@ CREATE TABLE `cart` (
   `price` int(100) NOT NULL,
   `quantity` int(100) NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `name`, `price`, `quantity`, `image`) VALUES
-(75, 1, 'God of War', 123, 1, 'godofwar.jpg');
+(75, 1, 'God of War', 123, 1, 'godofwar.jpg'),
+(85, 5, 'Test', 180, 1, 'the-godfather.jpg');
 
 -- --------------------------------------------------------
 
@@ -56,7 +57,7 @@ CREATE TABLE `message` (
   `email` varchar(100) NOT NULL,
   `number` varchar(12) NOT NULL,
   `message` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `message`
@@ -78,7 +79,7 @@ CREATE TABLE `messages` (
   `message` text DEFAULT NULL,
   `timestamp` datetime DEFAULT current_timestamp(),
   `is_read` tinyint(4) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,7 @@ CREATE TABLE `orders` (
   `placed_on` varchar(50) NOT NULL,
   `payment_status` varchar(20) NOT NULL DEFAULT 'pending',
   `buyer_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
@@ -120,7 +121,7 @@ CREATE TABLE `order_items` (
   `order_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `order_items`
@@ -139,19 +140,24 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`) VALUES
 CREATE TABLE `products` (
   `id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `author` varchar(100) NOT NULL,
   `price` int(100) NOT NULL,
+  `bookcondition` varchar(20) NOT NULL,
   `image` varchar(100) NOT NULL,
   `seller_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `image`, `seller_id`) VALUES
-(1, 'The God Father', 200, 'the-godfather.jpg', 1),
-(3, 'Test', 180, 'the-godfather.jpg', 1),
-(6, 'God of War', 123, 'godofwar.jpg', 4);
+INSERT INTO `products` (`id`, `name`, `author`, `price`, `bookcondition`, `image`, `seller_id`) VALUES
+(1, 'The God Father', '', 200, '', 'the-godfather.jpg', 1),
+(3, 'Test', '', 180, '', 'the-godfather.jpg', 1),
+(6, 'God of War', '', 123, '', 'godofwar.jpg', 4),
+(14, 'Lord of the Rings', 'J.R.R Tolkien', 800, 'Old', '51eq24cRtRL__98083.jpg', 5),
+(15, 'Nemo', 'Dory', 654, 'New', 'Screenshot 2024-04-29 204217.png', 5),
+(22, 'Hunger Games', 'Katniss Everdeen', 111, 'Used', 'hungergamesimages (1).jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -168,7 +174,7 @@ CREATE TABLE `users` (
   `birthdate` date DEFAULT NULL,
   `bookshop_name` varchar(100) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -178,7 +184,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `birthdate`
 (1, 'Milton', 'miltonbautista60@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Notlim', 'male'),
 (2, 'Milton', 'miltonbautistapogii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL),
 (3, 'miltonyu01', 'miltonbautistapogiii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL),
-(4, 'Miltonyupo', 'miltonyupo@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', NULL, NULL, NULL);
+(4, 'Miltonyupo', 'miltonyupo@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', NULL, NULL, NULL),
+(5, 'Yoshiroyo', 'yoshiro@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2001-10-08', 'Yoshiroyo Bookshop', 'male'),
+(6, 'minimoy', 'minimoy@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -236,7 +244,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -266,13 +274,13 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
