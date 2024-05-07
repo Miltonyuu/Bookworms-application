@@ -65,7 +65,7 @@ if(isset($message)){
 <div class="form-container">
 
    <form action="" method="post">
-      <h3>register now</h3>
+      <h3>Register now</h3>
       <p required class="name">Full Name</p>
       <input type="text" name="name" placeholder="enter your name" required class="box">
       <p required class="email">Email Address</p>
@@ -76,19 +76,19 @@ if(isset($message)){
       <p required class="gender">Gender</p>
       <select name="gender" class="box">
          <option value="" selected disabled>Select Gender</option>
-         <option value="male">male</option>
-         <option value="female">female</option>
+         <option value="male">Male</option>
+         <option value="female">Female</option>
       </select>
       <p required class="type">Role Type</p>
       <select name="user_type" class="box">
          <option value="" selected disabled>Select Type</option>
-         <option value="user">user</option>
-         <option value="admin">admin</option>
+         <option value="user">User</option>
+         <option value="admin">Admin</option>
       </select>
       <p required class="birthdate">Date of Birth</p>
       <input type="date" name="birthdate" required class="box">
       <input type="submit" name="submit" value="register now" class="btn">
-      <p>Already have an account? <a href="login.php">login now</a></p>
+      <p>Already have an account? <a href="login.php">Login now</a></p>
    </form>
 
 </div>
