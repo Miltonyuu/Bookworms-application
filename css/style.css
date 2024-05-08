@@ -468,8 +468,17 @@ section{
 .products .box-container .box .name{
    padding:1rem 0;
    font-size: 2rem;
+   font-weight: bold;
    color:var(--black);
 }
+
+.products .box-container .box .author{
+   padding:0;
+   font-size: 1.5rem;
+   font-weight: bold;
+   color:var(--orange);
+}
+
 
 .products .box-container .box .qty{
    width: 100%;
