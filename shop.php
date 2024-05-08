@@ -57,66 +57,51 @@ if(isset($_POST['add_to_cart'])){
 <section class="products">
   <h1 class="title">Available Books</h1>
   <div class="box-container">
-
     <?php
-       $select_products = mysqli_query($conn, "SELECT * FROM `products` ") or die('query failed');
-       if(mysqli_num_rows($select_products) > 0){
-         while($fetch_products = mysqli_fetch_assoc($select_products)){
+      $select_products = mysqli_query($conn, "SELECT * FROM `products` ") or die('query failed');
+      if (mysqli_num_rows($select_products) > 0) {
+        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+          // Check if the product belongs to the logged-in user
+          $user_id = $_SESSION['user_id'];
+          $product_seller_id = $fetch_products['seller_id'];
 
-           // Check if the product belongs to the logged-in user
-           $user_id = $_SESSION['user_id']; 
-           $product_seller_id = $fetch_products['seller_id']; // Assuming you have the seller_id
+          ?>
 
-           ?>
-
-         <form action="" method="post" class="box">
+          <div class="box">
             <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
             <div class="name"><?php echo $fetch_products['name']; ?></div>
             <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
-            
-            <?php 
-               // Hide quantity if the logged-in user is the seller
-               if($user_id != $product_seller_id):  
-            ?> 
-               <input type="number" min="1" name="product_quantity" value="1" class="qty">
-            <?php 
-               endif; 
-            ?>
 
-            <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-            <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
-            <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+            <?php
+            if ($user_id != $product_seller_id): ?>
+              <input type="number" min="1" name="product_quantity" value="1" class="qty">
 
-            <?php 
-               // Existing code for hiding "add to cart" and "contact seller" buttons
-               if($user_id != $product_seller_id):  
-            ?>
-               <input type="submit" value="add to cart" name="add_to_cart" class="btn">
-               <input type="submit" value="contact seller" name="contact_seller" class="btn">
-            <?php 
-               endif; 
-            ?>
-         </form>
+              <form action="" method="post">
+                <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+              </form>
 
+              <form action="contact_seller.php" method="post">
+                <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">
+                <input type="submit" value="contact seller" name="contact_seller" class="btn">
+              </form>
+            <?php endif; ?>
 
-      <?php
+          </div>  <?php
         }
-     } else {
-       echo '<p class="empty">no products added yet!</p>';
+      } else {
+        echo '<p class="empty">no products added yet!</p>';
       }
     ?>
   </div>
-
-
 </section>
 
 
 
-
-
-
-
-<?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?> 
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>

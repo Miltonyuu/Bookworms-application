@@ -97,7 +97,13 @@ if(isset($_POST['add_to_cart'])){
                if($user_id != $product_seller_id):  
             ?>
                <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+               <form action="contact_seller.php" method="post" class="box">  
+               <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+               <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">  
                <input type="submit" value="contact seller" name="contact_seller" class="btn">
+            </form>
+
+
             <?php 
                endif; 
             ?>
