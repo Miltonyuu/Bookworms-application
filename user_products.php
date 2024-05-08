@@ -3,7 +3,8 @@
 include 'config.php'; 
 session_start();
 
-$user_id = $_SESSION['user_id']; 
+$user_id = $_SESSION['user_id'];
+$seller_user_name = $_SESSION['user_name']; 
 
 if(!isset($user_id)){
 header('location:login.php');
@@ -26,7 +27,7 @@ $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE na
 if(mysqli_num_rows($select_product_name) > 0){
  $message[] = 'product name already added';
 }else{
- $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$image', '$user_id')") or die('query failed');
+ $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, image, seller_id,) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$image', '$user_id')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
@@ -105,6 +106,7 @@ header('location:user_products.php');
   <input type="text" name="name" class="box" placeholder="enter product name" required>
   <input type="text" name="author" class="box" placeholder="enter book author" required>
   <input type="number" min="0" name="price" class="box" placeholder="enter product price" required>
+  <!--<input type="text" name="author" class="box" placeholder="enter book author" required>-->
   <div class="addproductsoption">
     <select name="bookcondi" class="box">
         <option value="" selected disabled hidden>Choose Book Condition</option>
@@ -132,6 +134,7 @@ header('location:user_products.php');
       <div class="author">By: <?php echo $fetch_products['author']; ?></div>
       <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
       <div class="author">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
+      <div style="display:flex; justify-content:center; " class="author">Seller:<p class="author"><span><?php echo $_SESSION['user_name']; ?></span></p></div>
       <a style="display: none;" href="user_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">UPDATE</a>
       <!--<a href="user_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>-->
       
@@ -155,7 +158,9 @@ header('location:user_products.php');
                 <option value="Old">Old</option>
                 <option value="New">New</option>
                 <option value="Used">Used</option>
-              </select> 
+              </select>
+            <span class="book_desc">Seller:</span> 
+            <input type="text" name="update_seller" value="<?php echo $_SESSION['user_name']; ?>" class="box_ubd" disabled>
             <span class="book_desc">Book Image:</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box_ubd">
             <input type="submit" value="update" name="update_product" class="option-btn">

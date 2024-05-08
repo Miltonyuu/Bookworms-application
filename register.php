@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
    $gender = $_POST['gender'];
    $user_type = $_POST['user_type'];
-   $birthdate = $_POST['birthdate'];
+   $birthday = $_POST['birthday'];
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
       if($pass != $cpass){
          $message[] = 'confirm password not matched!';
       }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, cpass, gender, birthday, user_type) VALUES('$name', '$email', '$cpass', '$gender', '$birthdate', '$user_type')") or die('query failed');
+         mysqli_query($conn, "INSERT INTO `users`(name, email, password, gender, birthdate, user_type) VALUES('$name', '$email', '$cpass', '$gender', '$birthday', '$user_type')") or die('query failed');
          $message[] = 'registered successfully!';
          header('location:login.php');
       }
@@ -85,8 +85,8 @@ if(isset($message)){
          <option value="user">User</option>
          <option value="admin">Admin</option>
       </select>
-      <p required class="birthdate">Date of Birth</p>
-      <input type="date" name="birthdate" required class="box">
+      <p required class="dateofbirth">Date of Birth</p>
+      <input type="date" name="birthday" required class="box">
       <input type="submit" name="submit" value="register now" class="btn">
       <p>Already have an account? <a href="login.php">Login now</a></p>
    </form>
