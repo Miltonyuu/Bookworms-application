@@ -46,7 +46,7 @@ if(isset($_POST['update_profile'])){
 
 <?php include 'header.php'; ?>
 
-<section class="user-profile">
+<section class="user-profile" style="margin-top:100px">
 <div class="form_wrapper">
 <?php
             $message = [];
@@ -58,7 +58,7 @@ if(isset($_POST['update_profile'])){
                  ?>
   <div class="form_container">
     <div class="title_container">
-       <h1 class="title">User Profile</h1>
+      <h1 class="title">Update Your Profile Here</h1>
     </div>
     <div class="row clearfix">
       <div class="">

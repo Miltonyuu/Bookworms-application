@@ -1326,6 +1326,26 @@ section{
 	}
 }
 /* css for the user profile ends here*/
+.chat{
+   display: flex;
+   flex-direction: column;
+}
+
+.chat-box{
+margin-left: 450px;
+}
+
+.chat-directory .wrapper{
+   display: flex;
+   justify-content: center;
+   text-align: center;
+}
+
+
+.divB{
+   margin-top: 8px;
+   margin-left: 5px;
+}
 
 
 .footer{
@@ -1390,6 +1410,10 @@ section{
       font-size: 55%;
    }
 
+   .chat-box{
+      margin-left: 250px;
+   }
+
 }
 
 @media (max-width:768px){
@@ -1421,6 +1445,10 @@ section{
       font-size: 3.5rem;
    }
 
+   .chat-box{
+      margin-left: 200px;
+      }
+
 }
 
 @media (max-width:450px){
@@ -1435,6 +1463,10 @@ section{
 
    .title{
       font-size: 3rem;
+   }
+
+   .chat-box{
+      margin-left: 150px;
    }
 
 }

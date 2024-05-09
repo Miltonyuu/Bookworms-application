@@ -23,6 +23,9 @@ window.onscroll = () =>{
    }
 }
 
+
+/* not sure it sure if its included confirmaion from milton is need
+
 // Get elements
 const contactBtns = document.querySelectorAll('.contact-seller-btn'); 
 const popup = document.getElementById('contact-popup');
@@ -49,3 +52,5 @@ contactBtns.forEach(btn => {
 closeBtn.addEventListener('click', () => {
     popup.style.display = 'none';
 });
+
+*/

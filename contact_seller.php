@@ -96,12 +96,17 @@ if(!empty($message)){
     <?php include 'header.php'; ?> 
 
     <section class="chat-directory">
-    <h1 class="title">Proceed to your Chat Section</h1>
-    <a href="messages.php"class="btn-messenging" id="special-color">Messenging</a>
-    </form>
+<div class="wrapper">
+    <div class="divA"><h1 class="title">Proceed to your Chat Section</h1></div>
+    <div class="divB"><a href="messages.php"class="btn-messenging" id="special-color">Messenging</a></div>
+</div>
+
 </section>
 
 
     <?php include 'footer.php'; ?> 
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
     </body>
 </html>

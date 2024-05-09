@@ -50,7 +50,7 @@ if(mysqli_num_rows($select_user_two) > 0){
 
 <?php include 'header.php'; ?>
 
-<section class="chat">
+<section class="chat" style="margin-top:100px">
 
    <h1 class="title">Chat Section</h1>
 
@@ -62,7 +62,10 @@ if(mysqli_num_rows($select_user_two) > 0){
                $fetch_user_two = mysqli_fetch_assoc($select_user_two);
            }
        ?>
-       <h3>Chatting with: <span><?php echo $fetch_user_two['name'] ?></span> <img src="<?php echo $profile_image; ?>" alt="Profile Image" class="profile-pic"> </h3>
+       <div style="display:block;">
+       <span><h3>Chatting with:<?php echo $fetch_user_two['name'] ?></h3></span> 
+       <span><img src="<?php echo $profile_image; ?>" alt="Profile Image" class="profile-pic"></span>
+       </div>
 
 
        <?php
@@ -82,18 +85,22 @@ if(mysqli_num_rows($select_user_two) > 0){
        ?>
    </div>
 
-   <form action="" method="post" class="send-message">
+<div>
+<form action="" method="post" class="send-message">
        <input type="text" name="message" class="box" placeholder="enter message">
        <input type="submit" name="send" value="send" class="btn">
    </form>
+</div>
+
 
 </section>
 
 <?php include 'footer.php'; ?>
 
-<script src="js/admin_script.js"></script>
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
+<script src="js/admin_script.js"></script>
+
 
 </body>
 </html>

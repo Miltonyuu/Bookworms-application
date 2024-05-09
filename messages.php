@@ -31,7 +31,7 @@ if(!isset($user_id)){
 
 <?php include 'header.php'; ?>
 
-<section class="messages">
+<section style="margin-top:100px" class="messages">
    <h1 class="title">Your Messages</h1>
    <div class="box-container-messages">
        <?php
@@ -63,7 +63,11 @@ if(!isset($user_id)){
 
 <?php include 'footer.php'; ?>
 
+<script src="js/script.js"></script>
 <script src="js/admin_script.js"></script>
+
+
+
 
 </body>
 </html>
