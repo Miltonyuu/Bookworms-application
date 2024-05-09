@@ -71,7 +71,7 @@ $select_orders = mysqli_query($conn, "SELECT o.*, oi.quantity, p.name as product
 if(mysqli_num_rows($select_orders) > 0){
  while($fetch_orders = mysqli_fetch_assoc($select_orders)){
  ?>
- <div class="box">
+ <div class="box-for-selling">
 <p> buyer's name : <span><?php echo $fetch_orders['buyer_name']; ?></span> </p>
  <p> buyer's number : <span><?php echo $fetch_orders['number']; ?></span> </p>
 <p> buyer's email : <span><?php echo $fetch_orders['email']; ?></span> </p>

@@ -20,6 +20,14 @@ if(isset($_POST['send'])){
     header('location:chat.php?user_id='.$user_two_id); // Refresh after sending
 }
 
+$select_user_two = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_two_id'") or die('query failed'); 
+if(mysqli_num_rows($select_user_two) > 0){
+    $fetch_user_two = mysqli_fetch_assoc($select_user_two);
+
+    // Profile Image Check
+    $profile_image = (file_exists("uploaded_img/".$fetch_user_two['image']) &&  $fetch_user_two['image'] != "") ? "uploaded_img/".$fetch_user_two['image'] : "images/default_profile.png"; 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +52,7 @@ if(isset($_POST['send'])){
 
 <section class="chat">
 
-   <h1 class="title">Chat</h1>
+   <h1 class="title">Chat Section</h1>
 
    <div class="chat-box">
        <?php
@@ -54,18 +62,19 @@ if(isset($_POST['send'])){
                $fetch_user_two = mysqli_fetch_assoc($select_user_two);
            }
        ?>
-       <h3>Chatting with: <span><?php echo $fetch_user_two['name'] ?></span> </h3>
+       <h3>Chatting with: <span><?php echo $fetch_user_two['name'] ?></span> <img src="<?php echo $profile_image; ?>" alt="Profile Image" class="profile-pic"> </h3>
+
 
        <?php
            $select_messages = mysqli_query($conn, "SELECT * FROM `messages` WHERE (sender_id = '$user_id' AND receiver_id = '$user_two_id') OR  (sender_id = '$user_two_id' AND receiver_id = '$user_id') ORDER BY timestamp") or die('query failed');
 
            if(mysqli_num_rows($select_messages) > 0){
                while($fetch_messages = mysqli_fetch_assoc($select_messages)){
-                if($fetch_messages['sender_id'] == $user_id){ // Current user is the sender
-                    echo '<div class="msg you">'.$fetch_messages['message'].'</div>';
+                if($fetch_messages['sender_id'] == $user_id){ 
+                    echo '<div class="msg you"><img src="' . $profile_image . '" alt="Profile Image" class="profile-pic-small"> ' . $fetch_messages['message'] . '</div>';
                 }else{ 
-                    echo '<div class="msg">'.$fetch_messages['message'].'</div>';
-                }
+                    echo '<div class="msg other"><img src="' . $profile_image . '" alt="Profile Image" class="profile-pic-small"> ' . $fetch_messages['message'] . '</div>';
+                }      
                } 
            } else {
                echo "<p class='empty'>Start the conversation!</p>";
@@ -83,6 +92,8 @@ if(isset($_POST['send'])){
 <?php include 'footer.php'; ?>
 
 <script src="js/admin_script.js"></script>
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
 
 </body>
 </html>

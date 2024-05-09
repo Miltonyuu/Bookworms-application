@@ -86,6 +86,7 @@ if(isset($_POST['add_to_cart'])){
               </form>
 
               <form action="contact_seller.php" method="post">
+                <input type="email" name="email" placeholder="Enter your email" class="box" required/>
                 <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
                 <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">
                 <input type="submit" value="contact seller" name="contact_seller" class="btn">

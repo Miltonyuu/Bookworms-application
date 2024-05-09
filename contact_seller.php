@@ -4,36 +4,82 @@ session_start();
 
 $user_id = $_SESSION['user_id'];
 
+
 if(!isset($user_id)){
-    header('location:login.php');
+header('location:login.php');
 }
+
+
+
+require 'vendor/autoload.php';// Assuming PHPMailer installed via Composer
+use PHPMailer\PHPMailer;
+
+// Initialize $message as an array
+$message = [];
 
 if(isset($_POST['contact_seller'])){
 
-  // Optional - Sanitize input to prevent malicious code
-  $product_name = mysqli_real_escape_string($conn, $_POST['product_name']); 
-  $seller_id = mysqli_real_escape_string($conn, $_POST['seller_id']);
-  $name =  isset($_POST['name']) ? mysqli_real_escape_string($conn, $_POST['name']) : ''; // Add checks for other fields
-  $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : ''; 
-  $number = isset($_POST['number']) ? mysqli_real_escape_string($conn, $_POST['number']) : ''; 
-  $message = isset($_POST['message']) ? mysqli_real_escape_string($conn, $_POST['message']) : ''; 
+    // Optional - Sanitize input to prevent malicious code
+    $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
+    $seller_id = mysqli_real_escape_string($conn, $_POST['seller_id']);
+    $name = isset($_POST['name']) ? mysqli_real_escape_string($conn, $_POST['name']) : ''; 
+    $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : ''; 
+    $number = isset($_POST['number']) ? mysqli_real_escape_string($conn, $_POST['number']) : ''; 
+    $tempMessage = isset($_POST['message']) ? mysqli_real_escape_string($conn, $_POST['message']) : '';
 
     $select_seller = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$seller_id'"); 
     if(mysqli_num_rows($select_seller) > 0){
         $fetch_seller = mysqli_fetch_assoc($select_seller);
         $seller_email = $fetch_seller['email'];
 
-        $insert_message = mysqli_query($conn, "INSERT INTO `messages`(sender_id, receiver_id, message) VALUES('$user_id', '$seller_id', 'Contact request regarding product: $product_name. My details - Name: $name, Email: $email, Number: $number, Message: $message')") or die('query failed'); 
+        $insert_message = mysqli_query($conn, "INSERT INTO `messages`(sender_id, receiver_id, message) VALUES('$user_id', '$seller_id', 'Contact request regarding product: $product_name. My details - Name: $name, Email: $email, Number: $number, Message: $tempMessage')") or die('query failed');
 
-        // Replace with the actual code to send the email
-      mail($seller_email, 'New contact request', "You have received a contact request regarding your product: $product_name from: $name (Email: $email, Number: $number). Message: $message", 'From: ' . $email);
-       $message[] = 'Message sent successfully!';
-    
+        // Mailtrap Integration 
+        $mail = new PHPMailer\PHPMailer(true);
+        echo "Mail object created."; // Temporary test 
+        var_dump($message); // Temporary test
+
+        try{
+        // Mailtrap configuration
+        $mail->SMTPDebug = 0; // Turn off debugging for production
+        $mail->isSMTP();                                     
+        $mail->Host = 'sandbox.smtp.mailtrap.io';                 
+        $mail->SMTPAuth = true;                          
+        $mail->Username = '496a802ecda08c';         
+        $mail->Password = 'aebd5b52bf4176';            
+        $mail->SMTPSecure = 'tls';                            
+        $mail->Port = 2525;
+        
+        echo "Email: " . $email; 
+        echo "Name: " . $name; 
+        $mail->setFrom($email, $name); 
+
+
+        $mail->setFrom($email, $name); 
+        $mail->addAddress($seller_email); 
+        $mail->isHTML(true);                                 
+        $mail->Subject = 'New contact request regarding product: ' . $product_name;  
+        $mail->Body = "Message from: $name (Email: $email, Number: $number). Message: " . implode("<br>", $message);
+
+        $mail->send();
+        $message[] = 'Message sent successfully!';
+        } catch (Exception $e) {
+        $message[] = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     } else {
         $message[] = 'Seller not found!';
     }
 }
+
+// Display messages (Place this where you want them displayed on the page)
+if(!empty($message)){ 
+    foreach($message as $singleMessage){
+        echo "<div class='message-box'>". $singleMessage ."</div>"; 
+    }
+} 
 ?>
+<!DOCTYPE html>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,12 +95,9 @@ if(isset($_POST['contact_seller'])){
 
     <?php include 'header.php'; ?> 
 
-    <section class="contact-form">
-    <h1 class="title">Contact Seller</h1>
-    <form action="" method="post">
-        <input type="text" name="name" placeholder="Enter your name" class="box" required/>
-        <input type="email" name="email" placeholder="Enter your email" class="box" required/>
-        <input type="submit" name="contact_seller" class="btn" value="Send Message"/> 
+    <section class="chat-directory">
+    <h1 class="title">Proceed to your Chat Section</h1>
+    <a href="messages.php"class="btn-messenging" id="special-color">Messenging</a>
     </form>
 </section>
 

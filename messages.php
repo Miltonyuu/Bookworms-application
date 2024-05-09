@@ -33,7 +33,7 @@ if(!isset($user_id)){
 
 <section class="messages">
    <h1 class="title">Your Messages</h1>
-   <div class="box-container">
+   <div class="box-container-messages">
        <?php
            $select_messages = mysqli_query($conn, "SELECT * FROM `messages` WHERE sender_id = '$user_id' OR receiver_id = '$user_id' GROUP BY sender_id, receiver_id ORDER BY timestamp DESC") or die('query failed');
            if(mysqli_num_rows($select_messages) > 0){
@@ -45,7 +45,7 @@ if(!isset($user_id)){
                   $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_to_chat_with'") or die('query failed'); 
                   $fetch_user = mysqli_fetch_assoc($select_user);
        ?>
-        <div class="box">
+        <div class="box-user">
             <p> <i class="fas fa-user"></i> <span><?php echo $fetch_user['name']; ?></span> </p>
             <a href="chat.php?user_id=<?php echo $fetch_user['id']; ?>" class="btn">Message</a>
         </div>

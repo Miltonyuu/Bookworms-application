@@ -22,3 +22,30 @@ window.onscroll = () =>{
       document.querySelector('.header .header-2').classList.remove('active');
    }
 }
+
+// Get elements
+const contactBtns = document.querySelectorAll('.contact-seller-btn'); 
+const popup = document.getElementById('contact-popup');
+const closeBtn = document.querySelector('.close-btn'); 
+const productNameDisplay = document.getElementById('product-name');
+const productNameInput = document.getElementById('product-name-input');
+const sellerIdInput = document.getElementById('seller-id-input');
+
+// Open Pop-up
+contactBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const productName = btn.dataset.productName; 
+    const sellerId = btn.dataset.sellerId;
+
+    productNameDisplay.textContent = productName;
+    productNameInput.value = productName; 
+    sellerIdInput.value = sellerId;
+
+    popup.style.display = 'flex'; 
+  });
+});
+
+// Close Pop-up (no changes needed here)
+closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+});

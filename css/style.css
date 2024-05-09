@@ -95,6 +95,47 @@ section{
 
 }
 
+.box-container-messages{
+   max-width: 1200px;
+   margin:0 auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+   align-items: center;
+   gap:1.5rem;
+   justify-content: center;
+}
+
+.box-user{
+   border-radius: .5rem;
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   padding:2rem;
+   text-align: center;
+   border:var(--border);
+   position: relative;
+   font-size: medium;
+}
+
+.chat-box{
+   border-radius: .5rem;
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   padding:2rem;
+   text-align: center;
+   border:var(--border);
+   position: relative;
+   font-size: small;
+}
+
+.send-message{
+   border-radius: .5rem;
+   background-color: var(--white);
+   padding:2rem;
+   text-align: center;
+   position: relative;
+   font-size: small;
+
+}
 .title{
    text-align: center;
    margin-bottom: 2rem;
@@ -164,6 +205,69 @@ section{
    color:var(--black);
 }
 
+.contact-form{
+   max-width: 1200px;
+   margin:0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   gap:1rem;
+}
+
+.box-for-selling{
+   width: 20%;
+   border-radius: .5rem;
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   padding:1rem;
+   text-align: center;
+   border:var(--border);
+   position: relative;
+   font-size: medium;
+   
+
+}
+
+/* Pop-up Styles */
+.popup-overlay {
+   position: fixed; 
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;  
+   background-color: rgba(0, 0, 0, 0.5); 
+   display: none; 
+   align-items: center;
+   justify-content: center; 
+ }
+ 
+ .popup-content {
+   background-color: #fff; 
+   padding: 20px;
+   border-radius: 5px; 
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+   text-align: center;  
+ }
+ 
+ .close-btn { 
+   position: absolute;
+   top: 10px;
+   right: 15px;
+   font-size: 20px; 
+   cursor: pointer;
+ }
+ 
+
+ .btn-messenging{
+   display: inline-block;
+   padding:.5rem 1rem;
+   cursor: pointer;
+   color:var(--white);
+   font-size: 1.8rem;
+   border-radius: .5rem;
+   text-transform: capitalize;
+   background-color: var(--purple);
+ }
+
 .heading{
    min-height: 30vh;
    display: flex;
@@ -191,6 +295,44 @@ section{
 .heading p a{
    color:var(--purple);
 }
+/* Inside your style.css or appropriate sheet */
+
+.chat-box {
+   height: 300px; /* Adjust the height as needed */
+   width: 50%;
+   margin-left: 330px;
+   overflow-y: auto;  /* Add scrolling */
+}
+
+.msg {
+   background-color: #eee; 
+   padding: 10px;
+   border-radius: 5px; 
+   margin-bottom: 8px;
+   max-width: 70%; /* Limit max width for readability */
+}
+
+.msg.you {
+    background-color: #219ed7; /* Example color for current user*/
+    float: right;
+    clear: both; 
+}
+
+.msg.other {
+    background-color: #d4f3fd; /* Example color for other user */
+    float: left;
+    clear: both;
+}
+
+.profile-pic-small {
+   width: 30px;    /* Adjust size as needed */
+   height: 30px;   /* Adjust size as needed */
+   border-radius: 50%;
+   margin-right: 10px; /* Space between image and message */
+   vertical-align: middle;
+}
+
+
 
 .heading p a:hover{
    text-decoration: underline;
