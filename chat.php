@@ -52,7 +52,7 @@ if(mysqli_num_rows($select_user_two) > 0){
 
 <section class="chat" style="margin-top:100px">
 
-   <h1 class="title">Chat Section</h1>
+   <h1 class="title-chat">Chat Section</h1>
 
    <div class="chat-box">
        <?php
