@@ -4,6 +4,7 @@ include 'config.php';
 
 session_start();
 
+$email = $_SESSION['user_email'];
 $user_id = $_SESSION['user_id'];
 
 if(!isset($user_id)){
@@ -60,68 +61,51 @@ if(isset($_POST['add_to_cart'])){
 </section>
 
 <section class="products">
-  <h1 class="title">Listed Books</h1>
+  <h1 class="title">Available Books</h1>
   <div class="box-container">
 
     <?php
        $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT 6") or die('query failed');
-       if(mysqli_num_rows($select_products) > 0){
-         while($fetch_products = mysqli_fetch_assoc($select_products)){
-
+       if (mysqli_num_rows($select_products) > 0) {
+         while ($fetch_products = mysqli_fetch_assoc($select_products)) {
            // Check if the product belongs to the logged-in user
-           $user_id = $_SESSION['user_id']; 
-           $product_seller_id = $fetch_products['seller_id']; // Assuming you have the seller_id
-
+           $user_id = $_SESSION['user_id'];
+           $product_seller_id = $fetch_products['seller_id'];
+ 
            ?>
-
-         <form action="" method="post" class="box">
-            <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-            <div class="name"><?php echo $fetch_products['name']; ?></div>
-            <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
-            
-            <?php 
-               // Hide quantity if the logged-in user is the seller
-               if($user_id != $product_seller_id):  
-            ?> 
+ 
+           <div class="box">
+             <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+             <div class="name"><?php echo $fetch_products['name']; ?></div>
+             <div class="author">By: <?php echo $fetch_products['author']; ?></div>
+             <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
+ 
+             <?php
+             if ($user_id != $product_seller_id): ?>
                <input type="number" min="1" name="product_quantity" value="1" class="qty">
-            <?php 
-               endif; 
-            ?>
-
-            <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-            <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
-            <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
-
-            <?php 
-               // Existing code for hiding "add to cart" and "contact seller" buttons
-               if($user_id != $product_seller_id):  
-            ?>
-               <input type="submit" value="add to cart" name="add_to_cart" class="btn">
-               <form action="contact_seller.php" method="post" class="box">  
-               <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-               <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">  
-               <input type="submit" value="contact seller" name="contact_seller" class="btn">
-            </form>
-
-
-            <?php 
-               endif; 
-            ?>
-         </form>
-
-
-      <?php
-        }
-     } else {
-       echo '<p class="empty">no products added yet!</p>';
-      }
-    ?>
-  </div>
-
-  <div class="load-more" style="margin-top: 2rem; text-align:center">
-      <a href="shop.php" class="option-btn">load more</a>
-  </div>
-</section>
+ 
+               <form action="" method="post">
+                 <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                 <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                 <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                 <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+               </form>
+ 
+               <form action="contact_seller.php" method="post">
+                 <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                 <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">
+                 <input type="submit" value="contact seller" name="contact_seller" class="btn">
+               </form>
+             <?php endif; ?>
+ 
+           </div>  <?php
+         }
+       } else {
+         echo '<p class="empty">no products added yet!</p>';
+       }
+     ?>
+   </div>
+ </section>
 
 
 <section class="about">

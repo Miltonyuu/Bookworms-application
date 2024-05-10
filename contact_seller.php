@@ -3,6 +3,8 @@ include 'config.php';
 session_start();
 
 $user_id = $_SESSION['user_id'];
+$email = $_SESSION['user_email'];
+
 
 
 if(!isset($user_id)){
@@ -23,7 +25,6 @@ if(isset($_POST['contact_seller'])){
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $seller_id = mysqli_real_escape_string($conn, $_POST['seller_id']);
     $name = isset($_POST['name']) ? mysqli_real_escape_string($conn, $_POST['name']) : ''; 
-    $email = isset($_POST['email']) ? mysqli_real_escape_string($conn, $_POST['email']) : ''; 
     $number = isset($_POST['number']) ? mysqli_real_escape_string($conn, $_POST['number']) : ''; 
     $tempMessage = isset($_POST['message']) ? mysqli_real_escape_string($conn, $_POST['message']) : '';
 
@@ -32,7 +33,7 @@ if(isset($_POST['contact_seller'])){
         $fetch_seller = mysqli_fetch_assoc($select_seller);
         $seller_email = $fetch_seller['email'];
 
-        $insert_message = mysqli_query($conn, "INSERT INTO `messages`(sender_id, receiver_id, message) VALUES('$user_id', '$seller_id', 'Contact request regarding product: $product_name. My details - Name: $name, Email: $email, Number: $number, Message: $tempMessage')") or die('query failed');
+        $insert_message = mysqli_query($conn, "INSERT INTO `messages`(sender_id, receiver_id, message) VALUES('$user_id', '$seller_id', 'Contact request regarding product: $product_name. Email: $email ')") or die('query failed');
 
         // Mailtrap Integration 
         $mail = new PHPMailer\PHPMailer(true);
@@ -59,7 +60,7 @@ if(isset($_POST['contact_seller'])){
         $mail->addAddress($seller_email); 
         $mail->isHTML(true);                                 
         $mail->Subject = 'New contact request regarding product: ' . $product_name;  
-        $mail->Body = "Message from: $name (Email: $email, Number: $number). Message: " . implode("<br>", $message);
+        $mail->Body = "Contact request regarding product: $product_name. Email: $email"; 
 
         $mail->send();
         $message[] = 'Message sent successfully!';

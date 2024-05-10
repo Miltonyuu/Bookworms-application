@@ -4,7 +4,8 @@ include 'config.php';
 session_start();
 
 $user_id = $_SESSION['user_id'];
-$seller_user_name = $_SESSION['user_name']; 
+$seller_user_name = $_SESSION['user_name'];
+$email = $_SESSION['user_email'];
 
 if(!isset($user_id)){
 header('location:login.php');
