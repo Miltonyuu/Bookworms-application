@@ -84,6 +84,7 @@ if(isset($_POST['add_to_cart'])){
                 <input type="hidden" name="product_author" value="<?php echo $fetch_products['author']; ?>">
                 <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
                 <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                <input type="hidden" min="2" name="product_quantity" value="1" class="qty">
                 <input type="submit" value="add to cart" name="add_to_cart" class="btn">
               </form>
 

@@ -28,7 +28,7 @@ $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE na
 if(mysqli_num_rows($select_product_name) > 0){
  $message[] = 'product name already added';
 }else{
- $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, image, seller_id,) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$image', '$user_id')") or die('query failed');
+ $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$image', '$user_id')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
