@@ -624,7 +624,7 @@ section{
 
 .products .box-container .box .name{
    padding:1rem 0;
-   font-size: 2rem;
+   font-size: 3rem;
    font-weight: bold;
    color:var(--black);
 }
@@ -634,6 +634,13 @@ section{
    font-size: 1.5rem;
    font-weight: bold;
    color:var(--orange);
+}
+
+.products .box-container .box .book_condi{
+   margin-top: 8px;
+   font-size: 1.8rem;
+   font-weight: bold;
+   color:var(--black);
 }
 
 
@@ -904,13 +911,33 @@ section{
 }
 
 .shopping-cart .box-container .box .name{
-   padding:1rem 0;
-   font-size: 2rem;
+   padding:1px;
+   font-size: 3rem;
+   margin: 0;
+   font-weight: bold;
    color:var(--black);
 }
 
-.shopping-cart .box-container .box .price{
+.shopping-cart .box-container .box .cart_author{
    padding:1rem 0;
+   margin: 0;
+   font-size: 1.5rem;
+   font-weight: bold;
+   color:var(--orange);
+}
+
+.shopping-cart .box-container .box .cart_bookcondi{
+   padding:1px;
+   font-size: 2rem;
+   margin: 0;
+   font-weight: bold;
+   color:var(--black);
+}
+
+
+
+.shopping-cart .box-container .box .price{
+   padding: 0;
    font-size: 2.5rem;
    color:var(--red);
 }
