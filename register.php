@@ -1,5 +1,5 @@
 <?php
-
+require_once 'policies.php';
 include 'config.php';
 
 if(isset($_POST['submit'])){
@@ -87,11 +87,56 @@ if(isset($message)){
       </select>
       <p required class="dateofbirth">Date of Birth</p>
       <input type="date" name="birthday" required class="box">
-      <input type="submit" name="submit" value="register now" class="btn">
-      <p>Already have an account? <a href="login.php">Login now</a></p>
-   </form>
+      <div class="checkbox-container"> <input type="checkbox" id="agree-terms" name="agree" required>
+    <label for="agree-terms">I agree to the Terms of Service and Privacy Policy</label>
+      
+         </div>
+         <input type="submit" name="submit" value="register now" class="btn">
 
-</div>
+      
+
+         <p>Already have an account? <a href="login.php">Login now</a></p>
+      </form>
+
+   </div>
+
+
+   <div id="policies-container" style="display: none;">
+
+   <h2>Terms of Service &amp; Privacy Policy</h2>
+   <hr>
+
+   <p>**Terms of Service**</p>
+   <p>...</p>
+   <p>**Privacy Policy**</p>
+   <p>...</p>
+
+   </div>
+
+   <script>
+  // Get references to elements
+  const agreeCheckbox = document.getElementById('agree-terms');
+  const submitButton = document.querySelector('.btn');
+  const policiesContainer = document.getElementById('policies-container');
+
+  // Initially show the policies container (optional, adjust as needed)
+  policiesContainer.style.display = 'block'; // Change to 'none' to hide initially
+
+  // Toggle visibility based on checkbox state
+  agreeCheckbox.addEventListener('change', function() {
+    policiesContainer.style.display = this.checked ? 'block' : 'none';
+  });
+
+  // Disable submit button by default
+  submitButton.disabled = true;
+
+  // Enable submit button only when checkbox is checked
+  agreeCheckbox.addEventListener('change', function() {
+    submitButton.disabled = !this.checked;
+  });
+
+</script>
+
 
 </body>
 </html>
