@@ -548,6 +548,7 @@ section{
    padding:2rem;
    text-align: center;
    width: 30rem;
+   z-index: 2;
    display: none;
    animation: fadeIn .2s linear;
 }
@@ -1130,8 +1131,8 @@ section{
 	width: 800px;
 	max-width: 100%;
 	box-sizing: border-box;
-	padding: 25px;
-	margin: 8% auto 0;
+	/*padding: 25px;*/ padding: 20px;
+   margin: 3% auto 0; /*margin: 0;*/
 	position: relative;
 	z-index: 1;
 	border: 5px solid var(--orange);
@@ -1348,6 +1349,7 @@ section{
 		.col_half {
 			width: 100%;
 			float: none;
+         z-index: -1;
 		}
 	}
 	.bottom_row {
@@ -1366,6 +1368,21 @@ section{
 	.remember_me {
 		padding-bottom: 20px;
 	}
+}
+
+.img_user{
+   position: relative;
+}
+
+.img_user h3{
+   margin-top: 10px;
+   margin-bottom: 5px;
+   font-size: 15px;
+
+}
+
+.img_user input{
+   width: 100%;
 }
 /* css for the user profile ends here*/
 .chat{
@@ -1438,9 +1455,6 @@ section{
 .footer .credit span{
    color:var(--purple);
 }
-
-
-
 
 /* media queries  */
 

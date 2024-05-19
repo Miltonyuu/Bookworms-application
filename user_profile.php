@@ -46,8 +46,8 @@ if(isset($_POST['update_profile'])){
 
 <?php include 'header.php'; ?>
 
-<section class="user-profile" style="margin-top:100px">
-<div class="form_wrapper">
+<section class="user-profile" style="margin-top:50px;">
+<div class="form_wrapper">    
 <?php
             $message = [];
             if(isset($message)){
@@ -75,12 +75,16 @@ if(isset($_POST['update_profile'])){
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"><p>Bookshop</p></i></span>
             <input type="text" name="bookshop_name" placeholder="Enter your bookshop name (optional)" value="<?php echo $fetch_user['bookshop_name']; ?>" />
           </div>
-            	<div class="input_field radio_option">
-                <select name="gender" class="box">
-                    <option value="male" <?php if($fetch_user['gender'] == 'male') echo 'selected'; ?>>Male</option>
-                    <option value="female" <?php if($fetch_user['gender'] == 'female') echo 'selected'; ?>>Female</option>
-                </select>   
-              </div>
+          <div class="input_field radio_option">
+            <select name="gender" class="box">
+                <option value="male" <?php if($fetch_user['gender'] == 'male') echo 'selected'; ?>>Male</option>
+                <option value="female" <?php if($fetch_user['gender'] == 'female') echo 'selected'; ?>>Female</option>
+            </select>
+            <div class="img_user">
+              <h3>Image Profile</h3>
+                <input type="file" name= "img_user">
+            </div>   
+          </div>
           <input type="submit" value="Update" name="update_profile" class="button">
         </form>
       </div>
