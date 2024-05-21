@@ -1,35 +1,3 @@
-<?php
-require_once 'policies.php';
-include 'config.php';
-
-if(isset($_POST['submit'])){
-
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
-   $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
-   $gender = $_POST['gender'];
-   $user_type = $_POST['user_type'];
-   $birthday = $_POST['birthday'];
-
-   $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
-
-   if(mysqli_num_rows($select_users) > 0){
-      $message[] = 'user already exist!';
-   }else{
-      if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
-      }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, gender, birthdate, user_type) VALUES('$name', '$email', '$cpass', '$gender', '$birthday', '$user_type')") or die('query failed');
-         $message[] = 'registered successfully!';
-         header('location:login.php');
-      }
-   }
-
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,14 +18,55 @@ if(isset($_POST['submit'])){
          color: #000;
          text-decoration: none;
          cursor: pointer;
-}
+      }
+      
+      /* Animation for modal */
+      @keyframes fadeIn {
+         from { opacity: 0; }
+         to { opacity: 1; }
+      }
+      
+      .modal {
+         display: none; /* Hidden by default */
+         position: fixed; /* Stay in place */
+         z-index: 1; /* Sit on top */
+         padding-top: 50px; /* Location of the box */
+         left: 0;
+         top: 0;
+         width: 100%; /* Full width */
+         height: 100%; /* Full height */
+         overflow: auto; /* Enable scroll if needed */
+         background-color: rgb(0,0,0); /* Fallback color */
+         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+         animation: fadeIn 0.5s; /* Apply the fade-in animation */
+      }
+
+      .modal-content {
+         background-color: #fefefe;
+         margin: auto;
+         padding: 20px;
+         border: 1px solid #888;
+         width: 80%;
+         font-size: 16px; 
+         text-align: justify;
+      }
+
+      .close {
+         color: #aaaaaa;
+         float: right;
+         font-size: 28px;
+         font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+         color: #000;
+         text-decoration: none;
+         cursor: pointer;
+      }
    </style>
-
 </head>
-<body>
-
-
-
+<body class="register">
 <?php
 if(isset($message)){
    foreach($message as $message){
@@ -70,9 +79,8 @@ if(isset($message)){
    }
 }
 ?>
-   
-<div class="form-container">
 
+<div class="form-container">
    <form action="" method="post">
       <h3>Register now</h3>
       <p required class="name">Full Name</p>
@@ -96,110 +104,74 @@ if(isset($message)){
       </select>
       <p required class="dateofbirth">Date of Birth</p>
       <input type="date" name="birthday" required class="box">
-      <div class="checkbox-container"> <input type="checkbox" id="agree-terms" name="agree" required>
-    <label for="agree-terms">I agree to the Terms of Service and Privacy Policy</label>
-      
-         </div>
-         <input type="submit" name="submit" value="register now" class="btn">
-
-      
-
-         <p>Already have an account? <a href="login.php">Login now</a></p>
-      </form>
-
-   </div>
-
-
-   <div id="policies-container" class="modal" style=
-   "
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      padding-top: 50px; /* Location of the box */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-   
-   ">
-      <div class="modal-content" style=
-      "
-         background-color: #fefefe;
-         margin: auto;
-         padding: 20px;
-         border: 1px solid #888;
-         width: 80%;
-      ">
-         <span class="close" style=
-         "
-         color: #aaaaaa;
-         float: right;
-         font-size: 28px;
-         font-weight: bold;
-         ">&times;</span>
-
-         <h2 style="text-align: center;">Privacy Policy</h2>
-         <br>
-         <h3 >Information We Collect</h3>
-         <br>
-
-         <p>
-            <b>a. Usernames:</b> We collect usernames chosen by users during registration to identify them on the platform. <br>
-            <b>b. Email Addresses:</b> We collect email addresses to communicate important updates, account information, and notifications related to Bookworms Connect. Users can opt-out of non-essential communications. <br>
-            <b>c. Contacts and Addresses:</b> Users may choose to provide their contacts and addresses for shipping purposes related to book swaps facilitated through the platform. <br>
-            <b>d. Gallery Access:</b> If users choose to upload pictures to the platform, we may require access to their device's gallery. <br>
-            <b>e. Messaging:</b> We collect information exchanged through the messaging feature on our website to facilitate communication between users. <br>
-            <b>f. IP Address and Device Information:</b> We may collect IP addresses and device information for security and analytical purposes.
-         </p>
-         <br>
-         <p style="text-align:center;"><b>Use of Information</b></p>
-
-         <p>
-            <b>a.</b> We use collected information to manage user accounts, including registration, authentication, and account recovery. <br>
-            <b>b.</b> We use email addresses to send important notifications and updates related to Bookworms Connect. Users can opt-out of non-essential communications. <br>
-            <b>c.</b> Contact and address information may be used to facilitate book swaps between users. <br>
-            <b>d.</b> We may analyze user data to improve our services, enhance user experience, and develop new features.
-         </p>
-         <br>
-         <p style="text-align:center;"><b>Sharing of Information</b></p>
-         <br>
-         <p>
-            <b>a.</b> We may share personal information with third-party service providers to perform functions on our behalf, such as hosting, analytics, and customer support. <br>
-            <b>b.</b> We may disclose personal information when required by law or to protect the rights, property, or safety of Bookworms Connect, its users, or others.
-         </p>
-         <br>
-         <p style="text-align:center;"><b>User Rights</b></p>
-         <br>
-         <p>
-            <b>a.</b> Users can access and update their personal information through their account settings. <br>
-            <b>b.</b> Users can request the deletion of their account and associated personal information by contacting us at bookwormsconnectPH.com.
-         </p>
-
-         <p style="text-align:center;"><b>Policy Updates</b></p>
-
-         <p>
-            <b>a.</b> We may update this Privacy Policy from time to time. Users will be notified of any material changes via email or through a notice on our website.
-         </p>
-
-         <h2 style="text-align: center;">Terms of Service</h2>
-
-         <p><b>Eligibility:</b> You must be at least 18 years old to use Bookworms Connect. By registering for an account, you confirm that you meet this requirement.</p>
-
-         <p><b>User Conduct:</b> You agree to use Bookworms Connect in compliance with all applicable laws and regulations. You will not engage in any activity that violates the rights of others or harms the integrity of the platform.</p>
-
-         <p><b>Account Security:</b> You are responsible for maintaining the security of your account credentials. You will notify us immediately of any unauthorized access or use of your account.</p>
-
-         <p><b>Intellectual Property:</b> You retain ownership of the content you upload to Bookworms Connect. By submitting content, you grant us a non-exclusive, royalty-free license to use, modify, and distribute it for the purpose of operating and improving our services.</p>
-
-         <p><b>Limitation of Liability</b> Bookworms Connect is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the platform. Additionally, Bookworms Connect is not liable for any failed book swaps or trades between users. Users are responsible for any agreements or transactions they make with other users on the platform.</p>
-
+      <div class="checkbox-container">
+         <input type="checkbox" id="agree-terms" name="agree" required>
+         <label for="agree-terms">I agree to the Terms of Service and Privacy Policy</label>
       </div>
-   </div>
+      <input type="submit" name="submit" value="register now" class="btn">
+      <br><br>
+      <h4>Already have an account? <a href="login.php">Login now</a></h4>
+   </form>
+</div>
 
-   <script>
+<div id="policies-container" class="modal">
+   <div class="modal-content">
+      <span class="close">&times;</span>
+      <!-- Privacy Policy Content -->
+      <h2 style="text-align: center;">Privacy Policy</h2>
+      <br>
+      <h3 style="text-align: center;">Information We Collect</h3>
+      <br>
+      <p>
+         <b>a. Usernames:</b> We collect usernames chosen by users during registration to identify them on the platform. <br>
+         <b>b. Email Addresses:</b> We collect email addresses to communicate important updates, account information, and notifications related to Bookworms Connect. Users can opt-out of non-essential communications. <br>
+         <b>c. Contacts and Addresses:</b> Users may choose to provide their contacts and addresses for shipping purposes related to book swaps facilitated through the platform. <br>
+         <b>d. Gallery Access:</b> If users choose to upload pictures to the platform, we may require access to their device's gallery. <br>
+         <b>e. Messaging:</b> We collect information exchanged through the messaging feature on our website to facilitate communication between users. <br>
+         <b>f. IP Address and Device Information:</b> We may collect IP addresses and device information for security and analytical purposes.
+      </p>
+      <br>
+      <h3 style="text-align:center;"><b>Use of Information</b></h3>
+      <br>
+      <p>
+         <b>a.</b> We use collected information to manage user accounts, including registration, authentication, and account recovery. <br>
+         <b>b.</b> We use email addresses to send important notifications and updates related to Bookworms Connect. Users can opt-out of non-essential communications. <br>
+         <b>c.</b> Contact and address information may be used to facilitate book swaps between users. <br>
+         <b>d.</b> We may analyze user data to improve our services, enhance user experience, and develop new features.
+      </p>
+      <br>
+      <h3 style="text-align:center;"><b>Sharing of Information</b></h3>
+      <br>
+      <p>
+         <b>a.</b> We may share personal information with third-party service providers to perform functions on our behalf, such as hosting, analytics, and customer support. <br>
+         <b>b.</b> We may disclose personal information when required by law or to protect the rights, property, or safety of Bookworms Connect, its users, or others.
+      </p>
+      <br>
+      <h3 style="text-align:center;"><b>User Rights</b></h3>
+      <br>
+      <p>
+         <b>a.</b> Users can access and update their personal information through their account settings. <br>
+         <b>b.</b> Users can request the deletion of their account and associated personal information by contacting us at bookwormsconnectPH.com.
+      </p>
+      <br>
+      <h3 style="text-align:center;"><b>Policy Updates</b></h3>
+      <br>
+      <p>
+      
+         <b>a.</b> We may update this Privacy Policy from time to time. Users will be notified of any material changes via email or through a notice on our website.
+      </p>
+      <br>
+      <h2 style="text-align: center;">Terms of Service</h2>
+      <br>
+      <p><b>Eligibility:</b> You must be at least 18 years old to use Bookworms Connect. By registering for an account, you confirm that you meet this requirement.</p>
+      <p><b>User Conduct:</b> You agree to use Bookworms Connect in compliance with all applicable laws and regulations. You will not engage in any activity that violates the rights of others or harms the integrity of the platform.</p>
+      <p><b>Account Security:</b> You are responsible for maintaining the security of your account credentials. You will notify us immediately of any unauthorized access or use of your account.</p>
+      <p><b>Intellectual Property:</b> You retain ownership of the content you upload to Bookworms Connect. By submitting content, you grant us a non-exclusive, royalty-free license to use, modify, and distribute it for the purpose of operating and improving our services.</p>
+      <p><b>Limitation of Liability:</b> Bookworms Connect is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the platform. Additionally, Bookworms Connect is not liable for any failed book swaps or trades between users. Users are responsible for any agreements or transactions they make with other users on the platform.</p>
+   </div>
+</div>
+
+<script>
   // Get references to elements
   const agreeCheckbox = document.getElementById('agree-terms');
   const submitButton = document.querySelector('.btn');
@@ -222,25 +194,22 @@ if(isset($message)){
   });
 
   // Get the modal
-      var modal = document.getElementById("policies-container");
+  var modal = document.getElementById("policies-container");
 
   // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementsByClassName("close")[0];
 
   // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-      modal.style.display = "none";
-   }
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
 
-// When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-      if (event.target == modal) {
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
       modal.style.display = "none";
-   }
-}
-
+    }
+  }
 </script>
-
-
 </body>
 </html>

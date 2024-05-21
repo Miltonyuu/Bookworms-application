@@ -362,21 +362,29 @@ section{
 
 .form-container{
    min-height: 100vh;
-   background-color: var(--light-bg);
    display: flex;
    align-items: center;
    justify-content: center;
    padding:2rem;
+   margin-right: -1100px;
 }
 
 .form-container form{
-   padding:2rem;
+   padding: 2rem;
    width: 50rem;
    border-radius: .5rem;
    box-shadow: var(--box-shadow);
-   border:var(--border);
-   background-color: var(--white);
+   border: var(--border);
+   background-color: rgba(243, 230, 230, 0.25); /* 25% opacity */
    text-align: center;
+}
+
+.form-container form p{
+   font-size: 3rem;
+   margin-bottom: 1rem;
+   text-transform: uppercase;
+   color:var(--black);
+   text-align: left;
 }
 
 .form-container form h3{
@@ -384,6 +392,13 @@ section{
    margin-bottom: 1rem;
    text-transform: uppercase;
    color:var(--black);
+}
+
+.form-container form h4{
+   font-size: 2rem;
+   margin-bottom: 1rem;
+   color:var(--black);
+   text-align: center;
 }
 
 .form-container form .box{
@@ -663,6 +678,33 @@ section{
    color:var(--white);
    background-color: var(--red);
 }
+
+body.login {
+   background: url('../images/Login.png') no-repeat center center fixed;
+   background-size: cover;
+   font-family: 'Arial', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+}
+
+body.register{
+    background: url('../images/Register.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+}
+
+
+
 
 .about .flex{
    max-width: 1200px;
@@ -1102,6 +1144,7 @@ section{
 .placed-orders .box-container .box p span{
    color:var(--purple);
 }
+
 
 .search-form form{
    max-width: 1200px;
