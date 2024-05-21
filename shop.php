@@ -80,7 +80,6 @@ if(isset($_POST['add_to_cart'])){
             <div name="product_author" class="author">By: <?php echo $fetch_products['author']; ?></div>
             <div name="product_book_condi" class="book_condi">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
             <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
-
             <?php
                 if ($user_id != $product_seller_id):?>
                   <input type="number" min="2" name="product_quantity" value="1" class="qty">
@@ -92,6 +91,7 @@ if(isset($_POST['add_to_cart'])){
                 <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
                 <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
                 <input type="hidden" min="2" name="product_quantity" value="1" class="qty">
+                <div class="view_seller_info"><input type="submit" value="View Seller's Details" class="btn"></div>
                 <input type="submit" value="add to cart" name="add_to_cart" class="btn">
               </form>
 
