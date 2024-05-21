@@ -91,8 +91,13 @@ if(isset($_POST['add_to_cart'])){
                 <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
                 <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
                 <input type="hidden" min="2" name="product_quantity" value="1" class="qty">
-                <div class="view_seller_info"><input type="submit" value="View Seller's Details" class="btn"></div>
                 <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+              </form>
+
+              <form action="view_seller.php" method="post">
+              <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+              <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">
+              <div class="view_seller_info"><input type="submit" value="View Seller's Details" name="view_seller" class="btn"></div>
               </form>
 
               <form action="contact_seller.php" method="post">
