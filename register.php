@@ -95,6 +95,13 @@ if(isset($_POST['submit'])){
          text-decoration: none;
          cursor: pointer;
       }
+
+      .error {
+         color: red;
+         display: none;
+         font-size: 15px;
+      }
+
    </style>
 </head>
 <body class="register">
@@ -119,8 +126,9 @@ if(isset($message)){
       <p required class="email">Email Address</p>
       <input type="email" name="email" placeholder="enter your email" required class="box">
       <p required class="password">Password</p>
-      <input type="password" name="password" placeholder="enter your password" required class="box">
-      <input type="password" name="cpassword" placeholder="confirm your password" required class="box">
+      <input type="password" name="password" id="password" placeholder="enter your password" required class="box">
+      <input type="password" name="cpassword" id="cpassword" placeholder="confirm your password" required class="box">
+      <span id="error-message" class="error">Passwords do not match</span>
       <p required class="gender">Gender</p>
       <select name="gender" class="box">
          <option value="" selected disabled>Select Gender</option>
@@ -203,6 +211,22 @@ if(isset($message)){
 </div>
 
 <script>
+
+   document.getElementById("password").addEventListener("input", validatePasswords);
+   document.getElementById("cpassword").addEventListener("input", validatePasswords);
+
+   function validatePasswords() {
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("cpassword").value;
+      var errorMessage = document.getElementById("error-message");
+
+      if (password && confirmPassword && password !== confirmPassword) {
+         errorMessage.style.display = "block";
+      } else {
+         errorMessage.style.display = "none";
+      }
+   }
+
   // Get references to elements
   const agreeCheckbox = document.getElementById('agree-terms');
   const submitButton = document.querySelector('.btn');
