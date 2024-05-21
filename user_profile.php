@@ -13,6 +13,11 @@ header('location:login.php');
 $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_id'") or die('query failed'); 
 $fetch_user = mysqli_fetch_assoc($select_user);
 
+// Check Verification Status
+$select_verification = mysqli_query($conn, "SELECT * FROM `verification_requests` WHERE user_id = '$user_id' AND status = 'approved'");
+$is_verified = mysqli_num_rows($select_verification) > 0; // True if verified
+
+
 // Update logic
 if(isset($_POST['update_profile'])){
   $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -59,6 +64,9 @@ if(isset($_POST['update_profile'])){
   <div class="form_container">
     <div class="title_container">
       <h1 class="title">Update Your Profile Here</h1>
+      <?php if ($is_verified): ?>
+                    <i class="fas fa-check-circle verified-badge"></i> 
+                <?php endif; ?> 
     </div>
     <div class="row clearfix">
       <div class="">

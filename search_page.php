@@ -28,6 +28,10 @@ if(isset($_POST['add_to_cart'])){
 
 };
 
+ // Check Verification Status
+ $select_verification = mysqli_query($conn, "SELECT * FROM `verification_requests` WHERE user_id = '$user_id' AND status = 'approved'");
+ $is_verified = mysqli_num_rows($select_verification) > 0; // True if verified
+
 ?>
 
 <!DOCTYPE html>

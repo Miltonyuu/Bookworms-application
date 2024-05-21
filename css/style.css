@@ -148,6 +148,14 @@ section{
    font-size: small;
 
 }
+
+.verified-badge {
+   color: purple; /* Or choose your desired color */
+   margin-left: 10px; /* Adjust the margin as needed */
+   size: 20px; /* Adjust the size as needed */
+}
+
+
 .title{
    text-align: center;
    padding-top: 1px;
@@ -585,6 +593,37 @@ section{
 .header .header-2 .flex .user-box .delete-btn{
    margin-top: 0;
 }
+
+.header .header-2 .flex .user-box i{
+   font-size: 25px;
+   margin-bottom: 17px;
+}
+
+.header .header-2 .flex .user-box .for_tooltip{
+   position: relative;
+}
+
+.header .header-2 .flex .user-box .for_tooltip .user_tooltip{
+   position: absolute;
+   background-color: purple;
+   color: white;
+   padding-top: 4px;
+   padding-bottom: 4px;
+   padding-left: 8px;
+   padding-right: 8px;
+   border-radius: 4px;
+   margin-top:3px;
+   font-size: 10px;
+   opacity: 0;
+}
+
+.header .header-2 .flex .user-box .for_tooltip:hover .user_tooltip{
+   opacity: 1;
+}
+
+
+
+
 
 .home{
    min-height: 70vh;
@@ -1445,6 +1484,41 @@ body.register{
 .divB{
    margin-top: 8px;
    margin-left: 5px;
+}
+
+.verify-user-form .verify_box{
+   padding-left: 5px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.verify-user-form .verify_box h3{
+   font-size: 25px;
+   margin-left: 120px;
+   margin-bottom: 10px;
+}
+
+.verify-user-form .verify_box p{
+   font-size:20px;
+   margin-bottom: 10px;
+}
+
+.verify-user-form .verify_box .box_choose_file{
+   border: solid gray 2px;
+   padding: 2px;
+   font-size: 20px;
+   border-radius: 5px;
+}
+
+.verify-user-form .verify_box .box_choose_file:hover{
+   cursor: pointer;
+   border: solid black 2px;
+}
+
+.verify-user-form .verify_box .btn{
+   margin-left: 100px;
+   margin-bottom: 10px;
 }
 
 

@@ -29,6 +29,10 @@ if(isset($_POST['add_to_cart'])){
       $message[] = 'product added to cart!';
    }
 
+    // Check Verification Status
+    $select_verification = mysqli_query($conn, "SELECT * FROM `verification_requests` WHERE user_id = '$user_id' AND status = 'approved'");
+    $is_verified = mysqli_num_rows($select_verification) > 0; // True if verified
+
 }
 
 ?>
@@ -61,7 +65,7 @@ if(isset($_POST['add_to_cart'])){
   <h1 class="title">Available Books</h1>
   <div class="box-container">
     <?php
-      $select_products = mysqli_query($conn, "SELECT * FROM `products` ") or die('query failed');
+      $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name != 'Verification Subscription'") or die('query failed');
       if (mysqli_num_rows($select_products) > 0) {
         while ($fetch_products = mysqli_fetch_assoc($select_products)) {
           // Check if the product belongs to the logged-in user
