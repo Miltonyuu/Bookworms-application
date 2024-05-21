@@ -369,12 +369,13 @@ section{
 }
 
 .form-container{
+   width: 450px;
    min-height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
    padding:2rem;
-   margin-right: -1100px;
+   margin-right: -900px;
 }
 
 .form-container form{
