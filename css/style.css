@@ -738,6 +738,28 @@ body.register{
     font-family: 'Arial', sans-serif;
 }
 
+.trading-container {
+   position: relative; /* Necessary for positioning the tooltip */
+}
+
+.trading-tooltip {
+   visibility: hidden; /* Initially hidden */
+   position: absolute;
+   bottom: 100%; /* Position below the image */
+   left: 50%;  /* Center horizontally */
+   transform: translateX(-50%); /* Adjust for the tooltip's width */
+   background-color: #333; /* Dark background */
+   color: white;
+   padding: 5px 10px;
+   border-radius: 1px;
+   z-index: 1; /* Ensure it's above other content */
+   white-space: nowrap; /* Prevent text from wrapping */
+   font-size: small;
+}
+
+.trading-container:hover .trading-tooltip {
+   visibility: visible;
+}
 
 
 
@@ -794,6 +816,13 @@ body.register{
    font-size: 25px; 
    cursor: pointer;
  }
+
+ .trading-logo {
+   width: 60px; /* Example: adjust as needed */
+   height: 60px; 
+   margin-top: 5px;  /* Add some spacing from the price */
+}
+
  
  
  

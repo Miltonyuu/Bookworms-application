@@ -22,13 +22,14 @@ $image = $_FILES['image']['name'];
 $image_size = $_FILES['image']['size'];
 $image_tmp_name = $_FILES['image']['tmp_name'];
 $image_folder = 'uploaded_img/'.$image;
+$tradestatus = $_POST['tradestatus'];
 
 $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
 
 if(mysqli_num_rows($select_product_name) > 0){
  $message[] = 'product name already added';
 }else{
- $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$image', '$user_id')") or die('query failed');
+ $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, tradestatus, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition','$tradestatus', '$image', '$user_id')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
@@ -60,8 +61,9 @@ $update_name = $_POST['update_name'];
 $update_author = $_POST['update_author'];
 $update_price = $_POST['update_price'];
 $update_bookcondition = $_POST['update_bookcondition'];
+$update_tradeoption = $_POST['update_tradeoption'];
 
-mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition' WHERE id = '$update_p_id'") or die('query failed');
+mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition', tradestatus = '$update_tradeoption' WHERE id = '$update_p_id'") or die('query failed');
 
 $update_image = $_FILES['update_image']['name'];
 $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
@@ -82,9 +84,6 @@ unlink('uploaded_img/'.$update_old_image);
 header('location:user_products.php');
 }
 
- // Check Verification Status
- $select_verification = mysqli_query($conn, "SELECT * FROM `verification_requests` WHERE user_id = '$user_id' AND status = 'approved'");
- $is_verified = mysqli_num_rows($select_verification) > 0; // True if verified
 
  
 ?>
@@ -123,6 +122,15 @@ header('location:user_products.php');
         <option value="Used">Used</option>
     </select>   
   </div>
+
+  <div class="tradeoption">
+    <select name="tradestatus" class="box">
+        <option value="" selected disabled hidden>Is the book open for trading?</option>
+        <option value="Yes">This book is also open for trading</option>
+        <option value="No">This book is not open for trading</option>
+    </select>   
+  </div>
+
   <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required>
 
   <input type="submit" value="add product" name="add_product" class="btn">
@@ -167,8 +175,13 @@ header('location:user_products.php');
                 <option value="New">New</option>
                 <option value="Used">Used</option>
               </select>
-            <span class="book_desc">Seller:</span> 
-            <input type="text" name="update_seller" value="<?php echo $_SESSION['user_name']; ?>" class="box_ubd" disabled>
+              <span class="book_desc">Trading Option:</span>
+              <select name="update_tradeoption" class="box_ubd">
+                <option value="" selected="selected" hidden="hidden">Choose Here</option>
+                <option value="Yes">This book is also open for trading</option>
+                <option value="No">This book is not open for trading</option>
+              </select>
+           
             <span class="book_desc">Book Image:</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box_ubd">
             <input type="submit" value="update" name="update_product" class="option-btn">

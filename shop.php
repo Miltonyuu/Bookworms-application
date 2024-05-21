@@ -72,6 +72,8 @@ if(isset($_POST['add_to_cart'])){
           $user_id = $_SESSION['user_id'];
           $product_seller_id = $fetch_products['seller_id'];
 
+          
+
           ?>
 
           <div class="box">
@@ -80,7 +82,15 @@ if(isset($_POST['add_to_cart'])){
             <div name="product_author" class="author">By: <?php echo $fetch_products['author']; ?></div>
             <div name="product_book_condi" class="book_condi">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
             <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
+            <?php if ($fetch_products['tradestatus'] == 'Yes'): ?>
+              <div class="trading-container"> 
+                  <img src="images/trading_logo.png" alt="Open for Trading" class="trading-logo">
+                  <span class="trading-tooltip">This book is also open for trading</span>
+              </div>
+          <?php endif; ?>
             <?php
+
+
                 if ($user_id != $product_seller_id):?>
                   <input type="number" min="2" name="product_quantity" value="1" class="qty">
                   
@@ -113,6 +123,9 @@ if(isset($_POST['add_to_cart'])){
                 <input type="submit" value="contact seller" name="contact_seller" class="btn">
               </form>
             <?php endif; ?>
+
+              
+
 
           </div>  <?php
         }
