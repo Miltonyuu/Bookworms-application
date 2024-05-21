@@ -374,12 +374,12 @@ section{
    display: flex;
    align-items: center;
    justify-content: center;
-   padding:2rem;
+   padding:1rem;
    margin-right: -900px;
 }
 
 .form-container form{
-   padding: 2rem;
+   padding: 1rem;
    width: 50rem;
    border-radius: .5rem;
    box-shadow: var(--box-shadow);
@@ -389,23 +389,22 @@ section{
 }
 
 .form-container form p{
-   font-size: 3rem;
-   margin-bottom: 1rem;
+   font-size: 1rem;
    text-transform: uppercase;
    color:var(--black);
    text-align: left;
 }
 
 .form-container form h3{
-   font-size: 3rem;
-   margin-bottom: 1rem;
+   font-size: 1rem;
+
    text-transform: uppercase;
    color:var(--black);
 }
 
 .form-container form h4{
    font-size: 2rem;
-   margin-bottom: 1rem;
+  
    color:var(--black);
    text-align: center;
 }
@@ -424,38 +423,34 @@ section{
 .form-container form .name{
    text-align: left;
    display: block;
-   margin-bottom: 2px;
+
 }
 
 .form-container form .email{
    text-align: left;
    display: block;
-   margin-bottom: 2px;;
 }
 
 .form-container form .password{
    text-align: left;
    display: block;
-   margin-bottom: 2px;;
 }
 
 .form-container form .gender{
    text-align: left;
    display: block;
-   margin-bottom: 2px;;
 }
 
 .form-container form .type{
    text-align: left;
    display: block;
-   margin-bottom: 2px;;
 }
 
 
 .form-container form .birthdate{
    text-align: left;
    display: block;
-   margin-bottom: 2px;;
+   
 }
 .form-container form p{
    padding-top: 1.5rem;

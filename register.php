@@ -134,13 +134,7 @@ if(isset($message)){
          <option value="" selected disabled>Select Gender</option>
          <option value="male">Male</option>
          <option value="female">Female</option>
-      </select>
-      <p required class="type">Role Type</p>
-      <select name="user_type" class="box">
-         <option value="" selected disabled>Select Type</option>
-         <option value="user">User</option>
-         <option value="admin">Admin</option>
-      </select>
+    
       <p required class="dateofbirth">Date of Birth</p>
       <input type="date" name="birthday" required class="box">
       <div class="checkbox-container">
