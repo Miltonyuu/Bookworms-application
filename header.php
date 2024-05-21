@@ -17,8 +17,14 @@ if(isset($message)){
     if (isset($_SESSION['user_id'])) { 
         $user_id = $_SESSION['user_id']; 
         render_cart($user_id); // Pass $user_id
+         // Check Verification Status
+   $select_verification = mysqli_query($conn, "SELECT * FROM `verification_requests` WHERE user_id = '$user_id' AND status = 'approved'");
+   $is_verified = mysqli_num_rows($select_verification) > 0; // True if verified
+
     } 
 ?>
+
+
 
 <link rel="stylesheet" href="./css/style.css">
 
@@ -46,6 +52,7 @@ if(isset($message)){
             <a href="user_orders.php"class="button-34" id="special-color">Selling Transaction</a>
             <a href="orders.php"class="button-34" id="special-color">Buying Transaction</a>
             <a href="messages.php"class="button-34" id="special-color">Messenging</a>
+            <a href="verify_user.php"class="button-34" id="special-color">Verify User</a>
             
             
          </nav>
@@ -79,6 +86,10 @@ if(isset($message)){
 
          <div class="user-box" style="margin:0;">
             <p>username : <span><?php echo $_SESSION['user_name']; ?></span></p>
+            <?php if ($is_verified): ?>
+            <i class="fas fa-check-circle verified-badge"></i> 
+            <?php endif; ?> 
+
             <p>email : <span><?php echo $_SESSION['user_email']; ?></span></p>
             <a href="user_profile.php" class="profile-btn">Profile Details</a>
             <a href="logout.php" class="logout-btn">logout</a>

@@ -43,6 +43,7 @@ $message[] = 'product could not be added!';
 }
 }
 
+
 if(isset($_GET['delete'])){
 $delete_id = $_GET['delete'];
 $delete_image_query = mysqli_query($conn, "SELECT image FROM `products` WHERE id = '$delete_id'") or die('query failed');
@@ -80,6 +81,12 @@ unlink('uploaded_img/'.$update_old_image);
 
 header('location:user_products.php');
 }
+
+ // Check Verification Status
+ $select_verification = mysqli_query($conn, "SELECT * FROM `verification_requests` WHERE user_id = '$user_id' AND status = 'approved'");
+ $is_verified = mysqli_num_rows($select_verification) > 0; // True if verified
+
+ 
 ?>
 
 <!DOCTYPE html>

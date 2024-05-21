@@ -148,6 +148,14 @@ section{
    font-size: small;
 
 }
+
+.verified-badge {
+   color: purple; /* Or choose your desired color */
+   margin-left: 10px; /* Adjust the margin as needed */
+   size: 20px; /* Adjust the size as needed */
+}
+
+
 .title{
    text-align: center;
    padding-top: 1px;

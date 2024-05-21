@@ -10,6 +10,14 @@ if(!isset($admin_id)){
    header('location:login.php');
 }
 
+if(isset($_POST['update_request'])){
+   $request_id = $_POST['request_id'];
+   $update_verification = $_POST['update_verification'];
+   mysqli_query($conn, "UPDATE `verification_requests` SET status = '$update_verification' WHERE id = '$request_id'") or die('query failed');
+   $message[] = 'verification status has been updated!';
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +58,7 @@ if(!isset($admin_id)){
                };
             };
          ?>
-         <h3>$<?php echo $total_pendings; ?>/-</h3>
+         <h3>₱<?php echo $total_pendings; ?>/-</h3>
          <p>total pendings</p>
       </div>
 
@@ -65,7 +73,7 @@ if(!isset($admin_id)){
                };
             };
          ?>
-         <h3>$<?php echo $total_completed; ?>/-</h3>
+         <h3>₱<?php echo $total_completed; ?>/-</h3>
          <p>completed payments</p>
       </div>
 

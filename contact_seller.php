@@ -37,8 +37,6 @@ if(isset($_POST['contact_seller'])){
 
         // Mailtrap Integration 
         $mail = new PHPMailer\PHPMailer(true);
-        echo "Mail object created."; // Temporary test 
-        var_dump($message); // Temporary test
 
         try{
         // Mailtrap configuration
@@ -51,8 +49,7 @@ if(isset($_POST['contact_seller'])){
         $mail->SMTPSecure = 'tls';                            
         $mail->Port = 2525;
         
-        echo "Email: " . $email; 
-        echo "Name: " . $name; 
+
         $mail->setFrom($email, $name); 
 
 
