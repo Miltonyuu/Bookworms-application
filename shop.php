@@ -94,11 +94,18 @@ if(isset($_POST['add_to_cart'])){
                 <input type="submit" value="add to cart" name="add_to_cart" class="btn">
               </form>
 
-              <form action="view_seller.php" method="post">
-              <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-              <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">
-              <div class="view_seller_info"><input type="submit" value="View Seller's Details" name="view_seller" class="btn"></div>
-              </form>
+                              <div class="seller-info-container">
+                  <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_products['name']; ?>" data-seller-id="<?php echo $fetch_products['seller_id']; ?>">View Seller's Details</button>
+
+                  <div id="seller-info-popup" class="seller-popup-overlay">
+                    <div class="seller-popup-content">
+                      <span class="seller-close-btn">&times;</span>
+                      <div id="seller-details"></div>
+                    </div>
+                  </div>
+                </div>
+
+
 
               <form action="contact_seller.php" method="post">
                 <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">

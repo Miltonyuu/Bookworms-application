@@ -23,6 +23,39 @@ window.onscroll = () =>{
    }
 }
 
+const viewSellerBtns = document.querySelectorAll('.contact-seller-btn'); 
+const sellerInfoPopup = document.getElementById('seller-info-popup');
+const sellerDetailsContainer = document.getElementById('seller-details');
+const closeBtn = document.querySelector('.seller-close-btn'); 
+
+viewSellerBtns.forEach(btn => {
+    btn.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        const sellerId = btn.dataset.sellerId;
+
+        // Make an AJAX request to fetch seller details
+        fetch('fetch_seller_details.php?seller_id=' + sellerId) // Add this php file in your directory.
+            .then(response => response.json())
+            .then(data => {
+                // Populate sellerDetailsContainer with the fetched data
+                sellerDetailsContainer.innerHTML = `
+                    <h3>${data.name}'s Bookshop</h3>
+                    <p>Email: ${data.email}</p>
+                    <p>Verified: ${data.verified == 1 ? 'Yes' : 'No'}</p>
+                    </div>`; // Updated content structure
+
+                sellerInfoPopup.style.display = 'flex';
+            })
+            .catch(error => console.error('Error fetching seller details:', error));
+    });
+});
+
+// Close Pop-up (no changes needed here)
+closeBtn.addEventListener('click', () => {
+    sellerInfoPopup.style.display = 'none';
+});
+
 
 /* not sure it sure if its included confirmaion from milton is need
 
