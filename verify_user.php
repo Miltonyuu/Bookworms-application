@@ -158,18 +158,22 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
         }
         ?>
         
-        <div class="box">
+        <div class="verify_box">
 
             <form action="" method="post" enctype="multipart/form-data">
                 <h3>User Verification</h3>
-                <input type="file" name="valid_id" accept="image/*" class="box" required />
-                <input type="submit" name="submit_verification" value="Submit for Verification" class="btn">
+                <p>Submit your Valid Documents for Verification below</p>
+                <input type="file" name="valid_id" accept="image/*" class="box_choose_file" required />
+                <input type="submit" name="submit_verification" value="Submit for Verification" class="btn" style="display:block;">
             </form>
 
         </div>
 
     </section>
     <?php include 'footer.php'; ?>
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
 </body>
 </html>
 
