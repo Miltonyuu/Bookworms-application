@@ -18,8 +18,8 @@ $message[] = 'payment status has been updated!';
 
 }
 
-if(isset($_GET['delete'])){
-$delete_id = $_GET['delete'];
+if(isset($_GET['delete_order'])){
+$delete_id = $_GET['delete_order'];
 mysqli_query($conn, "DELETE FROM `orders` WHERE id = '$delete_id'") or die('query failed');
 header('location:user_orders.php');
 }
@@ -92,7 +92,7 @@ if(mysqli_num_rows($select_orders) > 0){
 <option value="completed">completed</option>
  </select>
  <input type="submit" value="update" name="update_order" class="option-btn">
- <a href="user_orders.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">delete</a>
+ <a href="user_orders.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" name="delete_order" class="delete-btn">delete</a>
 </form>
  </div>
 <?php
