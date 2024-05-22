@@ -56,6 +56,32 @@ closeBtn.addEventListener('click', () => {
     sellerInfoPopup.style.display = 'none';
 });
 
+const isbnInput = document.getElementById('isbn');
+const coverPreview = document.getElementById('cover-preview');
+
+isbnInput.addEventListener('input', function() {
+  const isbn = this.value.trim();
+
+  if (isbn) {
+    fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
+      .then(response => response.json())
+      .then(data => {
+        const bookData = data[`ISBN:${isbn}`];
+        if (bookData && bookData.cover) {
+          coverPreview.innerHTML = `<img src="${bookData.cover.medium}" alt="Book Cover" style="max-width: 150px;">`; // Display the cover
+        } else {
+          coverPreview.innerHTML = ''; // Clear the preview if no cover found
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching cover image:', error);
+        coverPreview.innerHTML = ''; // Clear the preview if error
+      });
+  } else {
+    coverPreview.innerHTML = ''; // Clear the preview if ISBN is empty
+  }
+});
+
 
 /* not sure it sure if its included confirmaion from milton is need
 

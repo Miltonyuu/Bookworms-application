@@ -23,13 +23,14 @@ $image_size = $_FILES['image']['size'];
 $image_tmp_name = $_FILES['image']['tmp_name'];
 $image_folder = 'uploaded_img/'.$image;
 $tradestatus = $_POST['tradestatus'];
+$isbn = $_POST['isbn'];
 
 $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
 
 if(mysqli_num_rows($select_product_name) > 0){
  $message[] = 'product name already added';
 }else{
- $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, tradestatus, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition','$tradestatus', '$image', '$user_id')") or die('query failed');
+ $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, tradestatus, isbn, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition','$tradestatus', '$isbn' , '$image', '$user_id')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
@@ -62,8 +63,9 @@ $update_author = $_POST['update_author'];
 $update_price = $_POST['update_price'];
 $update_bookcondition = $_POST['update_bookcondition'];
 $update_tradeoption = $_POST['update_tradeoption'];
+$update_isbn = $_POST['update_isbn'];
 
-mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition', tradestatus = '$update_tradeoption' WHERE id = '$update_p_id'") or die('query failed');
+mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition', tradestatus = '$update_tradeoption', isbn = '$update_isbn' WHERE id = '$update_p_id'") or die('query failed');
 
 $update_image = $_FILES['update_image']['name'];
 $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
@@ -112,6 +114,7 @@ header('location:user_products.php');
   <h3>add product</h3>
   <input type="text" name="name" class="box" placeholder="enter product name" required>
   <input type="text" name="author" class="box" placeholder="enter book author" required>
+  <input type="text" name="isbn" id="isbn" class="box" placeholder="enter ISBN (optional)"> 
   <input type="number" min="0" name="price" class="box" placeholder="enter product price" required>
   <!--<input type="text" name="author" class="box" placeholder="enter book author" required>-->
   <div class="addproductsoption">
@@ -168,6 +171,8 @@ header('location:user_products.php');
             <!--<input type="text" name="update_name" value="<?php echo $fetch_products['name']; ?>" class="box_ubd" required>-->
             <span class="book_desc">Book Price:</span>
             <input type="number" name="update_price" value="<?php echo $fetch_products['price']; ?>" min="0" class="box_ubd" required>
+            <span class="book_desc">ISBN:</span>
+            <input type="text" name="update_isbn" value="<?php echo $fetch_products['isbn']; ?>" class="box_ubd" required>
             <span class="book_desc">Book Condition:</span>
               <select name="update_bookcondition" class="box_ubd">
                 <option value="" selected="selected" hidden="hidden">Choose Here</option>

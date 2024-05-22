@@ -82,6 +82,7 @@ if(isset($_POST['add_to_cart'])){
             <div name="product_author" class="author">By: <?php echo $fetch_products['author']; ?></div>
             <div name="product_book_condi" class="book_condi">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
             <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
+            <div name="isbn" class="book_condi">ISBN: <?php echo $fetch_products['isbn']; ?></div>
             <?php if ($fetch_products['tradestatus'] == 'Yes'): ?>
               <div class="trading-container"> 
                   <img src="images/trading_logo.png" alt="Open for Trading" class="trading-logo">
