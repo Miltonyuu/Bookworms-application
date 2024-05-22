@@ -74,18 +74,66 @@ if(isset($_POST['add_to_cart'])){
          $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name LIKE '%{$search_item}%'") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
          while($fetch_product = mysqli_fetch_assoc($select_products)){
+         // Check if the product belongs to the logged-in user
+          $user_id = $_SESSION['user_id'];
+          $product_seller_id = $fetch_product['seller_id'];
    ?>
-   <form action="" method="post" class="box">
+   <div class="box">
+   <form action="" method="post">
       <img src="uploaded_img/<?php echo $fetch_product['image']; ?>" alt="" class="image">
       <div class="name"><?php echo $fetch_product['name']; ?></div>
+      <div name="product_author" class="author">By: <?php echo $fetch_product['author']; ?></div>
+      <div name="product_book_condi" class="book_condi">Book Condition: <?php echo $fetch_product['bookcondition']; ?></div>
       <div class="price">$<?php echo $fetch_product['price']; ?>/-</div>
-      <input type="number"  class="qty" name="product_quantity" min="1" value="1">
+      <input type="hidden"  class="qty" name="product_quantity" min="1" value="1">
+      <?php if ($fetch_product['tradestatus'] == 'Yes'): ?>
+              <div class="trading-container"> 
+                  <img src="images/trading_logo.png" alt="Open for Trading" class="trading-logo">
+                  <span class="trading-tooltip">This book is also open for trading</span>
+              </div>
+      <?php endif; ?>      
       <input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
       <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
       <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
-      <input type="submit" class="btn" value="add to cart" name="add_to_cart">
+      <input type="hidden" class="btn" value="add to cart" name="add_to_cart" >
    </form>
    <?php
+
+
+if ($user_id != $product_seller_id):?>
+  <input type="number" min="2" name="product_quantity" value="1" class="qty">
+  
+<form action="" method="post">
+<input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
+<input type="hidden" name="product_author" value="<?php echo $fetch_product['author']; ?>">
+<input type="hidden" name="product_book_condi" value="<?php echo $fetch_product['bookcondition']; ?>">
+<input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
+<input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
+<input type="hidden" min="2" name="product_quantity" value="1" class="qty">
+<input type="submit" value="add to cart" name="add_to_cart" class="btn">
+</form>
+
+<div class="seller-info-container">
+  <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_product['name']; ?>" data-seller-id="<?php echo $fetch_product['seller_id']; ?>">View Seller's Details</button>
+
+  <div id="seller-info-popup" class="seller-popup-overlay">
+    <div class="seller-popup-content">
+      <span class="seller-close-btn">&times;</span>
+      <div id="seller-details"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<form action="contact_seller.php" method="post">
+<input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
+<input type="hidden" name="seller_id" value="<?php echo $fetch_product['seller_id']; ?>">
+<input type="submit" value="contact seller" name="contact_seller" class="btn">
+</form>
+<?php endif; ?>         
+
+   </div> <?php
             }
          }else{
             echo '<p class="empty">no result found!</p>';
