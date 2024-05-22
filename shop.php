@@ -26,7 +26,7 @@ if(isset($_POST['add_to_cart'])){
       $message[] = 'already added to cart!';
    }else{
       mysqli_query($conn, "INSERT INTO `cart`(user_id, name, author, bookcondition, price, qUantity, image) VALUES('$user_id', '$product_name', '$product_author', '$product_book_condi', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
-      $message[] = 'product added to cart!';
+      $message[] = 'notif"product added to cart!';
    }
 
     // Check Verification Status
@@ -105,7 +105,7 @@ if(isset($_POST['add_to_cart'])){
               </form>
 
                               <div class="seller-info-container">
-                  <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_products['name']; ?>" data-seller-id="<?php echo $fetch_products['seller_id']; ?>">View Seller's Details</button>
+                              <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_products['name']; ?>" data-seller-id="<?php echo $fetch_products['seller_id']; ?>">View Seller's Details</button>
 
                   <div id="seller-info-popup" class="seller-popup-overlay">
                     <div class="seller-popup-content">

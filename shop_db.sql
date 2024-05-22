@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2024 at 11:57 AM
+-- Generation Time: May 21, 2024 at 10:16 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -48,9 +48,7 @@ INSERT INTO `cart` (`id`, `user_id`, `name`, `author`, `bookcondition`, `price`,
 (123, 7, 'New Moon', 'Stephanie Meyer', 'Old', 454, 1, 's-l1200.jpg'),
 (124, 7, 'Petalsforkite', 'MILTONYU', 'New', 1000, 1, 'pfp.png'),
 (128, 7, ' Games', 'Katniss Everdeen', '', 111, 1, 'hungergamesimages (1).jpg'),
-(129, 5, 'Don Quixote', 'Miguel de Cervantes', 'Old', 665, 1, 'donkihot.jpg'),
-(130, 9, 'Lord of the Rings', 'J.R.R Tolkien', '', 700, 1, '51eq24cRtRL__98083.jpg'),
-(131, 9, ' Games', 'Katniss Everdeen', '', 111, 1, 'hungergamesimages (1).jpg');
+(129, 5, 'Don Quixote', 'Miguel de Cervantes', 'Old', 665, 1, 'donkihot.jpg');
 
 -- --------------------------------------------------------
 
@@ -100,7 +98,9 @@ INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `timestamp`
 (108, 9, 7, 'Contact request regarding product: Don Quixote. Email: petalskite@gmail.com ', '2024-05-20 21:48:35', 0),
 (109, 9, 4, 'Contact request regarding product: God of War. Email: petalskite@gmail.com ', '2024-05-20 21:49:57', 0),
 (110, 9, 5, 'Contact request regarding product: Nemo. Email: petalskite@gmail.com ', '2024-05-20 21:50:45', 0),
-(111, 9, 5, 'Contact request regarding product: Lord of the Rings. Email: petalskite@gmail.com ', '2024-05-20 21:51:59', 0);
+(111, 9, 5, 'Contact request regarding product: Lord of the Rings. Email: petalskite@gmail.com ', '2024-05-20 21:51:59', 0),
+(112, 9, 5, 'Contact request regarding product: Lord of the Rings. Email: petalskite@gmail.com ', '2024-05-22 02:03:30', 0),
+(113, 9, 1, 'Contact request regarding product: Petalsforkite. Email: petalskite@gmail.com ', '2024-05-22 02:29:42', 0);
 
 -- --------------------------------------------------------
 
@@ -130,7 +130,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `buyer_name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`, `buyer_id`) VALUES
 (27, 4, 'Milton Bautista', 'Miltonyupo', '09565017076', 'miltonbautista60@gmail.com', 'cash on delivery', 'flat no. 5807, Tramo Street, Paranaque City, Philippines\\ - 1700', ', Test (1) ', 180, '03-May-2024', 'pending', 4),
-(28, 4, 'Milton Bautista', 'Miltonyupo', '09565017076', 'miltonyupo@gmail.com', 'cash on delivery', 'flat no. 5807, Tramo Street San Dionisio, Paranaque City, Philippines - 1700', ', Petalsforkite (1) ', 1000, '09-May-2024', 'completed', 4);
+(28, 4, 'Milton Bautista', 'Miltonyupo', '09565017076', 'miltonyupo@gmail.com', 'cash on delivery', 'flat no. 5807, Tramo Street San Dionisio, Paranaque City, Philippines - 1700', ', Petalsforkite (1) ', 1000, '09-May-2024', 'completed', 4),
+(29, 9, 'Milton Bautista', 'Milton Bautista', '09565017076', 'miltonbautista60@gmail.com', 'cash on delivery', 'flat no. 5807, Tramo Street San Dionisio, Paranaque City, Philippines - 1700', ', Verification Subscription (1) ', 100, '21-May-2024', 'pending', 9);
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,9 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`) VALUES
 (13, 27, 0, 1),
 (14, 27, 3, 1),
 (15, 28, 0, 1),
-(16, 28, 23, 1);
+(16, 28, 23, 1),
+(17, 29, 0, 1),
+(18, 29, 35, 1);
 
 -- --------------------------------------------------------
 
@@ -168,25 +171,27 @@ CREATE TABLE `products` (
   `price` int(100) NOT NULL,
   `bookcondition` varchar(20) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `seller_id` int(11) NOT NULL
+  `seller_id` int(11) NOT NULL,
+  `tradestatus` enum('Yes','No') NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `author`, `price`, `bookcondition`, `image`, `seller_id`) VALUES
-(6, 'God of War', '', 123, '', 'godofwar.jpg', 4),
-(14, 'Lord of the Rings', 'J.R.R Tolkien', 700, '', '51eq24cRtRL__98083.jpg', 5),
-(15, 'Nemo', 'Disney', 654, '', 'Screenshot 2024-04-29 204217.png', 5),
-(22, ' Games', 'Katniss Everdeen', 111, '', 'hungergamesimages (1).jpg', 5),
-(23, 'Petalsforkite', 'MILTONYU', 1000, 'New', 'pfp.png', 1),
-(29, 'New Moon', 'Stephanie Meyer', 454, 'Old', 's-l1200.jpg', 5),
-(30, 'Don Quixote', 'Miguel de Cervantes', 665, 'Old', 'donkihot.jpg', 7),
-(31, 'the fox and the lamb', 'Jomarz', 543, 'New', 'frog and the ox.jpg', 7),
-(32, 'the fox and the lamb', 'YOUrk', 111, 'Old', 'frog and the ox.jpg', 5),
-(33, 'book me', 'YOUrk', 444, '', 'banner-5.jpg', 5),
-(35, 'Verification Subscription', '', 100, '', '', 0);
+INSERT INTO `products` (`id`, `name`, `author`, `price`, `bookcondition`, `image`, `seller_id`, `tradestatus`) VALUES
+(6, 'God of War', '', 123, '', 'godofwar.jpg', 4, 'No'),
+(14, 'Lord of the Rings', 'J.R.R Tolkien', 700, '', '51eq24cRtRL__98083.jpg', 5, 'No'),
+(15, 'Nemo', 'Disney', 654, '', 'Screenshot 2024-04-29 204217.png', 5, 'No'),
+(22, ' Games', 'Katniss Everdeen', 111, '', 'hungergamesimages (1).jpg', 5, 'No'),
+(23, 'Petalsforkite', 'MILTONYU', 1000, 'New', 'pfp.png', 1, 'Yes'),
+(29, 'New Moon', 'Stephanie Meyer', 454, 'Old', 's-l1200.jpg', 5, 'No'),
+(30, 'Don Quixote', 'Miguel de Cervantes', 665, 'Old', 'donkihot.jpg', 7, 'No'),
+(31, 'the fox and the lamb', 'Jomarz', 543, 'New', 'frog and the ox.jpg', 7, 'No'),
+(32, 'the fox and the lamb', 'YOUrk', 111, 'Old', 'frog and the ox.jpg', 5, 'No'),
+(33, 'book me', 'YOUrk', 444, '', 'banner-5.jpg', 5, 'No'),
+(35, 'Verification Subscription', '', 100, '', '', 0, 'No'),
+(36, 'Adventures of Notlim', 'Milton Bautista', 150, 'New', '1263.png', 9, 'Yes');
 
 -- --------------------------------------------------------
 
@@ -204,24 +209,27 @@ CREATE TABLE `users` (
   `bookshop_name` varchar(100) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `image` varchar(255) DEFAULT '',
-  `verified` tinyint(1) DEFAULT 0
+  `verified` tinyint(1) DEFAULT 0,
+  `otp` varchar(10) DEFAULT NULL,
+  `otp_expiration` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `birthdate`, `bookshop_name`, `gender`, `image`, `verified`) VALUES
-(0, 'verifiedUser', 'verified@gmail.com', '', 'verified', NULL, NULL, NULL, '', 0),
-(1, 'Milton', 'miltonbautista60@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Notlim', 'male', '', 0),
-(2, 'Milton', 'miltonbautistapogii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL, '', 0),
-(3, 'miltonyu01', 'miltonbautistapogiii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL, '', 0),
-(4, 'Miltonyupo', 'miltonyupo@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', NULL, NULL, NULL, '', 0),
-(5, 'Yoshiroyo', 'yoshiro@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2001-10-08', 'Yoshiroyo Bookshop', 'male', '', 0),
-(6, 'minimoy', 'minimoy@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin', NULL, NULL, NULL, '', 0),
-(7, 'jc', 'jc@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2024-04-28', NULL, 'female', '', 0),
-(8, 'ikaw at ako', 'ikawako@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2024-05-30', NULL, 'male', '', 0),
-(9, 'Milton Bautista', 'petalskite@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Milton', 'male', '', 1);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `birthdate`, `bookshop_name`, `gender`, `image`, `verified`, `otp`, `otp_expiration`) VALUES
+(0, 'verifiedUser', 'verified@gmail.com', '', 'verified', NULL, NULL, NULL, '', 0, NULL, NULL),
+(1, 'Milton', 'miltonbautista60@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Notlim', 'male', '', 0, NULL, NULL),
+(2, 'Milton', 'miltonbautistapogii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL, '', 0, NULL, NULL),
+(3, 'miltonyu01', 'miltonbautistapogiii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL, '', 0, NULL, NULL),
+(4, 'Miltonyupo', 'miltonyupo@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', NULL, NULL, NULL, '', 0, NULL, NULL),
+(5, 'Yoshiroyo', 'yoshiro@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2001-10-08', 'Yoshiroyo Bookshop', 'male', '', 0, NULL, NULL),
+(6, 'minimoy', 'minimoy@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin', NULL, NULL, NULL, '', 0, NULL, NULL),
+(7, 'jc', 'jc@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2024-04-28', NULL, 'female', '', 0, NULL, NULL),
+(8, 'ikaw at ako', 'ikawako@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2024-05-30', NULL, 'male', '', 0, NULL, NULL),
+(9, 'Milton Bautista', 'petalskite@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Milton', 'male', '', 1, NULL, NULL),
+(24, 'Test Account', 'figehir311@javnoi.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', NULL, 'male', '', 0, '792774', '2024-05-21 17:46:24');
 
 -- --------------------------------------------------------
 
@@ -306,7 +314,7 @@ ALTER TABLE `verification_requests`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -318,31 +326,31 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `verification_requests`

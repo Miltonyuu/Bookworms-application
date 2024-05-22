@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
       $select_users = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'") or die('Query failed');
 
       if (mysqli_num_rows($select_users) > 0) {
-         $message[] = '<div class="error-messages">User already exists</div>';
+         $message[] = '<div class="register-message">User already exists</div>';
      }
       else {
          mysqli_query($conn, "INSERT INTO users (name, email, password, gender, birthdate) VALUES ('$name', '$email', '$pass', '$gender', '$birthday')") or die('Query failed');
@@ -61,30 +61,27 @@ if(isset($_POST['submit'])){
       .modal {
          display: none; /* Hidden by default */
          position: fixed; /* Stay in place */
-         z-index: 1; /* Sit on top */
-         padding-top: 50px; /* Location of the box */
+         
+         padding-top: 140px; /* Location of the box */
          left: 0;
-         top: 0;
+         top: 10;
          width: 100%; /* Full width */
          height: 100%; /* Full height */
-         
          overflow: auto; /* Enable scroll if needed */
          background-color: rgb(0,0,0); /* Fallback color */
          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
          animation: fadeIn 0.5s; /* Apply the fade-in animation */
-         
       }
 
       .modal-content {
          background-color: #fefefe;
          margin: auto;
-         padding: 20px;
+         padding: 30px;
          border: 1px solid #888;
          width: 80%;
-         border-radius: 15px;
-         font-size: 16px; 
+         border-radius:20px;
+         font-size: 12px; 
          text-align: justify;
-         
       }
 
       .close {
@@ -123,7 +120,8 @@ if(isset($message)){
 }
 ?>
 
-<div class="form-container">
+<div class="regform-container">
+   
    <form action="" method="post">
       <h3>Register now</h3>
       <p required class="name">Full Name</p>
