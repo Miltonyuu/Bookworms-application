@@ -32,7 +32,8 @@ if(isset($_POST['submit'])){
       }
 
    }else{
-      $message[] = 'incorrect email or password!';
+      $message[] = 
+      '<div class="login-message">Incorrect email or password</div>';
    }
 
 }
@@ -69,10 +70,10 @@ if(isset($message)){
 }
 ?>
    
-<div class="form-container">
+<div class="logform-container">
 
    <form action="" method="post">
-      <h3>Login Now</h3>
+      <h1>Login Now</h1>
       <p>Email Address</p>
       <input type="email" name="email" placeholder="Enter your email" required class="box">
       <p>Password</p>

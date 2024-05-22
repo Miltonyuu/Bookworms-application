@@ -47,12 +47,12 @@ if(isset($message)){
 
          <nav class="navbar">
          <a href="home.php"class="button-34" id="special-color">Home</a>
-            <a href="shop.php"class="button-34" id="special-color">Listings</a>
-            <a href="user_products.php"class="button-34" id="special-color">Sell Book</a>
-            <a href="user_orders.php"class="button-34" id="special-color">Selling Transaction</a>
-            <a href="orders.php"class="button-34" id="special-color">Buying Transaction</a>
-            <a href="messages.php"class="button-34" id="special-color">Messenging</a>
-            <a href="verify_user.php"class="button-34" id="special-color">Verify User</a>
+            <a href="shop.php"class="button-34" id="special-color">Shop</a>
+            <a href="user_products.php"class="button-34" id="special-color">Listing</a>
+            <a href="user_orders.php"class="button-34" id="special-color">Sales</a>
+            <a href="orders.php"class="button-34" id="special-color">Acquisition</a>
+            <a href="messages.php"class="button-34" id="special-color">Messages</a>
+            <a href="verify_user.php"class="button-34" id="special-color">Verification</a>
             
             
          </nav>

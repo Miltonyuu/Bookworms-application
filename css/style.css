@@ -58,29 +58,36 @@ section{
    font-size: 2rem;
 }
 
+
 .message{
    position: sticky;
    top:0;
    margin:0 auto;
    max-width: 1200px;
-   background-color: var(--white);
-   padding:2rem;
+   background-color: #a27dac;
+   border-radius: 15px;
+   padding:4.999rem;
    display: flex;
    align-items: center;
    justify-content: space-between;
    z-index: 10000;
    gap:1.5rem;
+   
+
 }
 
 .message span{
    font-size: 2rem;
-   color:var(--black);
+   color:var(--white);
+
+   
 }
 
 .message i{
    cursor: pointer;
-   color:var(--red);
+   color:var(--white);
    font-size: 2.5rem;
+
 }
 
 .message i:hover{
@@ -292,19 +299,35 @@ section{
    background-color: var(--purple);
  }
 
- .error-messages {
+ .login-message {
+   position: fixed; /* Fixed positioning to float over content */
+   top: 50%; /* Position vertically at 50% */
+   left: 50%; /* Position horizontally at 50% */
+   transform: translate(-50%, -50%); /* Center horizontally and vertically */
+   width: fit-content; /* Adjust width based on content */
+   padding: 50px;
+   background-color: #a27dac;
+   border-radius: 15px;
+   opacity: 0.99;
+   color: rgb(255, 255, 255);
+   text-align: center; /* Center the text within the element */
+   z-index: 999; /* Ensure it appears above other elements */
+ }
+
+
+ .register-message {
   position: fixed; /* Fixed positioning to float over content */
   top: 50%; /* Position vertically at 50% */
   left: 50%; /* Position horizontally at 50% */
   transform: translate(-50%, -50%); /* Center horizontally and vertically */
   width: fit-content; /* Adjust width based on content */
   padding: 50px;
-  background-color: #b90000;
+  background-color: #a27dac;
   border-radius: 15px;
   opacity: 0.99;
   color: rgb(255, 255, 255);
   text-align: center; /* Center the text within the element */
-  z-index: 1000; /* Ensure it appears above other elements */
+  z-index: 999; /* Ensure it appears above other elements */
 }
 
 .heading{
@@ -384,19 +407,17 @@ section{
    }
 }
 
-.form-container{
+.logform-container{
    width: 450px;
    min-height: 100vh;
    display: flex;
    align-items: center;
    justify-content: center;
    padding:1rem;
-   margin-right: -900px;
-   size: 20px;
+   margin-right: -850px;
 }
 
-
-.form-container form{
+.logform-container form{
    padding: 1rem;
    width: 50rem;
    border-radius: .5rem;
@@ -406,28 +427,28 @@ section{
    text-align: center;
 }
 
-.form-container form p{
+.logform-container form p{
    font-size: 1rem;
    text-transform: uppercase;
    color:var(--black);
    text-align: left;
+     
 }
 
-.form-container form h3{
+.logform-container form h3{
    font-size: 1rem;
 
    text-transform: uppercase;
    color:var(--black);
 }
 
-.form-container form h4{
+.logform-container form h4{
    font-size: 2rem;
-  
    color:var(--black);
    text-align: center;
 }
 
-.form-container form .box{
+.logform-container form .box{
    width: 100%;
    border-radius: .5rem;
    background-color: var(--light-bg);
@@ -438,49 +459,107 @@ section{
    margin:1rem 0;
 }
 
-.form-container form .name{
-   text-align: left;
-   display: block;
-
-}
-
-.form-container form .email{
-   text-align: left;
-   display: block;
-}
-
-.form-container form .password{
-   text-align: left;
-   display: block;
-}
-
-.form-container form .gender{
-   text-align: left;
-   display: block;
-}
-
-.form-container form .type{
-   text-align: left;
-   display: block;
-}
-
-
-.form-container form .birthdate{
-   text-align: left;
-   display: block;
-   
-}
-.form-container form p{
+.logform-container form p{
    padding-top: 1.5rem;
    font-size: 2rem;
    color:var(--black);
 }
 
-.form-container form p a{
+.regform-container{
+   width: 450px;
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding:1rem;
+   margin-right: -750px;
+}
+
+.regform-container form{
+   padding: 1rem;
+   width: 50rem;
+   border-radius: .5rem;
+   box-shadow: var(--box-shadow);
+   border: var(--border);
+   background-color: rgba(243, 230, 230, 0.25); /* 25% opacity */
+   text-align: center;
+}
+
+.regform-container form p{
+   font-size: 1rem;
+   text-transform: uppercase;
+   color:var(--black);
+   text-align: left;
+     
+}
+
+.regform-container form h3{
+   font-size: 1rem;
+
+   text-transform: uppercase;
+   color:var(--black);
+}
+
+.regform-container form h4{
+   font-size: 2rem;
+   color:var(--black);
+   text-align: center;
+}
+
+.regform-container form .box{
+   width: 100%;
+   border-radius: .5rem;
+   background-color: var(--light-bg);
+   padding:1.2rem 1.4rem;
+   font-size: 1.8rem;
+   color:var(--black);
+   border:var(--border);
+   margin:1rem 0;
+}
+
+.regform-container form .name{
+   text-align: left;
+   display: block;
+
+}
+
+.regform-container form .email{
+   text-align: left;
+   display: block;
+}
+
+.regform-container form .password{
+   text-align: left;
+   display: block;
+}
+
+.regform-container form .gender{
+   text-align: left;
+   display: block;
+}
+
+.regform-container form .type{
+   text-align: left;
+   display: block;
+}
+
+
+.regform-container form .birthdate{
+   text-align: left;
+   display: block;
+   
+}
+.regform-container form p{
+   padding-top: 1.5rem;
+   font-size: 2rem;
+   color:var(--black);
+}
+
+.reggform-container form p a{
    color:var(--purple);
 }
 
-.form-container form p a:hover{
+.regform-container form p a:hover{
    text-decoration: underline;
 }
 
@@ -745,7 +824,7 @@ body.login {
 }
 
 body.register{
-    background: url('../images/Register.png') no-repeat center center fixed;
+    background: url('../images/Registerr.png') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Arial', sans-serif;
     margin: 0;

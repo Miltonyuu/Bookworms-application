@@ -63,7 +63,7 @@ if(isset($_POST['add_to_cart'])){
    <div class="content">
    <h3>Unleash hidden gems in your bookshelf.</h3>
       <p>Discover new stories waiting to be loved. Buy, sell, and trade books in a thriving community.</p>
-      <a href="about.php" class="white-btn">discover more</a>
+      <a href="shop.php" class="white-btn">Browse for more</a>
    </div>
 
 </section>

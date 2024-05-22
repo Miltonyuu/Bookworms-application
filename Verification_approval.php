@@ -56,6 +56,9 @@ if(isset($_POST['update_request'])){
             ?>
         </div>
     </section>
-    <?php include 'footer.php'; ?>
+
+    <!-- custom admin js file link  -->
+    <script src="js/admin_script.js"></script>
+
 </body>
 </html>

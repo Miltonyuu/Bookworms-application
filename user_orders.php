@@ -56,7 +56,7 @@ $order_status = $_GET['status'];
 <h1 class="title">Selling Section</h1>
 
 <div class="filters-container">  <div class="filter-buttons"> 
-      <a href="user_orders.php" class="option-btn <?php if($order_status == '') echo 'active'; ?>">All</a>
+      <!--<a href="user_orders.php" class="option-btn <?php if($order_status == '') echo 'active'; ?>">All</a>-->
       <a href="user_orders.php?status=pending" class="option-btn <?php if($order_status == 'pending') echo 'active'; ?>">Pending</a>
       <a href="user_orders.php?status=completed" class="option-btn <?php if($order_status == 'completed') echo 'active'; ?>">Completed</a>
     </div>
@@ -98,7 +98,7 @@ if(mysqli_num_rows($select_orders) > 0){
 <?php
 }
  }else{
-echo '<p class="empty">no orders placed yet!</p>';
+echo '<p class="empty">No orders placed yet!</p>';
 }
 ?>
 </div>
