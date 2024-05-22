@@ -36,10 +36,10 @@ if($image_size > 2000000){
  $message[] = 'image size is too large';
 }else{
  move_uploaded_file($image_tmp_name, $image_folder);
- $message[] = 'product added successfully!';
+ $message[] = 'Product added successfully!';
 }
  }else{
-$message[] = 'product could not be added!';
+$message[] = 'Product could not be added!';
 }
 }
 }
@@ -189,7 +189,7 @@ header('location:user_products.php');
         </form>
       </div>
     <?php
-      } }else{echo '<p class="empty">no products added yet!</p>';}
+      } }else{echo '<p class="empty">No products added yet!</p>';}
     ?>
 </div>
 </section>

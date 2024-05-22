@@ -123,14 +123,14 @@ if(isset($message)){
 <div class="regform-container">
    
    <form action="" method="post">
-      <h3>Register now</h3>
+      <h1>Register now</h1>
       <p required class="name">Full Name</p>
-      <input type="text" name="name" placeholder="enter your name" required class="box">
+      <input type="text" name="name" placeholder="Enter your name" required class="box">
       <p required class="email">Email Address</p>
-      <input type="email" name="email" placeholder="enter your email" required class="box">
+      <input type="email" name="email" placeholder="Enter your email" required class="box">
       <p required class="password">Password</p>
-      <input type="password" name="password" id="password" placeholder="enter your password" required class="box">
-      <input type="password" name="cpassword" id="cpassword" placeholder="confirm your password" required class="box">
+      <input type="password" name="password" id="password" placeholder="Enter your password" required class="box">
+      <input type="password" name="cpassword" id="cpassword" placeholder="Confirm your password" required class="box">
       <span id="error-message" class="error">Passwords do not match</span>
       <p required class="gender">Gender</p>
       <select name="gender" class="box">
