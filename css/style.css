@@ -1643,6 +1643,73 @@ body.register{
    text-align: center;
 }
 
+.policies {
+   max-width: 800px;
+   margin: 20px auto;
+   padding: 20px;
+   background-color: #fff;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   border-radius: 8px;
+   font-family: Arial, sans-serif;
+   line-height: 1.6;
+   color: #333;
+}
+
+.policies__title {
+   font-size: 2em;
+   color: #2c3e50;
+   text-align: center;
+   margin-bottom: 20px;
+}
+
+.policies__content {
+   margin: 0;
+   padding: 0;
+}
+
+.policies__content__heading {
+   font-size: 1.5em;
+   color: #34495e;
+   margin-top: 20px;
+   margin-bottom: 10px;
+}
+
+.policies__content p {
+   margin-bottom: 20px;
+}
+
+.policies__content__list {
+   list-style-type: none;
+   padding: 0;
+   margin: 0 0 20px 0;
+}
+
+.policies__content__list > li {
+   margin-bottom: 10px;
+}
+
+.policies__content__list > li > ul {
+   list-style-type: disc;
+   padding-left: 20px;
+}
+
+.policies__content__list li b {
+   color: #e74c3c;
+}
+
+@media (max-width: 600px) {
+   .policies {
+       padding: 10px;
+   }
+
+   .policies__title {
+       font-size: 1.5em;
+   }
+
+   .policies__content__heading {
+       font-size: 1.2em;
+   }
+}
 
 .divB{
    margin-top: 8px;
