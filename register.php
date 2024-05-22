@@ -9,25 +9,26 @@ if(isset($_POST['submit'])){
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
    $gender = $_POST['gender'];
-   $user_type = $_POST['user_type'];
    $birthday = $_POST['birthday'];
 
    $select_users = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
-   if(mysqli_num_rows($select_users) > 0){
-      $message[] = 'user already exist!';
-   }else{
-      if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
-      }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, gender, birthdate, user_type) VALUES('$name', '$email', '$cpass', '$gender', '$birthday', '$user_type')") or die('query failed');
-         $message[] = 'registered successfully!';
-         header('location:login.php');
+   if ($pass != $cpass) {
+      $message[] = 'Confirm password does not match!';
+   } else {
+      $select_users = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'") or die('Query failed');
+
+      if (mysqli_num_rows($select_users) > 0) {
+         $message[] = '<div class="error-messages">User already exists</div>';
+     }
+      else {
+         mysqli_query($conn, "INSERT INTO users (name, email, password, gender, birthdate) VALUES ('$name', '$email', '$pass', '$gender', '$birthday')") or die('Query failed');
+         $message[] = 'Registered successfully!';
+         header('Location: login.php');
+         exit(); // Always exit after a header redirect
       }
    }
-
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,10 +67,12 @@ if(isset($_POST['submit'])){
          top: 0;
          width: 100%; /* Full width */
          height: 100%; /* Full height */
+         
          overflow: auto; /* Enable scroll if needed */
          background-color: rgb(0,0,0); /* Fallback color */
          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
          animation: fadeIn 0.5s; /* Apply the fade-in animation */
+         
       }
 
       .modal-content {
@@ -78,8 +81,10 @@ if(isset($_POST['submit'])){
          padding: 20px;
          border: 1px solid #888;
          width: 80%;
+         border-radius: 15px;
          font-size: 16px; 
          text-align: justify;
+         
       }
 
       .close {
@@ -141,7 +146,7 @@ if(isset($message)){
          <input type="checkbox" id="agree-terms" name="agree" required>
          <label for="agree-terms">I agree to the Terms of Service and Privacy Policy</label>
       </div>
-      <input type="submit" name="submit" value="register now" class="btn">
+      <input type="submit" name="submit" value="register now" class="btn" id="submit-btn" disabled>
       <br><br>
       <h4>Already have an account? <a href="login.php">Login now</a></h4>
    </form>
@@ -206,20 +211,43 @@ if(isset($message)){
 
 <script>
 
-   document.getElementById("password").addEventListener("input", validatePasswords);
-   document.getElementById("cpassword").addEventListener("input", validatePasswords);
+document.getElementById("password").addEventListener("input", validatePasswords);
+document.getElementById("cpassword").addEventListener("input", validatePasswords);
+document.getElementById("agree-terms").addEventListener("change", toggleSubmitButton);
 
-   function validatePasswords() {
-      var password = document.getElementById("password").value;
-      var confirmPassword = document.getElementById("cpassword").value;
-      var errorMessage = document.getElementById("error-message");
+function validatePasswords() {
+  var password = document.getElementById("password").value;
+  var confirmPassword = document.getElementById("cpassword").value;
+  var errorMessage = document.getElementById("error-message");
+  var submitButton = document.getElementById("submit-btn"); // Get submit button reference
 
-      if (password && confirmPassword && password !== confirmPassword) {
-         errorMessage.style.display = "block";
-      } else {
-         errorMessage.style.display = "none";
-      }
-   }
+  if (password && confirmPassword && password !== confirmPassword) {
+    errorMessage.style.display = "block";
+    submitButton.disabled = true;
+    submitButton.classList.add("error"); // Add error class for visual cue
+  } else {
+    errorMessage.style.display = "none";
+    submitButton.disabled = false;
+    submitButton.classList.remove("error"); // Remove error class if valid
+    if (document.getElementById("agree-terms").checked && password && confirmPassword) {
+      submitButton.disabled = false;
+    }
+  }
+}
+
+function toggleSubmitButton() {
+  var password = document.getElementById("password").value;
+  var confirmPassword = document.getElementById("cpassword").value;
+  var submitButton = document.getElementById("submit-btn"); // Get submit button reference
+
+  if (this.checked && password && confirmPassword && password === confirmPassword) {
+    submitButton.disabled = false;
+    submitButton.classList.remove("error"); // Remove error class if valid
+  } else {
+    submitButton.disabled = true;
+    submitButton.classList.add("error"); // Add error class for visual cue
+  }
+}
 
   // Get references to elements
   const agreeCheckbox = document.getElementById('agree-terms');
@@ -238,18 +266,15 @@ if(isset($message)){
   submitButton.disabled = true;
 
   // Enable submit button only when checkbox is checked
-  agreeCheckbox.addEventListener('change', function() {
+    agreeCheckbox.addEventListener('change', function() {
     submitButton.disabled = !this.checked;
   });
 
-  // Get the modal
-  var modal = document.getElementById("policies-container");
-
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
+    const modal = document.getElementById("policies-container");
+    const span = document.getElementsByClassName("close")[0];
 
   // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
+   span.onclick = function() {
     modal.style.display = "none";
   }
 
