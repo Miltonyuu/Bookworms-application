@@ -34,6 +34,8 @@ if(isset($_POST['submit'])){
    }else{
       $message[] = 
       '<div class="login-message">Incorrect email or password</div>';
+       echo '<script>document.body.classList.add("overlay-active");</script>';
+       
    }
 
 }
@@ -69,7 +71,6 @@ if(isset($message)){
    }
 }
 ?>
-   
 <div class="logform-container">
 
    <form action="" method="post">
@@ -82,8 +83,8 @@ if(isset($message)){
       <br><br>
       <h4>Don't have an account? <a href="register.php">Register Now</a></h4>
    </form>
+   </div>
 
-</div>
 
 </body>
 </html>
