@@ -105,8 +105,8 @@ if(isset($_POST['add_to_cart'])){
                 <input type="submit" value="add to cart" name="add_to_cart" class="btn">
               </form>
 
-                <div class="seller-info-container">
-                  <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_products['name']; ?>" data-seller-id="<?php echo $fetch_products['seller_id'];  ?>">View Seller's Details</button>
+                              <div class="seller-info-container">
+                  <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_products['name']; ?>" data-seller-id="<?php echo $fetch_products['seller_id']; ?>">View Users's Details</button>
 
                   <div id="seller-info-popup" class="seller-popup-overlay">
                     <div class="seller-popup-content">
