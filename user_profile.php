@@ -24,10 +24,13 @@ if(isset($_POST['update_profile'])){
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $birthdate = mysqli_real_escape_string($conn, $_POST['birthdate']);
   $bookshop_name = mysqli_real_escape_string($conn, $_POST['bookshop_name']);
+  $contact_no = mysqli_real_escape_string($conn, $_POST['phone']);
+  $bookwishlist1 = mysqli_real_escape_string($conn, $_POST['bookwishlist1']);
+  $bookwishlist2 = mysqli_real_escape_string($conn, $_POST['bookwishlist2']);
   $gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
   // Update the Database
-  mysqli_query($conn, "UPDATE `users` SET name = '$name', email = '$email', birthdate = '$birthdate', bookshop_name = '$bookshop_name', gender = '$gender' WHERE id = '$user_id'") or die('query failed');
+  mysqli_query($conn, "UPDATE `users` SET name = '$name', email = '$email', birthdate = '$birthdate', bookshop_name = '$bookshop_name', contact_no = '$contact_no', bookwishlist1 = '$bookwishlist1', bookwishlist2 = '$bookwishlist2', gender = '$gender' WHERE id = '$user_id'") or die('query failed');
   
  $message[] = 'Profile updated successfully!'; // Add message to array
 }
@@ -83,16 +86,27 @@ if(isset($_POST['update_profile'])){
           <div class="input_field"> <span><i aria-hidden="true" class="fa fa-lock"><p>Bookshop</p></i></span>
             <input type="text" name="bookshop_name" placeholder="Enter your bookshop name (optional)" value="<?php echo $fetch_user['bookshop_name']; ?>" />
           </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"><p>Contact No.</p></i></span>
+            <input type="number" name="phone" placeholder="Contact No." value="<?php echo $fetch_user['contact_no']; ?>"/>
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-book"><p>Book Wishlist #1</p></i></span>
+          <input type="text" name="bookwishlist1" placeholder="Book Wishlist 1" value="<?php echo $fetch_user['bookwishlist1']; ?>"/>
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-book"><p>Book Wishlist #2</p></i></span>
+          <input type="text" name="bookwishlist2" placeholder="Book Wishlist 2" value="<?php echo $fetch_user['bookwishlist2']; ?>"/>
+          </div>
           <div class="input_field radio_option">
             <select name="gender" class="box">
                 <option value="male" <?php if($fetch_user['gender'] == 'male') echo 'selected'; ?>>Male</option>
                 <option value="female" <?php if($fetch_user['gender'] == 'female') echo 'selected'; ?>>Female</option>
-            </select>
-            <div class="img_user">
+            </select>  
+          </div>
+          <!--
+            <div class="img_user" style="margin-bottom:5px">
               <h3>Image Profile</h3>
                 <input type="file" name= "img_user">
-            </div>   
-          </div>
+          </div> 
+          -->
           <input type="submit" value="Update" name="update_profile" class="button">
         </form>
       </div>

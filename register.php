@@ -9,6 +9,9 @@ if(isset($_POST['submit'])){
    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
    $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
    $gender = $_POST['gender'];
+   $contact_no = $_POST['phone'];
+   $bookw1 = mysqli_real_escape_string($conn, $_POST['bookw1']);
+   $bookw2 = mysqli_real_escape_string($conn, $_POST['bookw2']);
    $birthday = $_POST['birthday'];
 
    $select_users = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email' AND password = '$pass'") or die('query failed');
@@ -22,7 +25,7 @@ if(isset($_POST['submit'])){
          $message[] = '<div class="register-message">User already exists</div>';
      }
       else {
-         mysqli_query($conn, "INSERT INTO users (name, email, password, gender, birthdate) VALUES ('$name', '$email', '$pass', '$gender', '$birthday')") or die('Query failed');
+         mysqli_query($conn, "INSERT INTO users (name, email, password, gender, contact_no, bookwishlist1, bookwishlist2, birthdate) VALUES ('$name', '$email', '$pass', '$gender', '$contact_no', '$bookw1', '$bookw2', '$birthday')") or die('Query failed');
          $message[] = 'Registered successfully!';
          header('Location: login.php');
          exit(); // Always exit after a header redirect
@@ -123,21 +126,36 @@ if(isset($message)){
 <div class="regform-container">
    
    <form action="" method="post">
-      <h3>Register now</h3>
+      <h1>Register now</h1>
       <p required class="name">Full Name</p>
-      <input type="text" name="name" placeholder="enter your name" required class="box">
+      <input type="text" name="name" placeholder="Enter your name" required class="box">
       <p required class="email">Email Address</p>
-      <input type="email" name="email" placeholder="enter your email" required class="box">
+      <input type="email" name="email" placeholder="Enter your email" required class="box">
       <p required class="password">Password</p>
-      <input type="password" name="password" id="password" placeholder="enter your password" required class="box">
-      <input type="password" name="cpassword" id="cpassword" placeholder="confirm your password" required class="box">
+      <input type="password" name="password" id="password" placeholder="Enter your password" required class="box">
+      <input type="password" name="cpassword" id="cpassword" placeholder="Confirm your password" required class="box">
       <span id="error-message" class="error">Passwords do not match</span>
       <p required class="gender">Gender</p>
       <select name="gender" class="box">
          <option value="" selected disabled>Select Gender</option>
          <option value="male">Male</option>
          <option value="female">Female</option>
-    
+      </select>
+
+      <p required class="user_no">Contact No.</p>
+      <input id="no-arrow" name="phone" required class="box" placeholder="09XXXXXXXXX" type="number">    
+      
+      <div class="user_wishlist">
+         <div>
+            <p required class="bookw1">Book Wishlist #1</p>
+            <input type="text" name="bookw1" placeholder="Enter your 1st Book wishlist" required class="box">
+         </div>
+         <div>
+            <p required class="bookw2">Book Wishlist #2</p>
+            <input type="text" name="bookw2" placeholder="Enter your 2nd Book wishlist" required class="box">
+         </div>
+      </div>
+
       <p required class="dateofbirth">Date of Birth</p>
       <input type="date" name="birthday" required class="box">
       <div class="checkbox-container">

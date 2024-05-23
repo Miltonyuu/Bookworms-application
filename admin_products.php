@@ -98,7 +98,7 @@ if(isset($_POST['update_product'])){
 <?php include 'admin_header.php'; ?>
 
 <!-- product CRUD section starts  -->
-
+<!--
 <section class="add-products">
 
    <h1 class="title">Book Products</h1>
@@ -112,14 +112,15 @@ if(isset($_POST['update_product'])){
    </form>
 
 </section>
-
+-->
 <!-- product CRUD section ends -->
 
 <!-- show products  -->
 
 <section class="show-products">
-
+<h1 class="title">User's Product List</h1>
    <div class="box-container">
+
 
       <?php
          $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
