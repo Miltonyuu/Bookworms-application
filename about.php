@@ -152,9 +152,9 @@ if(!isset($user_id)){
          <img src="images/author-1.jpg" alt="">
          <div class="share">
             <a href="https://www.facebook.com/catalino.jomar08" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
+            <a href="https://x.com/JoeMarzs" class="fab fa-twitter"></a>
+            <a href="https://www.instagram.com/noboyuki_08/" class="fab fa-instagram"></a>
+
          </div>
          <h3>Jomar Catalino</h3>
       </div>
@@ -165,7 +165,7 @@ if(!isset($user_id)){
             <a href="https://www.facebook.com/bautistamiltonp" class="fab fa-facebook-f"></a>
             <a href="https://x.com/Miltonyu01" class="fab fa-twitter"></a>
             <a href="https://www.instagram.com/miltonyyu/" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
+            
          </div>
          <h3>Milton Bautista</h3>
       </div>
@@ -176,7 +176,7 @@ if(!isset($user_id)){
             <a href="https://www.facebook.com/iConsMashiro" class="fab fa-facebook-f"></a>
             <a href="https://x.com/Iconsmashirooo" class="fab fa-twitter"></a>
             <a href="https://www.instagram.com/icnsmshr/" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
+            
          </div>
          <h3>Michael Angelo Magante</h3>
       </div>
@@ -187,8 +187,6 @@ if(!isset($user_id)){
             <a href="https://www.facebook.com/ianzxcss" class="fab fa-facebook-f"></a>
             <a href="https://x.com/ianzxcsss" class="fab fa-twitter"></a>
             <a href="https://www.instagram.com/ianzxcss/" class="fab fa-instagram"></a>
-            <a href="https://profile.indeed.com/?hl=en_PH&co=PH&from=gnav-homepage
-" class="fab fa-linkedin"></a>
          </div>
          <h3>Ian Bautista</h3>
       </div>
@@ -199,7 +197,6 @@ if(!isset($user_id)){
             <a href="https://www.facebook.com/jagjag0722" class="fab fa-facebook-f"></a>
             <a href="https://x.com/mamamo722" class="fab fa-twitter"></a>
             <a href="https://www.instagram.com/rellexrian/" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
          </div>
          <h3>Jurelle Gerardo</h3>
       </div>
