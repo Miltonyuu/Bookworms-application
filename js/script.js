@@ -42,7 +42,11 @@ viewSellerBtns.forEach(btn => {
                 sellerDetailsContainer.innerHTML = `
                     <h3>${data.name}'s Bookshop</h3>
                     <p>Email: ${data.email}</p>
+                    <p>Contact No#: ${data.contact_no}</p>
                     <p>Verified: ${data.verified == 1 ? 'Yes' : 'No'}</p>
+                    <p>---Users Book Wishlist---</p>
+                    <p>Book Wishlist #1: ${data.bookwishlist1}</p>
+                    <p>Book Wishlist #2: ${data.bookwishlist2}</p>
                     </div>`; // Updated content structure
 
                 sellerInfoPopup.style.display = 'flex';
