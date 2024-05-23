@@ -42,7 +42,11 @@ viewSellerBtns.forEach(btn => {
                 sellerDetailsContainer.innerHTML = `
                     <h3>${data.name}'s Bookshop</h3>
                     <p>Email: ${data.email}</p>
+                    <p>Contact No#: ${data.contact_no}</p>
                     <p>Verified: ${data.verified == 1 ? 'Yes' : 'No'}</p>
+                    <p>---Users Book Wishlist---</p>
+                    <p>Book Wishlist #1: ${data.bookwishlist1}</p>
+                    <p>Book Wishlist #2: ${data.bookwishlist2}</p>
                     </div>`; // Updated content structure
 
                 sellerInfoPopup.style.display = 'flex';
@@ -54,6 +58,32 @@ viewSellerBtns.forEach(btn => {
 // Close Pop-up (no changes needed here)
 closeBtn.addEventListener('click', () => {
     sellerInfoPopup.style.display = 'none';
+});
+
+const isbnInput = document.getElementById('isbn');
+const coverPreview = document.getElementById('cover-preview');
+
+isbnInput.addEventListener('input', function() {
+  const isbn = this.value.trim();
+
+  if (isbn) {
+    fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`)
+      .then(response => response.json())
+      .then(data => {
+        const bookData = data[`ISBN:${isbn}`];
+        if (bookData && bookData.cover) {
+          coverPreview.innerHTML = `<img src="${bookData.cover.medium}" alt="Book Cover" style="max-width: 150px;">`; // Display the cover
+        } else {
+          coverPreview.innerHTML = ''; // Clear the preview if no cover found
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching cover image:', error);
+        coverPreview.innerHTML = ''; // Clear the preview if error
+      });
+  } else {
+    coverPreview.innerHTML = ''; // Clear the preview if ISBN is empty
+  }
 });
 
 
