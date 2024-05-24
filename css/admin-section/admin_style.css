@@ -587,3 +587,43 @@ section{
    }
 
 }
+
+.bar-graph {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bar {
+    margin-bottom: 20px;
+}
+
+.bar-container {
+    width: 300px;
+}
+
+.bar-container .bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.bar-container .bar .label {
+    width: 100px;
+}
+
+.bar-container .bar .fill {
+    background-color: #3498db;
+}
+
+.bar-container .bar .fill::before {
+    content: '';
+    display: block;
+    height: 20px; /* Change this value to adjust the bar height */
+    background-color: inherit;
+    transition: width 1s ease-in-out;
+}
+
+.empty {
+    margin-top: 20px;
+}
