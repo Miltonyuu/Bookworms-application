@@ -47,6 +47,21 @@ while ($row = mysqli_fetch_assoc($result_gender_demographics)) {
     $demographics_gender_data[] = $row;
 }
 
+// Fetch user verification status data
+$query_verification_status = "
+    SELECT 
+        verified, 
+        COUNT(*) as count
+    FROM `users`
+    GROUP BY verified
+";
+
+$result_verification_status = mysqli_query($conn, $query_verification_status) or die('Verification status query failed');
+$verification_status_data = [];
+while ($row = mysqli_fetch_assoc($result_verification_status)) {
+    $verification_status_data[] = $row;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -114,6 +129,27 @@ while ($row = mysqli_fetch_assoc($result_gender_demographics)) {
          </div>
       <?php } else { ?>
          <p class="empty">No gender demographic data available!</p>
+      <?php } ?>
+   </div>
+
+   <!-- User Verification Status -->
+   <h2 class="sub-title">User Verification Status</h2>
+   <div class="box-container">
+      <?php if (!empty($verification_status_data)) { ?>
+         <div class="bar-graph">
+            <h3 class="graph-title">Verification Status of Users</h3>
+            <div class="bar-container">
+               <?php foreach ($verification_status_data as $data) { ?>
+               <div class="bar">
+                  <div class="label"><?php echo $data['verified'] ? 'Verified' : 'Unverified'; ?></div>
+                  <div class="fill" style="width: <?php echo ($data['count'] * 10) . 'px'; ?>"></div>
+                  <div class="count"><?php echo $data['count']; ?></div>
+               </div>
+               <?php } ?>
+            </div>
+         </div>
+      <?php } else { ?>
+         <p class="empty">No verification status data available!</p>
       <?php } ?>
    </div>
 
