@@ -93,7 +93,7 @@ if(isset($_POST['add_to_cart'])){
 
 
                 if ($user_id != $product_seller_id):?>
-                  <input type="number" min="2" name="product_quantity" value="1" class="qty">
+                  <input type="hidden" min="2" name="product_quantity" value="1" class="qty"> <!--before(type="number")--> 
                   
               <form action="" method="post">
                 <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">

@@ -74,8 +74,8 @@ if(isset($_GET['delete_all'])){
          <div class="price">₱<?php echo $fetch_cart['price']; ?>/-</div>
          <form action="" method="post">
             <input type="hidden" name="cart_id" value="<?php echo $fetch_cart['id']; ?>">
-            <input type="number" min="1" name="cart_quantity" value="<?php echo $fetch_cart['qUantity']; ?>">
-            <input type="submit" name="update_cart" value="update" class="option-btn">
+            <input type="hidden" min="1" name="cart_quantity" value="<?php echo $fetch_cart['qUantity']; ?>"><!--before(type="number")-->  
+            <input type="hidden" name="update_cart" value="update" class="option-btn">                       <!--before(type="submit")-->  
          </form>
          <div class="sub-total"> sub total : <span>$<?php echo $sub_total = ($fetch_cart['qUantity'] * $fetch_cart['price']); ?>/-</span>
          <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':''; ?>">proceed to checkout</a>

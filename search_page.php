@@ -101,7 +101,7 @@ if(isset($_POST['add_to_cart'])){
 
 
 if ($user_id != $product_seller_id):?>
-  <input type="number" min="2" name="product_quantity" value="1" class="qty">
+  <input type="hidden" min="2" name="product_quantity" value="1" class="qty"> <!--before(type="number")--> 
   
 <form action="" method="post">
 <input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
@@ -114,7 +114,7 @@ if ($user_id != $product_seller_id):?>
 </form>
 
 <div class="seller-info-container">
-  <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_product['name']; ?>" data-seller-id="<?php echo $fetch_product['seller_id']; ?>">View Seller's Details</button>
+  <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_product['name']; ?>" data-seller-id="<?php echo $fetch_product['seller_id']; ?>">View User's Details</button>
 
   <div id="seller-info-popup" class="seller-popup-overlay">
     <div class="seller-popup-content">
@@ -143,8 +143,6 @@ if ($user_id != $product_seller_id):?>
       }
    ?>
    </div>
-  
-
 </section>
 
 
