@@ -92,7 +92,7 @@ if(mysqli_num_rows($select_orders) > 0){
 <option value="completed">completed</option>
  </select>
  <input type="submit" value="update" name="update_order" class="option-btn">
- <a href="user_orders.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" name="delete_order" class="delete-btn">delete</a>
+ <a href="user_orders.php?delete_order=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">delete</a>
 </form>
  </div>
 <?php
