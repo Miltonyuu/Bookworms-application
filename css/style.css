@@ -614,7 +614,7 @@ input[type=number] {
 }
 
 .header .header-2{
-   background-color: var(--white);
+   background-color: #112f0B;
    box-shadow: var(--box-shadow);
 }
 
@@ -659,13 +659,13 @@ input[type=number] {
 
 .header .header-2 .flex .logo{
    font-size: 2.5rem;
-   color:var(--purple);
+   color:var(--white);
 }
 
 .header .header-2 .flex .navbar a{
    margin:0 1rem;
    font-size: 2rem;
-   color:var(--light-color);
+   color:var(--white);
 }
 
 .header .header-2 .flex .navbar a:hover{
@@ -678,13 +678,13 @@ input[type=number] {
 
 .header .header-2 .flex .icons > *{
    font-size: 2.5rem;
-   color:var(--black);
+   color:var(--white);
    cursor: pointer;
    margin-left: 1.5rem;
 }
 
 .header .header-2 .flex .icons > *:hover{
-   color:var(--purple);
+   color: gray;
 }
 
 #menu-btn{
@@ -1790,7 +1790,8 @@ body.register{
 
 
 .footer{
-   background-color: var(--light-bg);
+   background-color: lightgreen;
+   color: white;
 }
 
 .footer .box-container{
@@ -1873,11 +1874,13 @@ body.register{
    .header .header-2 .flex .navbar.active{
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       z-index: 100;
+      background-color: var(--black);
    }
 
    .header .header-2 .flex .navbar a{
       display: block;
       font-size: 2.5rem;
+      text-align: center;
       margin:2rem;
    }
 

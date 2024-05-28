@@ -95,10 +95,10 @@ if(isset($_GET['delete_all'])){
    </div>
 
    <div class="cart-total">
-      <p>grand total : <span>$<?php echo $grand_total; ?>/-</span></p>
+      <p>grand total : <span>₱<?php echo $grand_total; ?>/-</span></p>
       <div class="flex">
          <a href="shop.php" class="option-btn">continue shopping</a>
-         <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':'disabled'; ?>">proceed to checkout</a>
+         <!-- <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':'disabled'; ?>">proceed to checkout</a> -->
       </div>
    </div>
 

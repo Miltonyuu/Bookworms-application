@@ -29,7 +29,7 @@ if(isset($message)){
 <link rel="stylesheet" href="./css/style.css">
 
 <header class="header">
-
+<!--
    <div class="header-1">
       <div class="flex">
          <div class="share">
@@ -40,7 +40,7 @@ if(isset($message)){
          <p> <a href="login.php">Login</a> | <a href="register.php">Register</a> </p>
       </div>
    </div>
-
+   -->
    <div class="header-2">
       <div class="flex">
          <a href="home.php" class="logo">Bookworms Connect.</a>

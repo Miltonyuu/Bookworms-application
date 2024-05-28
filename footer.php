@@ -28,6 +28,6 @@
 
    </div>
 
-   <p class="credit"> &copy; copyright  @ <?php echo date('Y'); ?> by <span>Researchers from TUP Manila</span> </p>
+   <p class="credit"> &copy; <?php echo date('Y'); ?> by <span>Researchers affiliated with TUP Manila.</span> </p>
 
 </section>
