@@ -219,7 +219,7 @@ section{
 
 .white-btn,
 .btn{
-   background-color: var(--purple);
+   background-color: #C6AA58;
 }
 
 .option-btn{
@@ -671,7 +671,7 @@ input[type=number] {
 .header .header-2 .flex .navbar a:hover{
    color:var(--white);
    text-decoration: underline;
-   background-color: var(--purple);
+   background-color: gray;
    border-radius: 3px;
    padding: 3px;
 }
@@ -818,7 +818,7 @@ input[type=number] {
    padding:0;
    font-size: 1.5rem;
    font-weight: bold;
-   color:var(--orange);
+   color:#C6AA58;
 }
 
 .products .box-container .box .book_condi{
@@ -1790,7 +1790,7 @@ body.register{
 
 
 .footer{
-   background-color: lightgreen;
+   background-color: #112f0B;
    color: white;
 }
 
@@ -1804,7 +1804,7 @@ body.register{
 
 .footer .box-container .box h3{
    text-transform: uppercase;
-   color:var(--black);
+   color:var(--white);
    font-size: 2rem;
    padding-bottom: 2rem;
 }
@@ -1813,18 +1813,18 @@ body.register{
 .footer .box-container .box a{
    display: block;
    font-size: 1.7rem;
-   color:var(--light-color);
+   color:var(--white);
    padding:1rem 0;
 }
 
 .footer .box-container .box p i,
 .footer .box-container .box a i{
-   color:var(--purple);
+   color:var(--white);
    padding-right: .5rem;
 }
 
 .footer .box-container .box a:hover{
-   color:var(--purple);
+   color:var(--white);
    text-decoration: underline;
 }
 
