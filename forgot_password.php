@@ -25,12 +25,12 @@ if (isset($_POST['submit_email'])) {
             // Server settings
             $mail->SMTPDebug = 0; // Turn off detailed debugging for production
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io'; // Replace with your SMTP host
+            $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP host
             $mail->SMTPAuth = true;
-            $mail->Username = '518d9ffda1f9ac';   // Replace with your SMTP username
-            $mail->Password = 'e923a8c3d811e6';            // Replace with your SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
-            $mail->Port = 587;
+            $mail->Username = 'miltonbautista60@gmail.com';   // Replace with your SMTP username
+            $mail->Password = 'assn jebv uojl full';            // Replace with your SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         
+            $mail->Port = 465;
 
             $mail->setFrom('miltonbautista60@gmail.com', 'Bookworms Connect'); // Replace with actual "From" email and name
             $mail->addAddress($email, $user['name']);
