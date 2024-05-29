@@ -44,8 +44,8 @@ if(isset($_POST['contact_seller'])){
         $mail->isSMTP();                                     
         $mail->Host = 'sandbox.smtp.mailtrap.io';                 
         $mail->SMTPAuth = true;                          
-        $mail->Username = '496a802ecda08c';         
-        $mail->Password = 'aebd5b52bf4176';            
+        $mail->Username = '518d9ffda1f9ac';         
+        $mail->Password = 'e923a8c3d811e6';            
         $mail->SMTPSecure = 'tls';                            
         $mail->Port = 2525;
         

@@ -86,6 +86,14 @@ isbnInput.addEventListener('input', function() {
   }
 });
 
+// ... other JavaScript code
+
+function closeModal() {
+  document.getElementById("password-updated-modal").style.display = "none";
+  window.location.href = 'login.php'; // Redirect after closing the modal
+}
+
+
 
 /* not sure it sure if its included confirmaion from milton is need
 

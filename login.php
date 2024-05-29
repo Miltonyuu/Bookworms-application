@@ -82,6 +82,7 @@ if(isset($message)){
       <input type="submit" name="submit" value="Login Now" class="btn">
       <br><br>
       <h4>Don't have an account? <a href="register.php">Register Now</a></h4>
+      <h4>Forgot Password <a href="forgot_password.php">Reset password</a></h4>
    </form>
    </div>
 
