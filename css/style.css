@@ -615,6 +615,51 @@ appearance: textfield;
    text-decoration: underline;
 }
 
+----
+
+.forgotform-container{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding:1rem;
+}
+
+.forgotform-container form{
+   background-color: rgba(243, 230, 230, 0.75);
+   border-radius: 2rem;
+   padding:4rem;
+   text-align: center;
+   box-shadow: var(--box-shadow);
+   border:var(--border);
+   max-width: 70rem;
+}
+
+.forgotform-container form h3{
+   font-size: 2rem;
+
+   text-transform: uppercase;
+   color:var(--black);
+}
+
+.forgotform-container form p{
+   font-size: 2rem;
+   color:var(--black);
+}
+
+.forgotform-container form .box{
+   width: 100%;
+   border-radius: .5rem;
+   background-color: var(--light-bg);
+   padding:1.2rem 1.4rem;
+   font-size: 1.8rem;
+   color:var(--black);
+   border:var(--border);
+   margin:1rem 0;
+}
+
+
+---- 
+
 .header .header-1{
    background-color: var(--light-bg);
 }
@@ -889,6 +934,18 @@ body.register{
     justify-content: center;
     align-items: center;
     font-family: 'Arial', sans-serif;
+}
+
+body.forgot_password{
+   background: url('../images/Registerrr.png') no-repeat center center fixed;
+   background-size: cover;
+   font-family: 'Arial', sans-serif;
+   margin: 0;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Arial', sans-serif;
 }
 
 .trading-container {

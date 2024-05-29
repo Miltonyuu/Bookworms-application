@@ -69,19 +69,19 @@ if (isset($_POST['submit_email'])) {
   
 </head>
 
-<body>
-    <?php include 'header.php'; ?>
+<body class="forgot_password">
 
-    <div class="form-container">
+    <div class="forgotform-container">
         <form action="" method="post">
             <h3>Forgot Password</h3>
-            <input type="email" name="email" placeholder="enter your email" required class="box">
+            <br>
+            <input type="email" name="email" placeholder="Enter your email" required class="box">
             <input type="submit" name="submit_email" value="Send Reset Link" class="btn">
+            <br><br>
             <p>Already have an account? <a href="login.php">Login now</a></p>
             <p>Don't have an account? <a href="register.php">Register now</a></p>
         </form>
     </div>
 
-    <?php include 'footer.php'; ?>
 </body>
 </html>
