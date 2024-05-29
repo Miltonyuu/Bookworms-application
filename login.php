@@ -42,6 +42,7 @@ if(isset($_POST['submit'])){
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,21 +58,13 @@ if(isset($_POST['submit'])){
    <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body class="login">
 
-<?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-   }
-}
-?>
+
+<body class="login">
+ 
 <div class="logform-container">
+
+
 
    <form action="" method="post">
       <h1>Login Now</h1>
@@ -83,9 +76,20 @@ if(isset($message)){
       <br><br>
       <h4>Don't have an account? <a href="register.php">Register Now</a></h4>
       <h4>Forgot Password <a href="forgot_password.php">Reset password</a></h4>
+
+      <?php
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+?>
    </form>
    </div>
-
-
 </body>
 </html>

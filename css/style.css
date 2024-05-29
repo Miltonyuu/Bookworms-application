@@ -63,7 +63,7 @@ section{
    position: sticky;
    top:0;
    margin:0 auto;
-   max-width: 1200px;
+   max-width: 100%;
    background-color: #a27dac;
    border-radius: 15px;
    padding: 1rem;
@@ -305,12 +305,7 @@ section{
 
 
  .login-message {
-   position: fixed; /* Fixed positioning to float over content */
-   top: 50%; /* Position vertically at 50% */
-   left: 50%; /* Position horizontally at 50% */
-   transform: translate(-50%, -50%); /* Center horizontally and vertically */
-   width: fit-content; /* Adjust width based on content */
-   padding: 50px;
+   padding: 10px;
    background-color: #a27dac;
    border-radius: 15px;
    opacity: 0.99;
