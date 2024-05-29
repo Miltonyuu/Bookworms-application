@@ -76,48 +76,74 @@ if(isset($_POST['add_to_cart'])){
        $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name != 'Verification Subscription' LIMIT 6 ") or die('query failed');
        if (mysqli_num_rows($select_products) > 0) {
          while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-            // Check if the product belongs to the logged-in user
-            $user_id = $_SESSION['user_id'];
-            $product_seller_id = $fetch_products['seller_id'];
-  
-            ?>
-  
-            <div class="box">
-              <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-              <div class="name"><?php echo $fetch_products['name']; ?></div>
-              <div name="product_author" class="author">By: <?php echo $fetch_products['author']; ?></div>
-              <div name="product_book_condi" class="book_condi">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
-              <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
-  
-              <?php
-                  if ($user_id != $product_seller_id):?>
-                    <input type="hidden" min="2" name="product_quantity" value="1" class="qty" > <!--before(type="number")--> 
-                    
-                <form action="" method="post">
-                  <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-                  <input type="hidden" name="product_author" value="<?php echo $fetch_products['author']; ?>">
-                  <input type="hidden" name="product_book_condi" value="<?php echo $fetch_products['bookcondition']; ?>">
-                  <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
-                  <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
-                  <input type="hidden" min="2" name="product_quantity" value="1" class="qty">
-                  <input type="submit" value="add to cart" name="add_to_cart" class="btn">
-                </form>
-  
-                <form action="contact_seller.php" method="post">
-                  <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-                  <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">
-                  <input type="submit" value="contact seller" name="contact_seller" class="btn">
-                </form>
-              <?php endif; ?>
-  
-            </div>  <?php
-          }
-        } else {
-          echo '<p class="empty">no products added yet!</p>';
-        }
-      ?>
-    </div>
-  </section>
+           // Check if the product belongs to the logged-in user
+           $user_id = $_SESSION['user_id'];
+           $product_seller_id = $fetch_products['seller_id'];
+ 
+           
+ 
+           ?>
+ 
+           <div class="box">
+             <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+             <div class="name"><?php echo $fetch_products['name']; ?></div>
+             <div name="product_author" class="author">By: <?php echo $fetch_products['author']; ?></div>
+             <div name="product_book_condi" class="book_condi">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
+             <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
+             <div name="isbn" class="book_condi">ISBN: <?php echo $fetch_products['isbn']; ?></div>
+             <?php if ($fetch_products['tradestatus'] == 'Yes'): ?>
+               <div class="trading-container"> 
+                   <img src="images/trading_logo.png" alt="Open for Trading" class="trading-logo">
+                   <span class="trading-tooltip">This book is also open for trading</span>
+               </div>
+           <?php endif; ?>
+             <?php
+ 
+ 
+                 if ($user_id != $product_seller_id):?>
+                   <input type="hidden" min="2" name="product_quantity" value="1" class="qty"> <!--before(type="number")--> 
+                   
+               <form action="" method="post">
+                 <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                 <input type="hidden" name="product_author" value="<?php echo $fetch_products['author']; ?>">
+                 <input type="hidden" name="product_book_condi" value="<?php echo $fetch_products['bookcondition']; ?>">
+                 <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                 <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                 <input type="hidden" min="2" name="product_quantity" value="1" class="qty">
+                 <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+               </form>
+ 
+                               <div class="seller-info-container">
+                   <button class="contact-seller-btn btn" data-product-name="<?php echo $fetch_products['name']; ?>" data-seller-id="<?php echo $fetch_products['seller_id']; ?>">View Users's Details</button>
+ 
+                   <div id="seller-info-popup" class="seller-popup-overlay">
+                     <div class="seller-popup-content">
+                       <span class="seller-close-btn">&times;</span>
+                       <div id="seller-details"></div>
+                     </div>
+                   </div>
+                 </div>
+ 
+ 
+ 
+               <form action="contact_seller.php" method="post">
+                 <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                 <input type="hidden" name="seller_id" value="<?php echo $fetch_products['seller_id']; ?>">
+                 <input type="submit" value="contact seller" name="contact_seller" class="btn">
+               </form>
+             <?php endif; ?>
+ 
+               
+ 
+ 
+           </div>  <?php
+         }
+       } else {
+         echo '<p class="empty">no products added yet!</p>';
+       }
+     ?>
+   </div>
+ </section>
   
 
 
