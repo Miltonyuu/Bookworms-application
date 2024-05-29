@@ -110,22 +110,25 @@ if(isset($_POST['submit'])){
    </style>
 </head>
 <body class="register">
-<?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-   }
-}
-?>
+
 
 <div class="regform-container">
    
    <form action="" method="post">
+      
+   <?php
+         if(isset($message)){
+            foreach($message as $message){
+            echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+            ';
+            }
+         }
+      ?>
+      
       <h1>Register now</h1>
       <p required class="name">Full Name</p>
       <input type="text" name="name" placeholder="Enter your name" required class="box">
