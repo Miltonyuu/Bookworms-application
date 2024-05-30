@@ -148,6 +148,8 @@ section{
 
 }
 
+
+
 .send-message{
    border-radius: .5rem;
    background-color: var(--white);
@@ -383,10 +385,20 @@ section{
     clear: both; 
 }
 
-.msg.other {
-    background-color: #d4f3fd; /* Example color for other user */
-    float: left;
-    clear: both;
+.msg.other { /* Or .msg.you for your messages */
+   background-color: #3b8eee; 
+   padding: 10px;
+   border-radius: 5px;
+   margin: 5px;
+   text-align: left;
+   clear: both;
+   max-width: 70%;
+   display: flex;   /* Enable flexbox for the container */
+   align-items: center; /* Vertically align image and text */
+}
+
+.msg.other .profile-pic-small { /* Style the profile picture */
+   margin-right: 10px; /* Add space between the image and text */
 }
 
 .profile-pic-small {
@@ -1822,6 +1834,15 @@ body.reset_password{
 .chat{
    display: flex;
    flex-direction: column;
+}
+
+.chat-header{
+   border-radius: .5rem;
+   background-color: var(--white);
+   padding:2rem;
+   text-align: center;
+   position: relative;
+   font-size: small;
 }
 
 
