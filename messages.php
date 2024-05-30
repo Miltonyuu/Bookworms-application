@@ -35,31 +35,48 @@ if(!isset($user_id)){
 
 <?php include 'header.php'; ?>
 
-<section style="margin-top:100px" class="messages">
-   <h1 class="title">Your Messages</h1>
-   <div class="box-container-messages">
-       <?php
-           $select_messages = mysqli_query($conn, "SELECT * FROM `messages` WHERE sender_id = '$user_id' OR receiver_id = '$user_id' GROUP BY sender_id, receiver_id ORDER BY timestamp DESC") or die('query failed');
-           if(mysqli_num_rows($select_messages) > 0){
-               while($fetch_messages = mysqli_fetch_assoc($select_messages)){
-                  // Determine if user is the 'sender' or 'receiver'
-                  $user_to_chat_with = ($fetch_messages['sender_id'] == $user_id) ? $fetch_messages['receiver_id'] : $fetch_messages['sender_id'];
 
-                  // Fetch user to chat with details
-                  $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_to_chat_with'") or die('query failed'); 
-                  $fetch_user = mysqli_fetch_assoc($select_user);
-       ?>
+<section style="margin-top:100px" class="messages">
+    <h1 class="title">Your Messages</h1>
+    <div class="box-container-messages">
+        <?php
+            // Refactored query to fetch the latest message in each conversation
+            $select_messages = mysqli_query($conn, 
+            "SELECT m1.*
+            FROM messages m1
+            INNER JOIN (
+                SELECT 
+                    CASE WHEN sender_id = '$user_id' THEN receiver_id ELSE sender_id END AS other_user_id,
+                    MAX(timestamp) AS latest_timestamp
+                FROM messages
+                WHERE sender_id = '$user_id' OR receiver_id = '$user_id'
+                GROUP BY other_user_id
+            ) m2 ON (
+                (m1.sender_id = '$user_id' AND m1.receiver_id = m2.other_user_id) OR 
+                (m1.receiver_id = '$user_id' AND m1.sender_id = m2.other_user_id)
+            ) AND m1.timestamp = m2.latest_timestamp
+            ORDER BY timestamp DESC");
+
+            if (mysqli_num_rows($select_messages) > 0) {
+                while ($fetch_messages = mysqli_fetch_assoc($select_messages)) {
+                    // Determine if user is the 'sender' or 'receiver'
+                    $user_to_chat_with = ($fetch_messages['sender_id'] == $user_id) ? $fetch_messages['receiver_id'] : $fetch_messages['sender_id'];
+
+                    // Fetch user to chat with details
+                    $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_to_chat_with'") or die('query failed');
+                    $fetch_user = mysqli_fetch_assoc($select_user);
+        ?>
         <div class="box-user">
             <p> <i class="fas fa-user"></i> <span><?php echo $fetch_user['name']; ?></span> </p>
             <a href="chat.php?user_id=<?php echo $fetch_user['id']; ?>" class="btn">Message</a>
         </div>
-       <?php 
-               }
-           } else {
-               echo "<p class='empty'>You have no messages yet!</p>";
-           }
-       ?>  
-   </div>
+        <?php 
+                }
+            } else {
+                echo "<p class='empty'>You have no messages yet!</p>";
+            }
+        ?>  
+    </div>
 </section>
 
    
