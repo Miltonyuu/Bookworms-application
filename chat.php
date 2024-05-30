@@ -3,15 +3,16 @@ include 'config.php';
 session_start();
 
 $user_id = $_SESSION['user_id'];
-$user_name = $_SESSION['user_name'];
 
-if (!isset($user_id)) {
+if(!isset($user_id)){
     header('location:login.php');
 }
 
 if (isset($_GET['user_id'])) {
     $user_two_id = $_GET['user_id'];
 }
+
+$initial_load = !isset($_POST['send']);
 
 // Fetch the name and profile image of the user you are chatting with   
 $select_user_two = mysqli_query($conn, "SELECT * FROM `users` WHERE id = '$user_two_id'") or die('query failed');
@@ -34,12 +35,11 @@ if (isset($_POST['send'])) {
         mysqli_query($conn, "INSERT INTO `messages`(sender_id, receiver_id, message, timestamp) VALUES('$user_id', '$user_two_id', '$message', NOW())") or die('query failed');
     } 
 
-    // After sending the message, fetch all the messages again to update the UI
-    header('location:chat.php?user_id='.$user_two_id); // Refresh after sending
+    // After sending, clear the message input field (no redirection)
+    echo '<script>document.querySelector(".send-message .box").value = "";</script>';
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,6 +56,7 @@ if (isset($_POST['send'])) {
 <body>
 
     <?php include 'header.php'; ?>
+    
 
     <section class="chat" style="margin-top:100px">
         <h1 class="title-chat">Chat Section</h1>
@@ -63,10 +64,36 @@ if (isset($_POST['send'])) {
         <div class="chat-container"> 
             <div class="chat-header">
                 <h3>Chatting with: <span><?php echo $fetch_user_two['name'] ?></span> 
+                    <img src="uploaded_img/<?php echo $profile_image; ?>" alt="Profile Image" class="profile-pic">
                 </h3>
             </div>
             <div class="chat-box">
-               </div>
+                <?php
+                if($initial_load) {
+                    $select_messages = mysqli_query($conn, "SELECT * FROM `messages` WHERE (sender_id = '$user_id' AND receiver_id = '$user_two_id') OR (sender_id = '$user_two_id' AND receiver_id = '$user_id') ORDER BY timestamp") or die('query failed');
+       
+                    if(mysqli_num_rows($select_messages) > 0){
+                        while($fetch_messages = mysqli_fetch_assoc($select_messages)){
+                            $message_sender_id = $fetch_messages['sender_id'];
+
+                            // Get sender's profile image
+                            $sender_profile_query = mysqli_query($conn, "SELECT image FROM `users` WHERE id = '$message_sender_id'") or die('query failed');
+                            $fetch_sender_profile = mysqli_fetch_assoc($sender_profile_query);
+                            $sender_profile_image = (!empty($fetch_sender_profile['image'])) ? $fetch_sender_profile['image'] : 'images/default_profile.png';
+                            
+                            if($fetch_messages['sender_id'] == $user_id){ 
+                                echo '<div class="msg you"><p>'.$fetch_messages['message'].'</p></div>';
+                            }else{ 
+                                echo '<div class="msg other"><img src="uploaded_img/' . $sender_profile_image . '" alt="Profile Image" class="profile-pic-small"><p>'.$fetch_messages['message'].'</p></div>';
+                            }      
+                        } 
+                    } else {
+                        echo "<p class='empty'>Start the conversation!</p>";
+                    }
+                }
+
+                ?>
+            </div>
 
             <form action="" method="post" class="send-message" onsubmit="sendMessage(event)">
                 <input type="text" name="message" class="box" placeholder="enter message">
@@ -74,41 +101,47 @@ if (isset($_POST['send'])) {
             </form>
         </div> 
     </section>
-
     <?php include 'footer.php'; ?>
     <script src="js/script.js"></script>
     <script src="js/admin_script.js"></script>
     <script>
-        var lastTimestamp = 0;
+        var lastTimestamp = new Date().getTime(); 
         var current_user_id = <?php echo $user_id; ?>;
         var user_two_id = <?php echo $user_two_id; ?>;
+        // Array to store displayed message IDs
+        var displayedMessageIds = [];
+
         function fetchNewMessages() {
-            // Make an AJAX request to fetch new messages
             fetch(`get_new_messages.php?user_id=${user_two_id}&last_timestamp=${lastTimestamp}`)
                 .then(response => response.json())
-                .then(data => {
+                .then(newMessages => {
                     const chatBox = document.querySelector('.chat-box');
-                    if (data.length > 0) {
-                        data.forEach(message => {
+                    if (newMessages.length > 0) { 
+                        newMessages.forEach(message => {
                             
-                            // Fetch sender's profile image
-                            fetch('fetch_user_image.php?user_id=' + message.sender_id)
-                                .then(response => response.json())
-                                .then(data => {
-                                    const profileImage = data.image ? `uploaded_img/${data.image}` : 'images/default_profile.png';
-                                    // Check if the current user is the sender 
-                                    if(message.sender_id == current_user_id) {
-                                        chatBox.innerHTML += `<div class="msg you"><p>${message.message}</p></div>`; 
-                                    } else {
-                                        chatBox.innerHTML += `<div class="msg other"><img src="${profileImage}" alt="Profile Image" class="profile-pic-small"><p>${message.message}</p></div>`;
-                                    }
-                                });
+                            // Check if the message is new
+                            if (!displayedMessageIds.includes(message.id)) { // Check if message is new
+                                displayedMessageIds.push(message.id);
 
-                            // Update lastTimestamp
-                            lastTimestamp = (new Date(message.timestamp)).getTime(); // Convert to milliseconds
+                                // Fetch sender's profile image
+                                fetch('fetch_user_image.php?user_id=' + message.sender_id)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        const profileImage = data.image ? `uploaded_img/${data.image}` : 'images/default_profile.png';
+                                        // Check if the current user is the sender 
+                                        if(message.sender_id == current_user_id) {
+                                            chatBox.innerHTML += `<div class="msg you"><p>${message.message}</p></div>`; 
+                                        } else {
+                                            chatBox.innerHTML += `<div class="msg other"><img src="${profileImage}" alt="Profile Image" class="profile-pic-small"><p>${message.message}</p></div>`;
+                                        }
+                                    });
+                                // Update lastTimestamp
+                                lastTimestamp = (new Date(message.timestamp)).getTime();
+                            }
                         });
+
                         // Auto scroll to the bottom after adding new messages
-                        chatBox.scrollTop = chatBox.scrollHeight;
+                        chatBox.scrollTop = chatBox.scrollHeight; 
                     }
                 })
                 .catch(error => console.error('Error fetching new messages:', error));
@@ -116,6 +149,7 @@ if (isset($_POST['send'])) {
         
         // Update every second
         setInterval(fetchNewMessages, 1000); // 1000ms = 1 second
+        
         // Initial call
         fetchNewMessages(); 
 
