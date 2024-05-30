@@ -1912,7 +1912,6 @@ body.reset_password{
 
 .chat-header{
    border-radius: .5rem;
-   background-color: var(--white);
    padding:2rem;
    text-align: center;
    position: relative;
