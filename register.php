@@ -218,7 +218,7 @@ if(isset($_POST['submit'])){
          <b>a.</b> We may update this Privacy Policy from time to time. Users will be notified of any material changes via email or through a notice on our website.
       </p>
       <br>
-      <h2 style="text-align: center;">Terms of Service</h2>
+      <h3 style="text-align: center;">Terms of Service</h3>
       <br>
       <p><b>Eligibility:</b> You must be at least 18 years old to use Bookworms Connect. By registering for an account, you confirm that you meet this requirement.</p>
       <p><b>User Conduct:</b> You agree to use Bookworms Connect in compliance with all applicable laws and regulations. You will not engage in any activity that violates the rights of others or harms the integrity of the platform.</p>

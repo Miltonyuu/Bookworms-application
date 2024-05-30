@@ -169,6 +169,28 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
 
         </div>
 
+        <div class="modal-content">
+        <h3 style="text-align: center;">Potential Benefits of Being a Verified User</h3>
+            <br>
+            <p>
+                <b>a. Verified Badge:</b> You'll receive a verified badge that signifies you've completed the identity verification process. <br>
+                <b>b. Increased Trust:</b>  This badge makes your actions and requests appear more credible, leading users to be more likely to trust your listings and feel comfortable trading or buying a book from you. <br>
+                <b>c. Serious Seller Status:</b> Verification increases the chance of other users taking your listings seriously and considering buying or trading with you. It demonstrates you're a reputable seller or dealer. <br>
+                <b>d. Stand Out from the Crowd:</b> Verified users are easily distinguished from unverified sellers/traders, potentially attracting more buyers. <br>
+            </p>
+            <br>
+            <h3 style="text-align: center;">Steps to Get Verified</h3>
+            <br>
+            <p>
+                <b>a. Submit Valid Documentation:</b>Provide one of your valid documents, such as a government ID, company ID, or NBI clearance. <br>
+                <b>b. Verification Fee:</b> After submitting your documents, you'll be directed to PayPal to pay a verification fee of PHP 100. <br>
+                <b>c. Verification Process:</b> Once your payment is received, the admin will verify your account. This process may take some time. <br>
+                <b>d. Verification Confirmation: </b> The admin will confirm your account verification. If there's an issue with your documents or the process, the admin will contact you, and your payment will be refunded. <br>
+                <b>e. Verified Badge: </b> Upon successful account verification, you'll receive a verified badge on the platform, indicating your verified status. <br>
+
+            </p>
+        </div>
+
     </section>
     <?php include 'footer.php'; ?>
 

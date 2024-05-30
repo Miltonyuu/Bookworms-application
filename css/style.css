@@ -733,17 +733,17 @@ input[type=number] {
    border:var(--border);
    margin:1rem 0;
 }
-/*
-.modal-content h2{
-   background-color: #a27dac;
+
+.modal-content h3{
+   font-size: 2rem;
    text-transform: uppercase;
    color:var(--black);
 }
-*/
+
 .modal-content p{
-   background-color: #a27dac;
+   background-color:var(--white);
    font-size: 2rem;
-   color:var(--white);
+   color:var(--black);
    border-radius: 15px;
    padding: 1rem;
 }
@@ -1415,11 +1415,7 @@ body.reset_password{
 }
 
 .shopping-cart .box-container .box img{
-   height: 25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+   height: 30rem;
 }
 
 .shopping-cart .box-container .box .name{
