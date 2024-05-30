@@ -245,6 +245,7 @@ section{
    display: flex;
    flex-wrap: wrap;
    gap:1rem;
+
 }
 
 .box-for-selling{
@@ -1269,9 +1270,9 @@ body.reset_password{
 
 .contact form{
    margin:0 auto;
-   background-color: var(--light-bg);
-   border-radius: .5rem;
-   border:var(--border);
+   background-color: #d4e5d5;
+   border: 5px solid floralwhite;
+   border-radius: 2.5rem;
    padding:2rem;
    max-width: 50rem;
    margin:0 auto;
