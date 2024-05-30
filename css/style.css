@@ -350,7 +350,7 @@ section{
    font-size: 1.8rem;
    border-radius: .5rem;
    text-transform: capitalize;
-   background-color: var(--purple);
+   background-color: darkgreen;
  }
 
  .hidden {

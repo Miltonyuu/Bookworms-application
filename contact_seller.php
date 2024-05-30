@@ -69,12 +69,7 @@ if(isset($_POST['contact_seller'])){
     }
 }
 
-// Display messages (Place this where you want them displayed on the page)
-if(!empty($message)){ 
-    foreach($message as $singleMessage){
-        echo "<div class='message-box'>". $singleMessage ."</div>"; 
-    }
-} 
+
 ?>
 <!DOCTYPE html>
 
