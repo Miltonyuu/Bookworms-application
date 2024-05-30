@@ -135,7 +135,7 @@ mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('que
       echo '<p class="empty">your cart is empty</p>';
    }
    ?>
-   <div class="grand-total"> grand total : <span>$<?php echo $grand_total; ?>/-</span> </div>
+   <div class="grand-total"> Grand Total : <span>$<?php echo $grand_total; ?>/-</span> </div>
 
 </section>
 
@@ -145,48 +145,48 @@ mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('que
       <h3>place your order</h3>
       <div class="flex">
          <div class="inputBox">
-            <span>your name :</span>
-            <input type="text" name="name" required placeholder="enter your name">
+            <span>Your Name :</span>
+            <input type="text" name="name" required placeholder="Enter your name">
          </div>
          <div class="inputBox">
-            <span>your number :</span>
-            <input type="number" name="number" required placeholder="enter your number">
+            <span>Your Number :</span>
+            <input type="number" name="number" required placeholder="Enter your number">
          </div>
          <div class="inputBox">
-            <span>your email :</span>
-            <input type="email" name="email" required placeholder="enter your email">
+            <span>Your Email :</span>
+            <input type="email" name="email" required placeholder="Enter your email">
          </div>
          <div class="inputBox">
-            <span>payment method :</span>
+            <span>Payment Method :</span>
             <select name="method">
-               <option value="cash on delivery">cash on delivery</option>
-               <option value="credit card">credit card</option>
-               <option value="paypal">paypal</option>
-               <option value="paytm">paytm</option>
+               <option value="cash on delivery">Cash on Delivery</option>
+               <option value="credit card">Credit Card</option>
+               <option value="paypal">Paypal</option>
+               <option value="paytm">Paytm</option>
             </select>
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="number" min="0" name="flat" required placeholder="e.g. flat no.">
+            <span>Address line 01 :</span>
+            <input type="number" min="0" name="flat" required placeholder="e.g. Flat No.">
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="text" name="street" required placeholder="e.g. street name">
+            <span>Address line 01 :</span>
+            <input type="text" name="street" required placeholder="e.g. Street Name">
          </div>
          <div class="inputBox">
-            <span>city :</span>
-            <input type="text" name="city" required placeholder="e.g. mumbai">
+            <span>City :</span>
+            <input type="text" name="city" required placeholder="e.g. Mumbai City">
          </div>
          <div class="inputBox">
-            <span>state :</span>
-            <input type="text" name="state" required placeholder="e.g. maharashtra">
+            <span>State :</span>
+            <input type="text" name="state" required placeholder="e.g. Maharashtra">
          </div>
          <div class="inputBox">
-            <span>country :</span>
-            <input type="text" name="country" required placeholder="e.g. india">
+            <span>Country :</span>
+            <input type="text" name="country" required placeholder="e.g. India">
          </div>
          <div class="inputBox">
-            <span>pin code :</span>
+            <span>Pin Code :</span>
             <input type="number" min="0" name="pin_code" required placeholder="e.g. 123456">
          </div>
       </div>

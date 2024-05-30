@@ -76,23 +76,27 @@ if(mysqli_num_rows($select_orders) > 0){
  while($fetch_orders = mysqli_fetch_assoc($select_orders)){
  ?>
  <div class="box-for-selling">
-<p> buyer's name : <span><?php echo $fetch_orders['buyer_name']; ?></span> </p>
- <p> buyer's number : <span><?php echo $fetch_orders['number']; ?></span> </p>
-<p> buyer's email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-<p> buyer's address : <span><?php echo $fetch_orders['address']; ?></span> </p>
- <p> total products : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
-<p> total price : <span>$<?php echo $fetch_orders['total_price']; ?>/-</span> </p>
- <p> payment method : <span><?php echo $fetch_orders['method']; ?></span> </p>
+<p> Buyer's Name : <span><?php echo $fetch_orders['buyer_name']; ?></span> </p>
+ <p> <br>Buyer's Number : <span><?php echo $fetch_orders['number']; ?></span> </p>
+<p> <br>Buyer's Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+<p> <br>Buyer's Address : <span><?php echo $fetch_orders['address']; ?></span> </p>
+ <p> <br>Total Products : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
+<p> <br>Total Price : <span>$<?php echo $fetch_orders['total_price']; ?>/-</span> </p>
+ <p> <br>Payment Method : <span><?php echo $fetch_orders['method']; ?></span> </p>
 
 <form action="" method="post">
 <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
- <select name="update_payment">
-<option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
-<option value="pending">pending</option>
-<option value="completed">completed</option>
+
+<br>
+<select name="update_payment">
+<option value="" selected disabled style="margin-top: 10px;"><?php echo $fetch_orders['payment_status']; ?></option>
+<option value="pending">Pending</option>
+<option value="completed">Completed</option>
+
+
  </select>
- <input type="submit" value="update" name="update_order" class="option-btn">
- <a href="user_orders.php?delete_order=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">delete</a>
+ <input type="submit" value="update" name="update_order" class="orders-option-btn">
+ <a href="user_orders.php?delete_order=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('Delete this order?');" class="delete-btn">Delete</a>
 </form>
  </div>
 <?php
