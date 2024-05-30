@@ -26,7 +26,7 @@ if(isset($_POST['add_to_cart'])){
       $message[] = 'already added to cart!';
    }else{
       mysqli_query($conn, "INSERT INTO `cart`(user_id, name, author, bookcondition, price, qUantity, image) VALUES('$user_id', '$product_name', '$product_author', '$product_book_condi', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
-      $message[] = 'notif"product added to cart!';
+      $message[] = 'product added to cart!';
    }
 
     // Check Verification Status

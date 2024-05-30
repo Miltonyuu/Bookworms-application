@@ -1,95 +1,76 @@
 <?php
-
 include 'config.php';
 session_start();
 
 $user_id = $_SESSION['user_id'];
 
-if(!isset($user_id)){
-header('location:login.php');
+if (!isset($user_id)) {
+    header('location:login.php');
 }
 
-if(isset($_POST['order_btn'])){
+if (isset($_POST['order_btn'])) {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $number = $_POST['number'];
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $method = mysqli_real_escape_string($conn, $_POST['method']);
+    $address = mysqli_real_escape_string($conn, 'flat no. ' . $_POST['flat'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['country'] . ' - ' . $_POST['pin_code']);
+    $placed_on = date('d-M-Y');
 
-$name = mysqli_real_escape_string($conn, $_POST['name']);
-$number = $_POST['number'];
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$method = mysqli_real_escape_string($conn, $_POST['method']);
-$address = mysqli_real_escape_string($conn, 'flat no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['pin_code']);
-$placed_on = date('d-M-Y');
+    $cart_total = 0;
+    $cart_products = []; // Use a simple array
 
+    // Fetch cart items for this user (including product_id and quantity)
+    $cart_query = mysqli_query($conn, "SELECT products.*, cart.quantity AS cart_quantity FROM `cart` JOIN products ON cart.name = products.name WHERE cart.user_id = '$user_id'") or die('query failed');
 
-$cart_total = 0;
-$cart_products[] = '';
+    if (mysqli_num_rows($cart_query) > 0) {
+        while ($cart_item = mysqli_fetch_assoc($cart_query)) {
+            $cart_products[] = $cart_item; 
+            $cart_total += ($cart_item['price'] * $cart_item['cart_quantity']); 
+        }
+    }
 
-$cart_query = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
-if(mysqli_num_rows($cart_query) > 0){
-while($cart_item = mysqli_fetch_assoc($cart_query)){
-$cart_products[] = $cart_item['name'].' ('.$cart_item['qUantity'].') ';
-$sub_total = ($cart_item['price'] * $cart_item['qUantity']);
-$cart_total += $sub_total;
+    // Separate orders by seller
+    $orders_by_seller = [];
+    foreach ($cart_products as $item) {
+        $seller_id = $item['seller_id']; 
+        if (!isset($orders_by_seller[$seller_id])) {
+            $orders_by_seller[$seller_id] = [];
+        }
+        $orders_by_seller[$seller_id][] = $item; 
+    }
+
+    // Process each order group
+    foreach ($orders_by_seller as $seller_id => $seller_cart_products) {
+        $total_products = implode(', ', array_map(function ($item) {
+            return $item['name'] . ' (' . $item['cart_quantity'] . ')'; // Use 'cart_quantity'
+        }, $seller_cart_products));
+
+        // Calculate total for this seller's items
+        $seller_cart_total = 0;
+        foreach ($seller_cart_products as $item) {
+            $seller_cart_total += ($item['price'] * $item['cart_quantity']);  // Use 'cart_quantity'
+        }
+
+        // Fetch buyer's name
+        $buyer_query = mysqli_query($conn, "SELECT name FROM users WHERE id = '$user_id'"); 
+        $buyer_data = mysqli_fetch_assoc($buyer_query); 
+        $buyer_name = $buyer_data['name']; 
+
+        // Insert into 'orders' table (include seller_id)
+        mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price, placed_on, buyer_id, buyer_name, seller_id) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$seller_cart_total', '$placed_on', '$user_id', '$buyer_name', '$seller_id')") or die('query failed');
+        $order_id = mysqli_insert_id($conn);
+
+        // Insert items into 'order_items' table
+        foreach ($seller_cart_products as $item) { 
+            mysqli_query($conn, "INSERT INTO `order_items` (order_id, product_id, quantity) VALUES ('$order_id', '{$item['id']}', '{$item['cart_quantity']}')") or die('query failed'); // Use 'cart_quantity'
+        }
+    }
+    
+    $message[] = 'order placed successfully!';
+    // Clear the cart for this user AFTER processing all orders
+    mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
 }
-}
 
-$total_products = implode(', ',$cart_products);
-
-$order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$name' AND number = '$number' AND email = '$email' AND method = '$method' AND address = '$address' AND total_products = '$total_products' AND total_price = '$cart_total'") or die('query failed');
-
-if($cart_total == 0){
- $message[] = 'your cart is empty';
-}else{
-if(mysqli_num_rows($order_query) > 0){
-$message[] = 'order already placed!'; 
- }else{
-
-   $buyer_query = mysqli_query($conn, "SELECT name FROM users WHERE id = '$user_id'"); 
-   if (mysqli_num_rows($buyer_query) > 0) {
-       $buyer_data = mysqli_fetch_assoc($buyer_query); 
-       $buyer_name = $buyer_data['name'];
-   } else {
-       $buyer_name = "Buyer Name Not Found"; 
-   }
-   
-
-// Insert into 'orders' table
-mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price, placed_on, buyer_id, buyer_name) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on', '$user_id', '$buyer_name')") or die('query failed');
-
-// Get the order ID of the newly inserted order
- $order_id = mysqli_insert_id($conn); 
-
-// Insert items into 'order_items' table 
-foreach ($cart_products as $product_name_quantity) {
-   // Extract product details (name, quantity)
-   $parts = explode('(', $product_name_quantity); // Split to get name & quantity
-   $product_name = trim($parts[0]);
- 
-   if (isset($parts[1])) { // Check if the second part exists
-       $quantity_str = trim(substr($parts[1], 0, -1)); 
-       $quantity = intval($quantity_str);
-   } else {
-       $quantity = 1; // Set a default quantity if the format is wrong
-   }
- 
-   // Get product_id (assuming you have a 'products' table)
-   $product_id_query = mysqli_query($conn, "SELECT id FROM products WHERE name = '$product_name'");
-   if (mysqli_num_rows($product_id_query) > 0) { // Check if the product exists
-       $product_id_data = mysqli_fetch_assoc($product_id_query);
-       $product_id = $product_id_data['id'];
-   } else {
-       // Handle product not found (e.g., set default or log error)
-       $product_id = null; // Or any other handling you prefer 
-   }
- 
- 
-   // Insert into 'order_items'
-   mysqli_query($conn, "INSERT INTO `order_items` (order_id, product_id, quantity) VALUES ('$order_id', '$product_id', '$quantity')") or die('query failed'); 
- }
- 
-$message[] = 'order placed successfully!';
-mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
-}
-}
-}
 
 ?>
 
