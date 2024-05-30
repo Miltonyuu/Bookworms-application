@@ -58,13 +58,10 @@ if (isset($_POST['send'])) {
     <?php include 'header.php'; ?>
     
 
-    <section class="chat" style="margin-top:100px">
-        <h1 class="title-chat">Chat Section</h1>
-
-        <div class="chat-container"> 
+    <section class="chat">
+    <h1 class="title-chat">Chat Section</h1>
             <div class="chat-header">
                 <h3>Chatting with: <span><?php echo $fetch_user_two['name'] ?></span> 
-                    <img src="uploaded_img/<?php echo $profile_image; ?>" alt="Profile Image" class="profile-pic">
                 </h3>
             </div>
             <div class="chat-box">

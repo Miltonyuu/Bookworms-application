@@ -144,21 +144,30 @@ section{
    margin-bottom: 2rem;
    text-transform: uppercase;
    color:var(--black);
-   font-size: 2rem;
+   font-size: 4rem;
 
 }
 
 
 
-.send-message{
-   border-radius: .5rem;
-   background-color: var(--white);
-   padding:2rem;
-   text-align: center;
-   position: relative;
-   font-size: small;
 
-}
+
+/* Send Message Form */
+.send-message {
+   display: flex; /* Use flexbox for easier layout */
+   align-items: center;
+   margin-top: 15px;
+ }
+ 
+ .send-message .box {
+   flex-grow: 1;  /* Input field takes up available space */
+   padding: 10px 15px;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   margin-right: 10px;
+   font-size: 1.4rem;
+ }
+ 
 
 .verified-badge {
    color: purple; /* Or choose your desired color */
@@ -411,21 +420,23 @@ section{
 }
 
 .msg {
-   background-color: #eee; 
-   padding: 10px;
-   border-radius: 5px; 
+   padding: 10px 15px;
+   border-radius: 8px;
    margin-bottom: 8px;
-   max-width: 70%; /* Limit max width for readability */
-}
+   max-width: 70%; 
+   word-wrap: break-word; /* Allow long messages to wrap */
+   clear: both; 
+   line-height: 1.4; /* Improve line height for readability */
+ }
 
 .msg.you {
-    background-color: #219ed7; /* Example color for current user*/
+    background-color: #25e481; /* Example color for current user*/
     float: right;
     clear: both; 
 }
 
 .msg.other { /* Or .msg.you for your messages */
-   background-color: #3b8eee; 
+   background-color: #1b6b1f; 
    padding: 10px;
    border-radius: 5px;
    margin: 5px;
@@ -1905,10 +1916,14 @@ body.reset_password{
    width: 100%;
 }
 /* css for the user profile ends here*/
-.chat{
-   display: flex;
-   flex-direction: column;
+.chat {
+   display: flex; /* Enable flexbox layout */
+   flex-direction: column; /* Arrange elements vertically */
+   align-items: center; /* Center horizontally */
+   padding-top: 140px;
 }
+
+
 
 .chat-header{
    border-radius: .5rem;
