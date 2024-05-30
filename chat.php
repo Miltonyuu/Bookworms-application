@@ -78,9 +78,8 @@ if (isset($_POST['send'])) {
     <?php include 'footer.php'; ?>
     <script src="js/script.js"></script>
     <script src="js/admin_script.js"></script>
-
     <script>
-        var lastTimestamp = 0; 
+        var lastTimestamp = 0;
         var current_user_id = <?php echo $user_id; ?>;
         var user_two_id = <?php echo $user_two_id; ?>;
         function fetchNewMessages() {
@@ -89,9 +88,9 @@ if (isset($_POST['send'])) {
                 .then(response => response.json())
                 .then(data => {
                     const chatBox = document.querySelector('.chat-box');
-                    if (data.length > 0) { //check if the data has values
+                    if (data.length > 0) {
                         data.forEach(message => {
-                        
+                            
                             // Fetch sender's profile image
                             fetch('fetch_user_image.php?user_id=' + message.sender_id)
                                 .then(response => response.json())
@@ -106,9 +105,8 @@ if (isset($_POST['send'])) {
                                 });
 
                             // Update lastTimestamp
-                            lastTimestamp = message.timestamp;
+                            lastTimestamp = (new Date(message.timestamp)).getTime(); // Convert to milliseconds
                         });
-
                         // Auto scroll to the bottom after adding new messages
                         chatBox.scrollTop = chatBox.scrollHeight;
                     }
@@ -119,7 +117,7 @@ if (isset($_POST['send'])) {
         // Update every second
         setInterval(fetchNewMessages, 1000); // 1000ms = 1 second
         // Initial call
-        fetchNewMessages();
+        fetchNewMessages(); 
 
         function sendMessage(event) {
             event.preventDefault();
