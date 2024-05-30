@@ -52,7 +52,7 @@ if(isset($_POST['add_to_cart'])){
    <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body>
+<body class="shop">
    
 <?php include 'header.php'; ?>
 

@@ -60,7 +60,7 @@ if(isset($_POST['add_to_cart'])){
 
 <section class="search-form">
    <form action="" method="post">
-      <input type="text" name="search" placeholder="search products..." class="box">
+      <input type="text" name="search" placeholder="Search products..." class="box">
       <input type="submit" name="submit" value="search" class="btn">
    </form>
 </section>
@@ -136,10 +136,10 @@ if ($user_id != $product_seller_id):?>
    </div> <?php
             }
          }else{
-            echo '<p class="empty">no result found!</p>';
+            echo '<p class="empty">No result found!</p>';
          }
       }else{
-         echo '<p class="empty">search something!</p>';
+         echo '<p class="empty">Search something!</p>';
       }
    ?>
    </div>

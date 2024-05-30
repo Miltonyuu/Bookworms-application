@@ -31,8 +31,8 @@ if (isset($_GET['token'])) {
     </script>
 </head>
 
-<body>
-    <?php include 'header.php'; ?>
+<body class="reset_password">
+    
 
     <div id="password-updated-modal" class="modal" style="display: none;"> 
         <div class="modal-content">
@@ -42,7 +42,7 @@ if (isset($_GET['token'])) {
         </div>
     </div>
 
-    <div class="form-container">
+    <div class="resetform-container">
         <form action="" method="post">
             <h3>Reset Password</h3>
             <?php
@@ -58,7 +58,7 @@ if (isset($_GET['token'])) {
         </form>
     </div>
 
-    <?php include 'footer.php'; ?>
+   
 
     <?php
         if (isset($_POST['update_pass'])) {

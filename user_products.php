@@ -104,18 +104,18 @@ header('location:user_products.php');
   <link rel="stylesheet" href="css/update_book_process.css">
 
   </head>
-<body>
+<body class="user_products">
   
 <?php include 'header.php'; ?>
 
 <section class="add-products">
-  <h1 class="title">shop products</h1>
+  <h1 class="title">Shop products</h1>
 <form action="" method="post" enctype="multipart/form-data">
-  <h3>add product</h3>
-  <input type="text" name="name" class="box" placeholder="enter product name" required>
-  <input type="text" name="author" class="box" placeholder="enter book author" required>
-  <input type="text" name="isbn" id="isbn" class="box" placeholder="enter ISBN (optional)"> 
-  <input type="number" min="0" name="price" class="box" placeholder="enter product price" required>
+  <h3>Add product</h3>
+  <input type="text" name="name" class="box" placeholder="Enter product name" required>
+  <input type="text" name="author" class="box" placeholder="Enter book author" required>
+  <input type="text" name="isbn" id="isbn" class="box" placeholder="Enter ISBN (optional)"> 
+  <input type="number" min="0" name="price" class="box" placeholder="Enter product price" required>
   <!--<input type="text" name="author" class="box" placeholder="enter book author" required>-->
   <div class="addproductsoption">
     <select name="bookcondi" class="box">

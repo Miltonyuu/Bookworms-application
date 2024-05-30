@@ -90,8 +90,8 @@ if(isset($message)){
                   <div class="user_tooltip">This User is Verified</div><i class="fas fa-check-circle verified-badge"></i>
                <?php endif; ?>
             </div>
-            <p>username : <span><?php echo $_SESSION['user_name']; ?></span></p>
-            <p>email : <span><?php echo $_SESSION['user_email']; ?></span></p>
+            <p>Username:  <span><?php echo $_SESSION['user_name']; ?></span></p>
+            <p>Email:  <span><?php echo $_SESSION['user_email']; ?></span></p>
             <a href="user_profile.php" class="profile-btn">Profile Details</a>
             <a href="logout.php" class="logout-btn">logout</a>
          </div>

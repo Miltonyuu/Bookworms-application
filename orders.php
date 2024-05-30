@@ -65,7 +65,7 @@ if(!isset($user_id)){
       <?php
        }
       }else{
-         echo '<p class="empty">no orders placed yet!</p>';
+         echo '<p class="empty">No orders placed yet!</p>';
       }
       ?>
    </div>

@@ -50,7 +50,8 @@ if(isset($_POST['update_profile'])){
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
   </head>
-<body>
+
+<body class="user_profile">
 
 <?php include 'header.php'; ?>
 

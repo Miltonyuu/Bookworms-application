@@ -47,15 +47,17 @@ html{
 
 section{
    padding:3rem 2rem;
+   background-color: #ccd7db;
 }
 
 .empty{
    padding:1.5rem;
    text-align: center;
    border:var(--border);
-   background-color: var(--white);
-   color:var(--red);
+   background-color: #333;
+   color:white;
    font-size: 2rem;
+   border-radius: 5px;
 }
 
 
@@ -156,15 +158,6 @@ section{
 
 }
 
-.chat-header{
-   border-radius: .5rem;
-   background-color: var(--white);
-   padding:2rem;
-   text-align: center;
-   position: relative;
-   font-size: small;
-}
-
 .verified-badge {
    color: purple; /* Or choose your desired color */
    margin-left: 10px; /* Adjust the margin as needed */
@@ -195,18 +188,19 @@ section{
    font-size: 1.8rem;
    border-radius: .5rem;
    text-transform: capitalize;
+   width:22rem;
 }
 
 .profile-btn{
    display: inline-block;
    padding:.5rem 1rem;
    cursor: pointer;
-   color:var(--black);
+   color: #fff;
    font-size: 1.8rem;
    border-radius: .5rem;
    text-transform: capitalize;
    border:var(--border);
-   background-color: var(--white);
+   background-color: #007925;
 }
 
 .logout-btn{
@@ -312,7 +306,6 @@ section{
    display: none;
 }
 
-
  .login-message {
    padding: 10px;
    background-color: #a27dac;
@@ -325,12 +318,12 @@ section{
 
 
  .register-message {
-  /*position: fixed;*/ /* Fixed positioning to float over content */
-  /*top: 50%;*/ /* Position vertically at 50% */
-  /*left: 50%;*/ /* Position horizontally at 50% */
-  /*transform: translate(-50%, -50%);*/ /* Center horizontally and vertically */
-  /*width: fit-content;*/ /* Adjust width based on content */
-  padding: 10px;
+  position: fixed; /* Fixed positioning to float over content */
+  top: 50%; /* Position vertically at 50% */
+  left: 50%; /* Position horizontally at 50% */
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  width: fit-content; /* Adjust width based on content */
+  padding: 50px;
   background-color: #a27dac;
   border-radius: 15px;
   opacity: 0.99;
@@ -389,20 +382,10 @@ section{
     clear: both; 
 }
 
-.msg.other { /* Or .msg.you for your messages */
-   background-color: #3b8eee; 
-   padding: 10px;
-   border-radius: 5px;
-   margin: 5px;
-   text-align: left;
-   clear: both;
-   max-width: 70%;
-   display: flex;   /* Enable flexbox for the container */
-   align-items: center; /* Vertically align image and text */
-}
-
-.msg.other .profile-pic-small { /* Style the profile picture */
-   margin-right: 10px; /* Add space between the image and text */
+.msg.other {
+    background-color: #d4f3fd; /* Example color for other user */
+    float: left;
+    clear: both;
 }
 
 .profile-pic-small {
@@ -486,7 +469,6 @@ section{
 
 
 .regform-container{
-   margin-top: 15%;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -562,6 +544,7 @@ section{
 }
 
 
+
 .regform-container form .bookw1{
    text-align: left;
    display: block;  
@@ -587,8 +570,7 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type=number] {
--moz-appearance: textfield;
-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 .regform-container form .type{
@@ -642,6 +624,7 @@ appearance: textfield;
 }
 
 .forgotform-container form p{
+   
    font-size: 2rem;
    color:var(--black);
 }
@@ -660,6 +643,49 @@ appearance: textfield;
 
 ---- 
 
+.resetform-container{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding:1rem;
+}
+
+.resetform-container form{
+   background-color: rgba(243, 230, 230, 0.75);
+   border-radius: 2rem;
+   padding:4rem;
+   text-align: center;
+   box-shadow: var(--box-shadow);
+   border:var(--border);
+   max-width: 70rem;
+}
+
+.resetform-container form .box{
+   width: 100%;
+   border-radius: .5rem;
+   background-color: var(--light-bg);
+   padding:1.2rem 1.4rem;
+   font-size: 1.8rem;
+   color:var(--black);
+   border:var(--border);
+   margin:1rem 0;
+}
+
+.modal-content h3{
+   font-size: 2rem;
+
+   text-transform: uppercase;
+   color:var(--black);
+}
+
+.modal-content p{
+   
+   font-size: 2rem;
+   color:var(--black);
+}
+
+
+----
 .header .header-1{
    background-color: var(--light-bg);
 }
@@ -754,8 +780,8 @@ appearance: textfield;
 .header .header-2 .flex .user-box{
    position: absolute;
    top:120%; right:2rem;
-   background-color: var(--white);
-   border-radius: .5rem;
+   background-color: #112f0B;
+   border-radius: 1.2rem;
    box-shadow: var(--box-shadow);
    border:var(--border);
    padding:2rem;
@@ -771,13 +797,15 @@ appearance: textfield;
 }
 
 .header .header-2 .flex .user-box p{
-   font-size: 2rem;
-   color:var(--light-color);
+   font-size: 15px;
+   color: #fff;
    margin-bottom: 1.5rem;
+   text-align: justify;
 }
 
 .header .header-2 .flex .user-box p span{
-   color:var(--purple);
+   color:#ffbe00;
+   text-align:justify;
 }
 
 .header .header-2 .flex .user-box .delete-btn{
@@ -843,74 +871,92 @@ appearance: textfield;
    line-height: 1.5;
 }
 
-.products .box-container{
-   max-width: 1200px;
-   margin:0 auto;
+.products .box-container {
+   max-width: 1500px;
+   margin: 0 auto;
    display: grid;
    grid-template-columns: repeat(auto-fit, 30rem);
    align-items: flex-start;
-   gap:1.5rem;
+   gap: 1.5rem;
    justify-content: center;
 }
 
-.products .box-container .box{
-   border-radius: .5rem;
-   background-color: var(--white);
+.products .box-container .box {
+   border-radius: 1.5rem;
+   background-color: #ebe7e7;
    box-shadow: var(--box-shadow);
-   padding:2rem;
+   padding: 2rem;
    text-align: center;
-   border:var(--border);
+   border: 3px solid floralwhite;
    position: relative;
-}
-
-.products .box-container .box .image{
-   height: 30rem;
    width: 100%;
-   object-fit: cover;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 }
 
+.products .box-container .box .image {
+   height: 23rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
 
+.products .box-container .box .image img {
+   max-height: 100%;
+   max-width: 100%;
+   object-fit: cover;
+   border-radius: 1rem;
+}
 
-.products .box-container .box .name{
-   padding:1rem 0;
+.products .box-container .box .name {
+   padding: 1rem 0;
    font-size: 3rem;
    font-weight: bold;
-   color:var(--black);
+   color: var(--black);
 }
 
-.products .box-container .box .author{
-   padding:0;
+.products .box-container .box .author {
+   padding: 0;
    font-size: 1.5rem;
    font-weight: bold;
-   color:#C6AA58;
+   color: #C6AA58;
 }
 
-.products .box-container .box .book_condi{
+.products .box-container .box .book_condi {
    margin-top: 8px;
    font-size: 1.8rem;
    font-weight: bold;
-   color:var(--black);
+   color: var(--black);
 }
 
-
-.products .box-container .box .qty{
+.products .box-container .box .qty {
    width: 100%;
-   padding:1.2rem 1.4rem;
+   padding: 1.2rem 1.4rem;
    border-radius: .5rem;
-   border:var(--border);
-   margin:1rem 0;
+   border: var(--border);
+   margin: 1rem 0;
    font-size: 2rem;
 }
 
-.products .box-container .box .price{
+.products .box-container .box .price {
    position: absolute;
-   top:1rem; left:1rem;
+   top: 1rem; 
+   left: 1rem;
    border-radius: .5rem;
-   padding:1rem;
+   padding: 1rem;
    font-size: 2.5rem;
-   color:var(--white);
+   color: var(--white);
    background-color: var(--red);
 }
+
+.products .box-container .box .btn-container {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
 
 body.login {
    background: url('../images/Loginnn.png') no-repeat center center fixed;
@@ -936,7 +982,31 @@ body.register{
     font-family: 'Arial', sans-serif;
 }
 
+body.user_profile{
+    background-color: #ccd7db;
+}
+
+body.user_products{
+   background-color: #ccd7db;
+}
+
+body.shop{
+   background-color: #ccd7db;
+}
+
 body.forgot_password{
+   background: url('../images/Registerrr.png') no-repeat center center fixed;
+   background-size: cover;
+   font-family: 'Arial', sans-serif;
+   margin: 0;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: 'Arial', sans-serif;
+}
+
+body.reset_password{
    background: url('../images/Registerrr.png') no-repeat center center fixed;
    background-size: cover;
    font-family: 'Arial', sans-serif;
@@ -1040,7 +1110,7 @@ body.forgot_password{
 .about .flex .content{
    flex:1 1 40rem;
    padding:2rem;
-   background-color: var(--light-bg);
+   background-color: #ccd7db;
 }
 
 .about .flex .content h3{
@@ -1134,6 +1204,7 @@ body.forgot_password{
    font-size: 2rem;
    color:var(--black);
    margin-top: 1rem;
+
 }
 
 .authors .box-container{
@@ -1144,6 +1215,7 @@ body.forgot_password{
    align-items: center;
    gap:1.5rem;
    justify-content: center;
+   
 }
 
 .authors .box-container .box{
@@ -1152,7 +1224,8 @@ body.forgot_password{
    border:var(--border);
    box-shadow: var(--box-shadow);
    overflow: hidden;
-   border-radius: .5rem;
+   border: 3px solid floralwhite;
+   border-radius: 1.5rem;
 }
 
 .authors .box-container .box img{
@@ -1191,7 +1264,7 @@ body.forgot_password{
    font-size: 2.5rem;
    color:var(--black);
    padding:1.5rem;
-   background-color: var(--white);
+   background-color: #C6AA58;
 }
 
 .contact form{
@@ -1485,7 +1558,8 @@ body.forgot_password{
 /* css for the user profile starts here*/
 
 .form_wrapper {
-	background: #fff;
+	background: #d4e5d5;
+   border-radius:  25px;
 	width: 800px;
 	max-width: 100%;
 	box-sizing: border-box;
@@ -1493,7 +1567,7 @@ body.forgot_password{
    margin: 1% auto 0; /*margin: 0;*/
 	position: relative;
 	z-index: 1;
-	border: 5px solid var(--orange);
+	border: 5px solid floralwhite;
 	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -1586,15 +1660,16 @@ body.forgot_password{
       background: #fafafa;
     }
     &[type="submit"] {
-		background: var(--orange);
+		background: #C6AA58;
 		height: 35px;
 		line-height: 35px;
 		width: 100%;
 		border: none;
+      border-radius: 8px;
 		outline: none;
 		cursor: pointer;
 		color: #fff;
-		font-size: 1.1em;
+		font-size: 1.5em;
 		margin-bottom: 10px;
 		-webkit-transition: all 0.30s ease-in-out;
 		-moz-transition: all 0.30s ease-in-out;

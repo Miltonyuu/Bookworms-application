@@ -56,7 +56,7 @@ if(isset($_GET['delete_all'])){
 
 <section class="shopping-cart">
 
-   <h1 class="title">products added</h1>
+   <h1 class="title">Products added</h1>
 
    <div class="box-container">
       <?php
@@ -77,27 +77,27 @@ if(isset($_GET['delete_all'])){
             <input type="hidden" min="1" name="cart_quantity" value="<?php echo $fetch_cart['qUantity']; ?>"><!--before(type="number")-->  
             <input type="hidden" name="update_cart" value="update" class="option-btn">                       <!--before(type="submit")-->  
          </form>
-         <div class="sub-total"> sub total : <span>$<?php echo $sub_total = ($fetch_cart['qUantity'] * $fetch_cart['price']); ?>/-</span>
-         <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':''; ?>">proceed to checkout</a>
+         <div class="sub-total"> Sub total : <span>$<?php echo $sub_total = ($fetch_cart['qUantity'] * $fetch_cart['price']); ?>/-</span>
+         <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':''; ?>">Proceed to checkout</a>
          </div>
       </div>
       <?php
       $grand_total += $sub_total;
          }
       }else{
-         echo '<p class="empty">your cart is empty</p>';
+         echo '<p class="empty">Your cart is empty</p>';
       }
       ?>
    </div>
 
    <div style="margin-top: 2rem; text-align:center;">
-      <a href="cart.php?delete_all" class="delete-btn <?php echo ($grand_total > 1)?'':'disabled'; ?>" onclick="return confirm('delete all from cart?');">delete all</a>
+      <a href="cart.php?delete_all" class="delete-btn <?php echo ($grand_total > 1)?'':'disabled'; ?>" onclick="return confirm('delete all from cart?');">Delete all</a>
    </div>
 
    <div class="cart-total">
-      <p>grand total : <span>₱<?php echo $grand_total; ?>/-</span></p>
+      <p>Grand Total : <span>₱<?php echo $grand_total; ?>/-</span></p>
       <div class="flex">
-         <a href="shop.php" class="option-btn">continue shopping</a>
+         <a href="shop.php" class="option-btn">Continue Shopping</a>
          <!-- <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':'disabled'; ?>">proceed to checkout</a> -->
       </div>
    </div>
