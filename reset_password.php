@@ -33,17 +33,50 @@ if (isset($_GET['token'])) {
 
 <body class="reset_password">
     
-
-    <div id="password-updated-modal" class="modal" style="display: none;"> 
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2>Password Updated</h2>
-            <p>Your password has been successfully updated!</p>
-        </div>
-    </div>
-
+    
     <div class="resetform-container">
         <form action="" method="post">
+        <?php
+    if (isset($_POST['update_pass'])) {
+        $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
+        $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
+
+            if ($new_pass != $confirm_pass) {
+                $message[] = 'Confirm password does not match!';
+            } else {
+                mysqli_query($conn, "UPDATE `users` SET password = '$confirm_pass', reset_token = NULL, reset_expiration = NULL WHERE id = '{$user['id']}'") or die('query failed');
+                
+                // Display success message in a modal
+                echo '
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.getElementById("password-updated-modal").style.display = "block";
+                            setTimeout(function() {
+                                closeModal(); // Call closeModal() after a delay to redirect
+                            }, 3000); // Redirect after 3 seconds (3000 milliseconds)
+                        });
+                    </script>';
+            }
+        }
+        } else {
+            $message[] = 'Invalid or expired token!';
+            header('location:login.php');
+            exit();
+        }
+        } else {
+            header('location:login.php');
+            exit();
+        }
+?>
+            
+            <div id="password-updated-modal" class="modal" style="display: none; background-color: transparent;"> 
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <!--<h2>Password Updated</h2>-->
+                    <p>Your password has been successfully updated!</p>
+                </div>
+            </div>
+
             <h3>Reset Password</h3>
             <?php
             if (isset($message)) {
@@ -58,39 +91,5 @@ if (isset($_GET['token'])) {
         </form>
     </div>
 
-   
-
-    <?php
-        if (isset($_POST['update_pass'])) {
-            $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-            $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
-
-            if ($new_pass != $confirm_pass) {
-                $message[] = 'Confirm password does not match!';
-            } else {
-                mysqli_query($conn, "UPDATE `users` SET password = '$confirm_pass', reset_token = NULL, reset_expiration = NULL WHERE id = '{$user['id']}'") or die('query failed');
-                
-                // Display success message in a modal
-                echo '
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        document.getElementById("password-updated-modal").style.display = "block";
-                        setTimeout(function() {
-                            closeModal(); // Call closeModal() after a delay to redirect
-                        }, 2000); // Redirect after 2 seconds (2000 milliseconds)
-                    });
-                </script>';
-            }
-        }
-    } else {
-        $message[] = 'Invalid or expired token!';
-        header('location:login.php');
-        exit();
-    }
-} else {
-    header('location:login.php');
-    exit();
-}
-?>
 </body>
 </html>

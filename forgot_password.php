@@ -73,6 +73,20 @@ if (isset($_POST['submit_email'])) {
 
     <div class="forgotform-container">
         <form action="" method="post">
+            
+            <?php
+                if(isset($message)){
+                foreach($message as $message){
+                    echo '
+                        <div class="message">
+                            <span>'.$message.'</span>
+                            <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+                        </div>
+                    ';
+                }
+            }
+            ?>
+
             <h3>Forgot Password</h3>
             <br>
             <input type="email" name="email" placeholder="Enter your email" required class="box">

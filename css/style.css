@@ -683,18 +683,19 @@ input[type=number] {
    border:var(--border);
    margin:1rem 0;
 }
-
-.modal-content h3{
-   font-size: 2rem;
-
+/*
+.modal-content h2{
+   background-color: #a27dac;
    text-transform: uppercase;
    color:var(--black);
 }
-
+*/
 .modal-content p{
-   
+   background-color: #a27dac;
    font-size: 2rem;
-   color:var(--black);
+   color:var(--white);
+   border-radius: 15px;
+   padding: 1rem;
 }
 
 
