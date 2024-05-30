@@ -50,7 +50,7 @@ if(isset($message)){
             <a href="shop.php"class="button-34" id="special-color">Shop</a>
             <a href="user_products.php"class="button-34" id="special-color">Listing</a>
             <a href="user_orders.php"class="button-34" id="special-color">Sales</a>
-            <a href="orders.php"class="button-34" id="special-color">Acquisition</a>
+            <a href="orders.php"class="button-34" id="special-color">Orders</a>
             <a href="messages.php"class="button-34" id="special-color">Messages</a>
             <a href="verify_user.php"class="button-34" id="special-color">Verification</a>
             
