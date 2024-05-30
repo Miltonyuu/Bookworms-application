@@ -16,9 +16,8 @@ $query_age_demographics = "
     SELECT 
         COUNT(*) as count, 
         CASE
-            WHEN TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) BETWEEN 18 AND 25 THEN '18-25'
-            WHEN TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) BETWEEN 26 AND 35 THEN '26-35'
-            ELSE '36 and above'
+            WHEN TIMESTAMPDIFF(YEAR, birthdate, CURDATE()) <= 21 THEN '21 and below'
+            ELSE '22 and above'
         END as age_group
     FROM `users`
     WHERE birthdate IS NOT NULL
