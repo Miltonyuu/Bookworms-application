@@ -124,10 +124,6 @@ section{
    position: relative;
    font-size: medium;
 }
-.chat .chat-container .chat-header{
-   text-align: center;
-   font-size: 20px;
-}
 
 .chat-box{
    border-radius: .5rem;
@@ -139,14 +135,6 @@ section{
    text-align: center;
    border:var(--border);
    font-size: small;
-}
-
-.chat .chat-container .chat-box{
-   border: 2px solid black;
-}
-
-.chat .chat-container .chat-box form{
-   border: 2px solid black;
 }
 
 .title-chat{
@@ -161,23 +149,13 @@ section{
 }
 
 .send-message{
-   margin-top: 8px;
    border-radius: .5rem;
-   background-color: transparent;
-   padding: 2px;
+   background-color: var(--white);
+   padding:2rem;
    text-align: center;
    position: relative;
-}
+   font-size: small;
 
-.send-message .textbox{
-   font-size: 25px;
-   text-align: center;
-   padding-bottom: 4px;
-   border: 2px solid black;
-}
-
-.send-message .btn{
-   padding: 12px;
 }
 
 .verified-badge {

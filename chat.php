@@ -66,11 +66,10 @@ if (isset($_POST['send'])) {
                 </h3>
             </div>
             <div class="chat-box">
-                
                </div>
 
             <form action="" method="post" class="send-message" onsubmit="sendMessage(event)">
-                <input type="text" name="message" class="textbox" placeholder="enter message">
+                <input type="text" name="message" class="box" placeholder="enter message">
                 <input type="submit" name="send" value="send" class="btn">
             </form>
         </div> 
