@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2024 at 05:49 PM
+-- Generation Time: May 30, 2024 at 09:03 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -37,6 +37,13 @@ CREATE TABLE `cart` (
   `qUantity` int(100) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `name`, `author`, `bookcondition`, `price`, `qUantity`, `image`) VALUES
+(135, 9, 'Petalsforkite', '', '', 1000, 1, 'pfp.png');
 
 -- --------------------------------------------------------
 
@@ -73,6 +80,40 @@ CREATE TABLE `messages` (
   `message` text DEFAULT NULL,
   `timestamp` datetime DEFAULT current_timestamp(),
   `is_read` tinyint(4) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `sender_id`, `receiver_id`, `message`, `timestamp`, `is_read`) VALUES
+(169, 9, 1, 'Contact request regarding product: Petalsforkite. Email: petalskite@gmail.com ', '2024-05-31 02:37:36', 0),
+(170, 1, 9, 'You want that?', '2024-05-31 02:37:56', 0),
+(171, 9, 1, 'Yes Can I buy it?', '2024-05-31 02:38:07', 0),
+(172, 1, 9, 'For sure', '2024-05-31 02:38:11', 0),
+(173, 1, 9, 'hahahahaha', '2024-05-31 02:43:55', 0),
+(174, 9, 1, 'ano gawa mo', '2024-05-31 02:44:06', 0),
+(175, 1, 9, 'wala naman nakaupo lang', '2024-05-31 02:44:12', 0),
+(176, 9, 1, 'GANUN OKAY TANGIANH MO POH', '2024-05-31 02:44:17', 0),
+(177, 1, 9, 'hahaha', '2024-05-31 02:50:43', 0),
+(178, 9, 1, 'asdhadfga', '2024-05-31 02:50:56', 0),
+(179, 9, 1, 'gawa MO PRE', '2024-05-31 02:50:59', 0),
+(180, 9, 1, 'WTF', '2024-05-31 02:51:30', 0),
+(181, 1, 9, 'GHADFGADF', '2024-05-31 02:51:54', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `type` enum('message','order','cart') NOT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `timestamp` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -185,7 +226,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `birthdate`, `bookshop_name`, `gender`, `contact_no`, `bookwishlist1`, `bookwishlist2`, `image`, `verified`, `otp`, `otp_expiration`, `reset_token`, `reset_expiration`) VALUES
 (0, 'verifiedUser', 'verified@gmail.com', '', 'verified', NULL, NULL, NULL, '', '', '', '', 0, NULL, NULL, NULL, NULL),
-(1, 'Milton', 'miltonbautista60@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Notlim', 'male', '', '', '', '', 0, NULL, NULL, NULL, NULL),
+(1, 'Milton', 'miltonbautista60@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Notlim', 'male', '', '', '', '', 0, NULL, NULL, 'df913d688afe7d925effe50c669090ba', '2024-05-30 07:53:42'),
 (2, 'Milton', 'miltonbautistapogii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL, '', '', '', '', 0, NULL, NULL, NULL, NULL),
 (3, 'miltonyu01', 'miltonbautistapogiii@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'admin', NULL, NULL, NULL, '', '', '', '', 0, NULL, NULL, NULL, NULL),
 (4, 'Miltonyupo', 'miltonyupo@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', NULL, NULL, NULL, '', '', '', '', 0, NULL, NULL, NULL, NULL),
@@ -193,7 +234,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`, `birthdate`
 (6, 'minimoy', 'minimoy@gmail.com', '202cb962ac59075b964b07152d234b70', 'admin', NULL, NULL, NULL, '', '', '', '', 0, NULL, NULL, NULL, NULL),
 (7, 'jc', 'jc@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2024-04-28', NULL, 'female', '', '', '', '', 0, NULL, NULL, NULL, NULL),
 (8, 'ikaw at ako', 'ikawako@gmail.com', '202cb962ac59075b964b07152d234b70', 'user', '2024-05-30', NULL, 'male', '', '', '', '', 0, NULL, NULL, NULL, NULL),
-(9, 'Milton Bautista', 'petalskite@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Milton', 'male', '', '', '', '', 1, NULL, NULL, NULL, NULL),
+(9, 'Milton Bautista', 'petalskite@gmail.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', 'National Milton', 'male', '', '', '', '', 1, NULL, NULL, '4ea38aa08c5abbae0f4a53759a434a72', '2024-05-30 07:55:10'),
 (24, 'Test Account', 'figehir311@javnoi.com', '1ef8c11e22aaf90ac6be87f5a2eff660', 'user', '2001-08-10', NULL, 'male', '', '', '', '', 0, '792774', '2024-05-21 17:46:24', NULL, NULL),
 (29, 'katakana', 'katakana@gmai.com', '202cb962ac59075b964b07152d234b70', 'user', '2024-05-15', '', 'female', '09564271546', 'CatDog', 'Spongebob ', '', 0, NULL, NULL, NULL, NULL);
 
@@ -237,7 +278,15 @@ ALTER TABLE `message`
 -- Indexes for table `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_messages_users_timestamp` (`sender_id`,`receiver_id`,`timestamp`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `orders`
@@ -280,7 +329,7 @@ ALTER TABLE `verification_requests`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -292,7 +341,13 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -327,6 +382,12 @@ ALTER TABLE `verification_requests`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `order_items`

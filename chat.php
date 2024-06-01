@@ -93,7 +93,7 @@ if (isset($_POST['send'])) {
             </div>
 
             <form action="" method="post" class="send-message" onsubmit="sendMessage(event)">
-                <input type="text" name="message" class="box" placeholder="enter message">
+                <input type="text" name="message" class="box" placeholder="Enter message">
                 <input type="submit" name="send" value="send" class="btn">
             </form>
         </div> 

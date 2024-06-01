@@ -28,13 +28,13 @@ $isbn = $_POST['isbn'];
 $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
 
 if(mysqli_num_rows($select_product_name) > 0){
- $message[] = 'product name already added';
+ $message[] = 'Product name already added';
 }else{
  $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, tradestatus, isbn, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition','$tradestatus', '$isbn' , '$image', '$user_id')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
- $message[] = 'image size is too large';
+ $message[] = 'Image size is too large';
 }else{
  move_uploaded_file($image_tmp_name, $image_folder);
  $message[] = 'Product added successfully!';
