@@ -112,16 +112,10 @@ if(isset($_POST['send'])){
           <li><b>Account Security:</b> You are responsible for maintaining the security of your account credentials. You will notify us immediately of any unauthorized access or use of your account.</li>
           <li><b>Intellectual Property:</b> You retain ownership of the content you upload to Bookworms Connect.</li>
           <li><b>Limitation of Liability:</b> We are not liable for any damages arising from your use of the platform. Additionally, Bookworms Connect is not liable for any failed book swaps or trades between users. Users are responsible for any agreements or transactions they make with other users on the platform..</li>
+        </ul>
 
-
-
-
-
-
-
-
+</section>
 <?php include 'footer.php'; ?>
-
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
 

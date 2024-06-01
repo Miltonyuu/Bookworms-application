@@ -90,10 +90,10 @@ while ($row = mysqli_fetch_assoc($result_verification_status)) {
    <h1 class="title">Overall Analytics Report</h1>
 
    <!-- User Age Demographics -->
-   <h2 class="sub-title">User Age Demographics</h2>
-   <div class="box-container">
+   <h2 class="sub-title" style="text-align: center">User Age Demographics</h2>
+   <div class="box-container" style="margin-bottom:20px;">
       <?php if (!empty($demographics_age_data)) { ?>
-         <div class="bar-graph">
+         <div class="bar-graph" style="border-line = black;">
             <h3 class="graph-title">Age Demographics of Users</h3>
             <div class="bar-container">
                <?php foreach ($demographics_age_data as $data) { ?>
@@ -111,8 +111,8 @@ while ($row = mysqli_fetch_assoc($result_verification_status)) {
    </div>
 
    <!-- User Gender Demographics -->
-   <h2 class="sub-title">User Gender Demographics</h2>
-   <div class="box-container">
+   <h2 class="sub-title" style="text-align: center">User Gender Demographics</h2>
+   <div class="box-container" style="margin-bottom:20px;">
       <?php if (!empty($demographics_gender_data)) { ?>
          <div class="bar-graph">
             <h3 class="graph-title">Gender Demographics of Users</h3>
@@ -132,7 +132,7 @@ while ($row = mysqli_fetch_assoc($result_verification_status)) {
    </div>
 
    <!-- User Verification Status -->
-   <h2 class="sub-title">User Verification Status</h2>
+   <h2 class="sub-title" style="text-align: center">User Verification Status</h2>
    <div class="box-container">
       <?php if (!empty($verification_status_data)) { ?>
          <div class="bar-graph">
