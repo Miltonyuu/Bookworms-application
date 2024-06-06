@@ -67,11 +67,11 @@ if(isset($_POST['add_to_cart'])){
 
 <section class="products" style="padding-top: 0;">
 
-   <div class="box-container">
+<div class="box-container">
    <?php
       if(isset($_POST['submit'])){
          $search_item = $_POST['search'];
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name LIKE '%{$search_item}%'") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name LIKE '%{$search_item}%' OR author LIKE '%{$search_item}%'") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
          while($fetch_product = mysqli_fetch_assoc($select_products)){
          // Check if the product belongs to the logged-in user
