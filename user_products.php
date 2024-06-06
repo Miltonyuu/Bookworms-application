@@ -18,6 +18,7 @@ $author_input = $_POST['author']; // Example: 'Bobby\'s Pizza'
 $escaped_author = mysqli_real_escape_string($conn, $author_input);
 $price = $_POST['price'];
 $bookcondition = $_POST['bookcondi'];
+$bookgenre =  $_POST['genretype'];
 $image = $_FILES['image']['name'];
 $image_size = $_FILES['image']['size'];
 $image_tmp_name = $_FILES['image']['tmp_name'];
@@ -30,7 +31,7 @@ $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE na
 if(mysqli_num_rows($select_product_name) > 0){
  $message[] = 'Product name already added';
 }else{
- $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, tradestatus, isbn, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition','$tradestatus', '$isbn' , '$image', '$user_id')") or die('query failed');
+ $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, bookgenre, tradestatus, isbn, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$bookgenre','$tradestatus', '$isbn' , '$image', '$user_id')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
@@ -62,10 +63,11 @@ $update_name = $_POST['update_name'];
 $update_author = $_POST['update_author'];
 $update_price = $_POST['update_price'];
 $update_bookcondition = $_POST['update_bookcondition'];
+$update_bookgenretype = $_POST['update_genretype'];
 $update_tradeoption = $_POST['update_tradeoption'];
 $update_isbn = $_POST['update_isbn'];
 
-mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition', tradestatus = '$update_tradeoption', isbn = '$update_isbn' WHERE id = '$update_p_id'") or die('query failed');
+mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition', bookgenre = '$update_bookgenretype', tradestatus = '$update_tradeoption', isbn = '$update_isbn' WHERE id = '$update_p_id'") or die('query failed');
 
 $update_image = $_FILES['update_image']['name'];
 $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
@@ -109,13 +111,13 @@ header('location:user_products.php');
 <?php include 'header.php'; ?>
 
 <section class="add-products">
-  <h1 class="title">Shop products</h1>
+  <h1 class="title">Book products</h1>
 <form action="" method="post" enctype="multipart/form-data">
-  <h3>Add product</h3>
-  <input type="text" name="name" class="box" placeholder="Enter product name" required>
+  <h3>Add Book product</h3>
+  <input type="text" name="name" class="box" placeholder="Enter Book Product name" required>
   <input type="text" name="author" class="box" placeholder="Enter book author" required>
   <input type="text" name="isbn" id="isbn" class="box" placeholder="Enter ISBN (optional)"> 
-  <input type="number" min="0" name="price" class="box" placeholder="Enter product price" required>
+  <input type="number" min="0" name="price" class="box" placeholder="Enter Book Price" required>
   <!--<input type="text" name="author" class="box" placeholder="enter book author" required>-->
   <div class="addproductsoption">
     <select name="bookcondi" class="box">
@@ -125,6 +127,49 @@ header('location:user_products.php');
         <option value="Used">Used</option>
     </select>   
   </div>
+
+  <div class=bookgenre>
+      <select id="groupedDropdown" name="genretype" class="box">
+      <option value="" selected disabled hidden>Choose Book Genre</option>
+      <optgroup label="Fiction">
+                    <option value="Action and Adventure">Action and Adventure</option>
+                    <option value="Chick Lit">Chick lit</option>
+                    <option value="Classic">Classic</option>
+                    <option value="Comic Book">Comic Book</option>
+                    <option value="Crime and Mystery">Crime and Mystery</option>
+                    <option value="Drama<">Drama</option>
+                    <option value="FairyTale">FairyTale</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Historical Fiction">Historical Fiction</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Science Ficiton">Science Ficiton</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Humor and Satire">Humor and Satire</option>
+                    <option value="Short Story">Short Story</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Novel">Novel</option>
+                    <option value="Other Fictionl Genre">Other Fictionl Genre</option>
+                  </optgroup>
+                <optgroup label="Non-Fiction">
+                    <option value="Art/Architecture">Art/Architecture</option>
+                    <option value="Authobiography">Authobiography</option>
+                    <option value="Biography">Biography</option>
+                    <option value="oBusiness/Economics">Business/Economics</option>
+                    <option value="Crafts/Hobbies">Crafts/Hobbies</option>
+                    <option value="Cookbook">Cookbook</option>
+                    <option value="Dictionary">Dictionary</option>
+                    <option value="Encyclopedia">Encyclopedia</option>
+                    <option value="History">History</option>
+                    <option value="Journal">Journal</option>
+                    <option value="Math">Math</option>
+                    <option value="Philosophy">Philosophy</option>
+                    <option value="Textbook">Textbook</option>
+                    <option value="Review<">Review</option>
+                    <option value="Science">Science</option>
+                    <option value="Other NonFiction Genre">Other NonFiction Genre</option>
+                </optgroup>
+      </select>
+    </div>
 
   <div class="tradeoption">
     <select name="tradestatus" class="box">
@@ -153,6 +198,7 @@ header('location:user_products.php');
       <div class="author">By: <?php echo $fetch_products['author']; ?></div>
       <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
       <div class="author">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
+      <div class="author">Book Genre: <?php echo $fetch_products['bookgenre']; ?></div>
       <div style="display:flex; justify-content:center; " class="author">Seller:<p class="author"><span><?php echo $_SESSION['user_name']; ?></span></p></div>
       <a style="display: none;" href="user_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">UPDATE</a>
       <!--<a href="user_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>-->
@@ -172,16 +218,59 @@ header('location:user_products.php');
             <span class="book_desc">Book Price:</span>
             <input type="number" name="update_price" value="<?php echo $fetch_products['price']; ?>" min="0" class="box_ubd" required>
             <span class="book_desc">ISBN:</span>
-            <input type="text" name="update_isbn" value="<?php echo $fetch_products['isbn']; ?>" class="box_ubd" required>
+            <input type="text" name="update_isbn" value="<?php echo $fetch_products['isbn']; ?>" class="box_ubd">
             <span class="book_desc">Book Condition:</span>
-              <select name="update_bookcondition" class="box_ubd">
+              <select name="update_bookcondition"  class="box_ubd" required>
                 <option value="" selected="selected" hidden="hidden">Choose Here</option>
                 <option value="Old">Old</option>
                 <option value="New">New</option>
                 <option value="Used">Used</option>
               </select>
+
+              <span class="book_desc">Book Genre:</span>
+              <select id="groupedDropdown" name="update_genretype" class="box_ubd" required>
+                <option value="" selected disabled hidden>Choose Here</option>
+                  <optgroup label="Fiction">
+                    <option value="Action and Adventure">Action and Adventure</option>
+                    <option value="Chick Lit">Chick lit</option>
+                    <option value="Classic">Classic</option>
+                    <option value="Comic Book">Comic Book</option>
+                    <option value="Crime and Mystery">Crime and Mystery</option>
+                    <option value="Drama<">Drama</option>
+                    <option value="FairyTale">FairyTale</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Historical Fiction">Historical Fiction</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Science Ficiton">Science Ficiton</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Humor and Satire">Humor and Satire</option>
+                    <option value="Short Story">Short Story</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Novel">Novel</option>
+                    <option value="Other Fictionl Genre">Other Fictionl Genre</option>
+                  </optgroup>
+                <optgroup label="Non-Fiction">
+                    <option value="Art/Architecture">Art/Architecture</option>
+                    <option value="Authobiography">Authobiography</option>
+                    <option value="Biography">Biography</option>
+                    <option value="oBusiness/Economics">Business/Economics</option>
+                    <option value="Crafts/Hobbies">Crafts/Hobbies</option>
+                    <option value="Cookbook">Cookbook</option>
+                    <option value="Dictionary">Dictionary</option>
+                    <option value="Encyclopedia">Encyclopedia</option>
+                    <option value="History">History</option>
+                    <option value="Journal">Journal</option>
+                    <option value="Math">Math</option>
+                    <option value="Philosophy">Philosophy</option>
+                    <option value="Textbook">Textbook</option>
+                    <option value="Review<">Review</option>
+                    <option value="Science">Science</option>
+                    <option value="Other NonFiction Genre">Other NonFiction Genre</option>
+                </optgroup>
+              </select>
+
               <span class="book_desc">Trading Option:</span>
-              <select name="update_tradeoption" class="box_ubd">
+              <select name="update_tradeoption" class="box_ubd" required>
                 <option value="" selected="selected" hidden="hidden">Choose Here</option>
                 <option value="Yes">This book is also open for trading</option>
                 <option value="No">This book is not open for trading</option>
