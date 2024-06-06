@@ -35,6 +35,20 @@ if(isset($_POST['add_to_cart'])){
 
 }
 
+// Get all genres from the database
+$genre_query = mysqli_query($conn, "SELECT DISTINCT bookgenre FROM `products`") or die('query failed');
+$genres = [];
+while ($row = mysqli_fetch_assoc($genre_query)) {
+    $genres[] = $row['bookgenre'];
+}
+
+// Get the selected genre or display all genres if none selected
+$selected_genre = isset($_GET['genre']) ? $_GET['genre'] : '';
+
+// Construct the SQL query with the genre filter (if applicable)
+$whereClause = $selected_genre ? "WHERE bookgenre = '$selected_genre' AND name != 'Verification Subscription'" : "WHERE name != 'Verification Subscription'";
+$select_products = mysqli_query($conn, "SELECT * FROM `products` $whereClause") or die('query failed');
+
 ?>
 
 <!DOCTYPE html>
@@ -62,19 +76,24 @@ if(isset($_POST['add_to_cart'])){
 </div>
 
 <section class="products">
-  <h1 class="title">Available Books</h1>
-  <div class="box-container">
-    <?php
-      $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name != 'Verification Subscription'") or die('query failed');
-      if (mysqli_num_rows($select_products) > 0) {
-        while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-          // Check if the product belongs to the logged-in user
-          $user_id = $_SESSION['user_id'];
-          $product_seller_id = $fetch_products['seller_id'];
-
-          
-
-          ?>
+        <h1 class="title">Available Books</h1>
+        <div class="box-container">
+            <div class="filter-buttons">
+                <a href="shop.php" class="option-btn <?php if($selected_genre == '') echo 'active'; ?>">All</a>
+                <?php foreach ($genres as $genre) : ?>
+                    <a href="shop.php?genre=<?php echo urlencode($genre); ?>" 
+                       class="option-btn <?php if($selected_genre == $genre) echo 'active'; ?>">
+                        <?php echo $genre; ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+            <div class="box-container">
+                <?php 
+                    if(mysqli_num_rows($select_products) > 0){
+                        while($fetch_products = mysqli_fetch_assoc($select_products)){
+                            $user_id = $_SESSION['user_id'];
+                            $product_seller_id = $fetch_products['seller_id'];
+                ?>
 
           <div class="box">
             <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
