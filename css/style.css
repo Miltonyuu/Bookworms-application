@@ -271,6 +271,14 @@ section{
    color:var(--black);
 }
 
+.description {
+   text-align: center;
+   padding: 1rem;
+   font-size: 1.8rem;
+   color:var(--black);
+   font: bold;
+}
+
 .contact-form{
    max-width: 1200px;
    margin:0 auto;
