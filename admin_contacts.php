@@ -40,30 +40,65 @@ if(isset($_GET['delete'])){
 <section class="messages">
 
    <h1 class="title"> messages </h1>
-
+<!--
    <div class="box-container">
+      <?php
+         $select_message = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
+         if(mysqli_num_rows($select_message) > 0){
+            while($fetch_message = mysqli_fetch_assoc($select_message)){
+            
+      ?>
+      <div class="box">
+         <p> user id : <span><?php echo $fetch_message['user_id']; ?></span> </p>
+         <p> name : <span><?php echo $fetch_message['name']; ?></span> </p>
+         <p> number : <span><?php echo $fetch_message['number']; ?></span> </p>
+         <p> email : <span><?php echo $fetch_message['email']; ?></span> </p>
+         <p> message : <span><?php echo $fetch_message['message']; ?></span> </p>
+         <a href="admin_contacts.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this message?');" class="delete-btn">delete message</a>
+      </div>
+      <?php
+         };
+      }else{
+         echo '<p class="empty">you have no messages!</p>';
+      }
+      ?>
+   </div>
+-->
+<div class="box-container">
    <?php
-      $select_message = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
-      if(mysqli_num_rows($select_message) > 0){
-         while($fetch_message = mysqli_fetch_assoc($select_message)){
-      
+         $select_message = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
    ?>
    <div class="box">
-      <p> user id : <span><?php echo $fetch_message['user_id']; ?></span> </p>
-      <p> name : <span><?php echo $fetch_message['name']; ?></span> </p>
-      <p> number : <span><?php echo $fetch_message['number']; ?></span> </p>
-      <p> email : <span><?php echo $fetch_message['email']; ?></span> </p>
-      <p> message : <span><?php echo $fetch_message['message']; ?></span> </p>
-      <a href="admin_contacts.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this message?');" class="delete-btn">delete message</a>
+      <table>
+         <thead>
+            <tr>
+               <p><th>User ID</th></p>
+               <p><th>Name</th></p>
+               <p><th>Number</th></p>
+               <p><th>Email</th></p>
+               <p><th>Message</th></p>
+               <p><th>Action</th></p>
+            </tr>
+         </thead>
+         <tbody>
+            <?php
+               while($fetch_message = mysqli_fetch_assoc($select_message)){
+            ?>
+            <tr>
+               <td><?php echo $fetch_message['user_id']; ?></td>
+               <td><?php echo $fetch_message['name']; ?></td>
+               <td><?php echo $fetch_message['number']; ?></td>
+               <td><?php echo $fetch_message['email']; ?></td>
+               <td><?php echo $fetch_message['message']; ?></td>
+               <td><a href="admin_contacts.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this message?');" class="delete-btn">delete</a></td>
+            </tr>
+            <?php
+               };
+            ?>
+         </tbody>
+      </table>
    </div>
-   <?php
-      };
-   }else{
-      echo '<p class="empty">you have no messages!</p>';
-   }
-   ?>
-   </div>
-
+</div>
 </section>
 
 

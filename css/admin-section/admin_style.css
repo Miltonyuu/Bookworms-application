@@ -478,16 +478,23 @@ section{
 }
 
 .users .box-container{
-   display: grid;
+   /*display: grid;
    grid-template-columns: repeat(auto-fit, 30rem);
+   justify-content: center;*/
+   display: flex;
+   flex-wrap: wrap;
    justify-content: center;
    gap:1.5rem;
    max-width: 1200px;
    margin:0 auto;
-   align-items: flex-start;
+   /*align-items: flex-start;*/
 }
 
 .users .box-container .box{
+   flex: 1 1 30rem;
+   max-width: 101rem;
+   box-sizing: border-box;
+   margin: 1rem; /* Adjust spacing between boxes as needed */
    background-color: var(--white);
    padding:2rem;
    border:var(--border);
@@ -496,14 +503,18 @@ section{
    text-align: center;
 }
 
-.users .box-container .box p{
-   padding-bottom: 1.5rem;
-   font-size: 2rem;
-   color:var(--light-color);
+.users .box-container .box table{
+   width: 1000px;
 }
 
-.users .box-container .box p span{
+.users .box-container .box table thead th{
+   font-size: 25px;
+   color:var(--black);
+}
+
+.users .box-container .box table tbody td{
    color:var(--purple);
+   font-size: 13px;
 }
 
 .users .box-container .box .delete-btn{
@@ -511,36 +522,63 @@ section{
 }
 
 .messages .box-container{
-   display: grid;
+   /*display: grid;
    grid-template-columns: repeat(auto-fit, 35rem);
+   justify-content: center;*/
+   display: flex;
+   flex-wrap: wrap;
    justify-content: center;
    gap:1.5rem;
    max-width: 1200px;
    margin:0 auto;
-   align-items: flex-start;
+   /*align-items: flex-start;*/
 }
 
 .messages .box-container .box{
+   /*background-color: var(--white);
+   padding:2rem;
+   border:var(--border);
+   box-shadow: var(--box-shadow);
+   border-radius: .5rem;*/
+   flex: 1 1 30rem;
+   max-width: 130rem;
+   box-sizing: border-box;
+   margin: 1rem; /* Adjust spacing between boxes as needed */
    background-color: var(--white);
    padding:2rem;
    border:var(--border);
    box-shadow: var(--box-shadow);
    border-radius: .5rem;
+   text-align: center;
 }
 
+.messages .box-container .box table{
+   width: 1200px;
+}
+
+.messages .box-container .box table thead th{
+   font-size: 20px;
+   color:var(--black);
+}
+
+/*
 .messages .box-container .box p{
    padding-bottom: 1.5rem;
    font-size: 2rem;
    color:var(--light-color);
    line-height: 1.5;
 }
+*/
 
-.messages .box-container .box p span{
+.messages .box-container .box table tbody td{
    color:var(--purple);
+   font-size: 13px;
 }
 
 .messages .box-container .box .delete-btn{
    margin-top: 0;
+   font-size: 15px;
+   width: 100%;
 }
 
 .verification-requests .box-container{

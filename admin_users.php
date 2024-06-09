@@ -40,7 +40,7 @@ if(isset($_GET['delete'])){
 <section class="users">
 
    <h1 class="title"> user accounts </h1>
-
+<!--
    <div class="box-container">
       <?php
          $select_users = mysqli_query($conn, "SELECT * FROM `users`") or die('query failed');
@@ -57,16 +57,41 @@ if(isset($_GET['delete'])){
          };
       ?>
    </div>
-
+      -->
+   <div class="box-container">
+   <?php
+      $select_users = mysqli_query($conn, "SELECT * FROM `users`") or die('query failed');
+   ?>
+   <div class="box">
+   <table>
+      <thead>
+         <tr>
+            <p><th>User ID</th></p>
+            <p><th>Username</th></p>
+            <p><th>Email</th></p>
+            <p><th>User Type</th></p>
+            <p><th>Action</th></p>
+         </tr>
+      </thead>
+      <tbody>
+         <?php
+            while($fetch_users = mysqli_fetch_assoc($select_users)){
+         ?>
+         <tr>
+            <td><?php echo $fetch_users['id']; ?></td>
+            <td><?php echo $fetch_users['name']; ?></td>
+            <td><?php echo $fetch_users['email']; ?></td>
+            <td style="color:<?php if($fetch_users['user_type'] == 'admin'){ echo 'var(--orange)'; } ?>"><?php echo $fetch_users['user_type']; ?></td>
+            <td><a href="admin_users.php?delete=<?php echo $fetch_users['id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">Delete User</a></td>
+         </tr>
+         <?php
+            };
+         ?>
+      </tbody>
+   </table>
+   </div>
+</div>
 </section>
-
-
-
-
-
-
-
-
 
 <!-- custom admin js file link  -->
 <script src="js/admin_script.js"></script>
