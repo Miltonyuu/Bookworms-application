@@ -102,6 +102,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `products` $whereClause") 
             <div class="price">₱<?php echo $fetch_products['price']; ?></div>
             <div name="product_book_condi" class="book_condi">Book Genre: <?php echo $fetch_products['bookgenre']; ?></div>
             <div name="isbn" class="book_condi">ISBN: <?php echo $fetch_products['isbn']; ?></div>
+            <div class="description">Description: <?php echo $fetch_products['description']; ?></div> 
             <?php if ($fetch_products['tradestatus'] == 'Yes'): ?>
               <div class="trading-container"> 
                   <img src="images/trading_logo.png" alt="Open for Trading" class="trading-logo">

@@ -25,13 +25,14 @@ $image_tmp_name = $_FILES['image']['tmp_name'];
 $image_folder = 'uploaded_img/'.$image;
 $tradestatus = $_POST['tradestatus'];
 $isbn = $_POST['isbn'];
+$description = mysqli_real_escape_string($conn, $_POST['description']); // Sanitize description input
 
 $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
 
 if(mysqli_num_rows($select_product_name) > 0){
  $message[] = 'Product name already added';
 }else{
- $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, bookgenre, tradestatus, isbn, image, seller_id) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$bookgenre','$tradestatus', '$isbn' , '$image', '$user_id')") or die('query failed');
+ $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, bookcondition, bookgenre, tradestatus, isbn, image, seller_id, description) VALUES('$name', '$escaped_author', '$price', '$bookcondition', '$bookgenre','$tradestatus', '$isbn' , '$image', '$user_id', '$description')") or die('query failed');
 
  if($add_product_query){
 if($image_size > 2000000){
@@ -66,8 +67,9 @@ $update_bookcondition = $_POST['update_bookcondition'];
 $update_bookgenretype = $_POST['update_genretype'];
 $update_tradeoption = $_POST['update_tradeoption'];
 $update_isbn = $_POST['update_isbn'];
+$update_description = mysqli_real_escape_string($conn, $_POST['update_description']);
 
-mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition', bookgenre = '$update_bookgenretype', tradestatus = '$update_tradeoption', isbn = '$update_isbn' WHERE id = '$update_p_id'") or die('query failed');
+mysqli_query($conn, "UPDATE `products` SET name = '$update_name',author = '$update_author', price = '$update_price', bookcondition = '$update_bookcondition', bookgenre = '$update_bookgenretype', tradestatus = '$update_tradeoption', isbn = '$update_isbn', description = '$update_description' WHERE id = '$update_p_id'") or die('query failed');
 
 $update_image = $_FILES['update_image']['name'];
 $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
@@ -216,6 +218,8 @@ header('location:user_products.php');
         <form action="" method="post" enctype="multipart/form-data">
             <input type="hidden" name="update_p_id" value="<?php echo $fetch_products['id']; ?>">  
             <input type="hidden" name="update_old_image" value="<?php echo $fetch_products['image']; ?>">
+            <span class="book_desc">Book Description:</span>
+            <textarea name="update_description" class="box_ubd" rows="5"><?php echo $fetch_products['description']; ?></textarea>
             <span class="book_desc">Book Title:</span>
             <input type="text" name="update_name" value="<?php echo $fetch_products['name']; ?>" class="box_ubd" required>
             <span class="book_desc">Book Author:</span>
