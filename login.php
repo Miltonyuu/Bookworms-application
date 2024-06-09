@@ -34,14 +34,12 @@ if(isset($_POST['submit'])){
    }else{
       $message[] = 
       '<div class="login-message">Incorrect email or password</div>';
-       echo '<script>document.body.classList.add("overlay-active");</script>';
        
    }
 
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,26 +56,20 @@ if(isset($_POST['submit'])){
    <link rel="stylesheet" href="css/style.css">
 
 </head>
+<style>
+       password-container {
+            display: flex;
+            align-items: center;
+        }
+        .toggle-btn {
+            margin-left: 10px;
+            cursor: pointer;
+        }
 
-
+</style>
 <body class="login">
- 
-<div class="logform-container">
 
-
-
-   <form action="" method="post">
-      <h1>Login Now</h1>
-      <p>Email Address</p>
-      <input type="email" name="email" placeholder="Enter your email" required class="box">
-      <p>Password</p>
-      <input type="password" name="password" placeholder="Enter your password" required class="box">
-      <input type="submit" name="submit" value="Login Now" class="btn">
-      <br><br>
-      <h4>Don't have an account? <a href="register.php">Register Now</a></h4>
-      <h4>Forgot Password <a href="forgot_password.php">Reset password</a></h4>
-
-      <?php
+<?php
 if(isset($message)){
    foreach($message as $message){
       echo '
@@ -89,7 +81,21 @@ if(isset($message)){
    }
 }
 ?>
+<div class="logform-container">
+
+   <form action="" method="post">
+      <h1>Login Now</h1>
+      <p>Email Address</p>
+      <input type="email" name="email" placeholder="Enter your email" required class="box">
+      <div class="password-container">
+      <p>Password</p>
+      <input type="password" name="password" placeholder="Enter your password" required class="box">
+      <input type="submit" name="submit" value="Login Now" class="btn">
+      <br><br>
+      <h4>Don't have an account? <a href="register.php">Register Now</a></h4>
    </form>
    </div>
+
+
 </body>
 </html>

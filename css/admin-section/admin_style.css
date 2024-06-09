@@ -41,6 +41,106 @@
 }
 
 
+/* admin_style.css */
+
+body {
+   font-family: 'Arial', sans-serif;
+   background-color: #f4f4f9;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+h1.title {
+   text-align: center;
+   font-size: 2.5rem;
+   margin-top: 20px;
+   color: #333;
+}
+
+h2.sub-title {
+   font-size: 1.8rem;
+   margin-top: 20px;
+   color: #555;
+}
+
+section.analytics {
+   padding: 20px;
+   max-width: 1000px;
+   margin: 0 auto;
+   background-color: #fff;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.box-container {
+   margin-bottom: 20px;
+}
+
+.bar-graph {
+   padding: 20px;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   background-color: #f9f9f9;
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bar-graph:hover {
+   background-color: #aac5d4;
+   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.bar-graph h3.graph-title {
+   font-size: 1.4rem;
+   margin-bottom: 15px;
+   color: #333;
+}
+
+.bar-container {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.bar {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   transition: transform 0.3s ease;
+}
+
+.bar:hover {
+   transform: scale(1.05);
+}
+
+.label {
+   flex: 1;
+   font-size: 1rem;
+   color: #333;
+   text-transform:uppercase;
+}
+
+.fill {
+
+   background-color: #089b0d;
+   transition: background-color 0.3s ease;
+}
+
+.fill:hover {
+   background-color: #1d8122;
+}
+
+.count {
+   width: 40px;
+   font-size: 1rem;
+   text-align: center;
+   color: #333;
+}
+
+.empty {
+   font-size: 1rem;
+   color: #999;
+   text-align: center;
+}
 
 
 html{
@@ -48,9 +148,6 @@ html{
    overflow-x: hidden;
 }
 
-body{
-   background-color: var(--light-bg);
-}
 
 section{
    padding:3rem 2rem;
@@ -127,7 +224,7 @@ section{
 
 .white-btn,
 .btn{
-   background-color: var(--purple);
+   background-color: rgb(168, 68, 68);
 }
 
 .option-btn{
@@ -311,6 +408,26 @@ section{
    color:var(--black);
    font-size: 1.8rem;
    border:var(--border);
+}
+
+/* Centering the button */
+.center-button-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20px; /* Adjust as needed */
+}
+
+/* Style for the button */
+.center-button-container .btn {
+   padding: 10px 20px;
+   font-size: 16px;
+   cursor: pointer;
+}
+
+.buttongenerate .btn{
+   background-color: #123e45;
+
 }
 
 .show-products .box-container{
@@ -507,6 +624,7 @@ section{
    width: 1000px;
 }
 
+
 .users .box-container .box table thead th{
    font-size: 25px;
    color:var(--black);
@@ -698,12 +816,14 @@ section{
     margin-bottom: 5px;
 }
 
+
 .bar-container .bar .label {
     width: 100px;
 }
 
 .bar-container .bar .fill {
-    background-color: #3498db;
+    background-color: #123e45;
+    width: 10px;
 }
 
 .bar-container .bar .fill::before {
@@ -714,6 +834,3 @@ section{
     transition: width 1s ease-in-out;
 }
 
-.empty {
-    margin-top: 20px;
-}
