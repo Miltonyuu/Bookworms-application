@@ -138,7 +138,7 @@ header('location:user_products.php');
                     <option value="Action/Adventure">Action and Adventure</option>
                     <option value="Chick Lit">Chick lit</option>
                     <option value="Classic">Classic</option>
-                    <option value="Comic">Comic Book</option>
+                    <option value="Comic">Comic</option>
                     <option value="Crime/Mystery">Crime and Mystery</option>
                     <option value="Drama">Drama</option>
                     <option value="FairyTale">FairyTale</option>
@@ -242,11 +242,11 @@ header('location:user_products.php');
               <select id="groupedDropdown" name="update_genretype" class="box_ubd">
                 <!--<option value="" selected disabled hidden>Choose Here</option>-->
                   <optgroup label="Fiction">
-                    <option value="Action/Adventure" <?php if($fetch_products['bookgenre'] == 'Action and Adventure') echo 'selected'; ?>>Action/Adventure</option>
+                    <option value="Action/Adventure" <?php if($fetch_products['bookgenre'] == 'Action/Adventure') echo 'selected'; ?>>Action/Adventure</option>
                     <option value="Chick Lit" <?php if($fetch_products['bookgenre'] == 'Chick Lit') echo 'selected'; ?>>Chick lit</option>
                     <option value="Classic" <?php if($fetch_products['bookgenre'] == 'Classic') echo 'selected'; ?>>Classic</option>
-                    <option value="Comic" <?php if($fetch_products['bookgenre'] == 'Comic Book') echo 'selected'; ?>>Comic Book</option>
-                    <option value="Crime/Mystery" <?php if($fetch_products['bookgenre'] == 'Crime and Mystery') echo 'selected'; ?>>Crime/Mystery</option>
+                    <option value="Comic" <?php if($fetch_products['bookgenre'] == 'Comic') echo 'selected'; ?>>Comic</option>
+                    <option value="Crime/Mystery" <?php if($fetch_products['bookgenre'] == 'Crime/Mystery') echo 'selected'; ?>>Crime/Mystery</option>
                     <option value="Drama" <?php if($fetch_products['bookgenre'] == 'Drama') echo 'selected'; ?>>Drama</option>
                     <option value="FairyTale" <?php if($fetch_products['bookgenre'] == 'FairyTale') echo 'selected'; ?>>FairyTale</option>
                     <option value="Fantasy" <?php if($fetch_products['bookgenre'] == 'Fantasy') echo 'selected'; ?>>Fantasy</option>
@@ -254,7 +254,7 @@ header('location:user_products.php');
                     <option value="Horror" <?php if($fetch_products['bookgenre'] == 'Horror') echo 'selected'; ?>>Horror</option>
                     <option value="Science Fiction" <?php if($fetch_products['bookgenre'] == 'Science Fiction') echo 'selected'; ?>>Science Fiction</option>
                     <option value="Romance" <?php if($fetch_products['bookgenre'] == 'Romance') echo 'selected'; ?>>Romance</option>
-                    <option value="Humor/Satire" <?php if($fetch_products['bookgenre'] == 'Humor and Satire') echo 'selected'; ?>>Humor/Satire</option>
+                    <option value="Humor/Satire" <?php if($fetch_products['bookgenre'] == 'Humor/Satire') echo 'selected'; ?>>Humor/Satire</option>
                     <option value="Short Story" <?php if($fetch_products['bookgenre'] == 'Short Story') echo 'selected'; ?>>Short Story</option>
                     <option value="Thriller" <?php if($fetch_products['bookgenre'] == 'Thriller') echo 'selected'; ?>>Thriller</option>
                     <option value="Novel" <?php if($fetch_products['bookgenre'] == 'Novel') echo 'selected'; ?>>Novel</option>

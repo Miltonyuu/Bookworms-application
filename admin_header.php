@@ -19,9 +19,9 @@ if(isset($message)){
 
       <nav class="navbar">
          <a href="admin_page.php">Home</a>
-         <a href="admin_products.php">Products</a>
-         <a href="admin_orders.php">Orders</a>
-         <a href="admin_users.php">Users</a>
+         <a href="admin_products.php">Book List</a>
+         <a href="admin_orders.php">User's Order</a>
+         <a href="admin_users.php">users</a>
          <a href="admin_contacts.php">Messages</a>
          <a href="Verification_approval.php">User Verification</a>
          <a href="analytics.php">Analytics</a>

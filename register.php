@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
       $select_users = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'") or die('Query failed');
 
       if (mysqli_num_rows($select_users) > 0) {
-         $message[] = '<div class="register-message">User already exists</div>';
+         $message[] = '<div class="message">User already exists</div>';
      }
       else {
          mysqli_query($conn, "INSERT INTO users (name, email, password, gender, contact_no, bookwishlist1, bookwishlist2, birthdate) VALUES ('$name', '$email', '$pass', '$gender', '$contact_no', '$bookw1', '$bookw2', '$birthday')") or die('Query failed');
@@ -113,9 +113,9 @@ if(isset($_POST['submit'])){
 
 
 <div class="regform-container">
-   
+  
    <form action="" method="post">
-      
+  
    <?php
          if(isset($message)){
             foreach($message as $message){

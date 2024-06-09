@@ -105,7 +105,7 @@ while ($row = mysqli_fetch_assoc($result_verification_status)) {
    <h1 class="title">Overall Analytics Report</h1>
 
    <!-- Book Genre Demographics -->
-   <h2 class="sub-title">Book Genre Demographics</h2>
+   <h2 class="sub-title">Book Genre Demographics Reports</h2>
    <div class="box-container">
       <?php if (!empty($demographics_bookgenre_data)) { ?>
          <div class="bar-graph">
@@ -132,7 +132,7 @@ while ($row = mysqli_fetch_assoc($result_verification_status)) {
 
 
    <!-- User Age Demographics -->
-   <h2 class="sub-title">User Age Demographics</h2>
+   <h2 class="sub-title">User Age Demographics Report</h2>
    <div class="box-container">
       <?php if (!empty($demographics_age_data)) { ?>
          <div class="bar-graph">

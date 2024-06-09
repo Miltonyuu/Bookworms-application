@@ -69,21 +69,23 @@ if(isset($_POST['submit'])){
 </style>
 <body class="login">
 
-<?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-   }
-}
-?>
+
 <div class="logform-container">
 
    <form action="" method="post">
+
+      <?php
+         if(isset($message)){
+            foreach($message as $message){
+         echo '
+            <div class="message">
+               <span>'.$message.'</span>
+               <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+            </div>
+         ';
+         }
+         }
+      ?>
       <h1>Login Now</h1>
       <p>Email Address</p>
       <input type="email" name="email" placeholder="Enter your email" required class="box">

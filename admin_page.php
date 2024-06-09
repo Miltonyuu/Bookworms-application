@@ -92,7 +92,7 @@ if(isset($_POST['update_request'])){
             $number_of_products = mysqli_num_rows($select_products);
          ?>
          <h3><?php echo $number_of_products; ?></h3>
-         <p>products added</p>
+         <p>Total Listed Books</p>
       </div>
 
       <div class="box">
