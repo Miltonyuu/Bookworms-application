@@ -77,12 +77,11 @@ $select_products = mysqli_query($conn, "SELECT * FROM `products` $whereClause") 
 
 <section class="products">
         <h1 class="title">Available Books</h1>
-        <div class="box-container">
             <div class="filter-buttons">
-                <a href="shop.php" class="option-btn <?php if($selected_genre == '') echo 'active'; ?>">All</a>
+                <a href="shop.php" class="filter-btn <?php if($selected_genre == '') echo 'active'; ?>">All</a>
                 <?php foreach ($genres as $genre) : ?>
                     <a href="shop.php?genre=<?php echo urlencode($genre); ?>" 
-                       class="option-btn <?php if($selected_genre == $genre) echo 'active'; ?>">
+                       class="filter-btn <?php if($selected_genre == $genre) echo 'active'; ?>">
                         <?php echo $genre; ?>
                     </a>
                 <?php endforeach; ?>
@@ -101,6 +100,7 @@ $select_products = mysqli_query($conn, "SELECT * FROM `products` $whereClause") 
             <div name="product_author" class="author">By: <?php echo $fetch_products['author']; ?></div>
             <div name="product_book_condi" class="book_condi">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
             <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
+            <div name="product_book_condi" class="book_condi">Book Genre: <?php echo $fetch_products['bookgenre']; ?></div>
             <div name="isbn" class="book_condi">ISBN: <?php echo $fetch_products['isbn']; ?></div>
             <?php if ($fetch_products['tradestatus'] == 'Yes'): ?>
               <div class="trading-container"> 

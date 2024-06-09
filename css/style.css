@@ -96,14 +96,6 @@ section{
    transform: rotate(90deg);
 }
 
-.filter-buttons {
-   display: flex;
-   justify-content: center;
-   gap: 1rem;
-   margin-bottom: 2rem;
-
-}
-
 .box-container-messages{
    max-width: 1200px;
    margin:0 auto;
@@ -961,6 +953,30 @@ input[type=number] {
    justify-content: space-between;
 }
 
+.filter-buttons{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   gap: 1rem;
+   margin-bottom: 2rem;
+   padding: 0;
+}
+
+.filter-buttons .filter-btn{
+   display: inline-block;
+   background-color: var(--orange);
+   margin-top: 1rem;
+   padding:3px;
+   text-align: center;
+   cursor: pointer;
+   color:var(--white);
+   font-size: 2rem;
+   border-radius: .5rem;
+   text-transform: capitalize;
+   width:22rem;
+}
+
 .products .box-container .box .image {
    height: 35rem;
    display: flex;
@@ -1021,7 +1037,6 @@ input[type=number] {
    flex-direction: column;
    gap: 0.5rem;
 }
-
 
 body.login {
    background: url('../images/Login.png') no-repeat center center fixed;
