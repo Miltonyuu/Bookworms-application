@@ -197,7 +197,7 @@ header('location:user_products.php');
       <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
       <div class="name"><?php echo $fetch_products['name']; ?></div>
       <div class="author">By: <?php echo $fetch_products['author']; ?></div>
-      <div class="price">₱<?php echo $fetch_products['price']; ?>/-</div>
+      <div class="price">Price: ₱<?php echo $fetch_products['price']; ?></div>
       <div class="author">Book Condition: <?php echo $fetch_products['bookcondition']; ?></div>
       <div class="author">Book Genre: <?php echo $fetch_products['bookgenre']; ?></div>
       <div style="display:flex; justify-content:center; " class="author">Seller:<p class="author"><span><?php echo $_SESSION['user_name']; ?></span></p></div>

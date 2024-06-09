@@ -47,7 +47,7 @@ if(isset($_POST['update_request'])){
 
    <div class="box-container">
 
-      <div class="box">
+      <!--<div class="box">
          <?php
             $total_pendings = 0;
             $select_pending = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'pending'") or die('query failed');
@@ -60,9 +60,9 @@ if(isset($_POST['update_request'])){
          ?>
          <h3>₱<?php echo $total_pendings; ?>/-</h3>
          <p>total pendings</p>
-      </div>
+      </div>-->
 
-      <div class="box">
+      <!--<div class="box">
          <?php
             $total_completed = 0;
             $select_completed = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'completed'") or die('query failed');
@@ -75,7 +75,7 @@ if(isset($_POST['update_request'])){
          ?>
          <h3>₱<?php echo $total_completed; ?>/-</h3>
          <p>completed payments</p>
-      </div>
+      </div>-->
 
       <div class="box">
          <?php 
