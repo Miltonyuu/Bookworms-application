@@ -343,6 +343,20 @@ section{
 
 }
 
+.trading-container {
+   position: relative; /* Required for the tooltip positioning */
+   display: inline-block; /* Ensure the container only takes up the necessary space */
+   size: 10px; /* Example: adjust as needed */
+}
+
+.show-products .box-container .box img.trading-logo {
+   height: 6rem;
+   width: 6rem;
+   object-fit: cover;
+   margin: 0 auto;
+   display: block;
+}
+
 .show-products .box-container .box img{
    height: 30rem;
    width: 100%;
