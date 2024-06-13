@@ -12,9 +12,14 @@ Bookworms Connect demonstrably improves the customer shopping experience. By cre
 
 ## Installation
 
-Download and install XAMPP for your operating system from the official Apache Friends website: https://www.apachefriends.org/
-Ensure you have a code editor or IDE of your choice (e.g., Visual Studio Code, Sublime Text, Atom) installed for editing the application files.
 Installation Steps:
+
+- Prerequisites:
+
+- - Download and install XAMPP for your operating system from the official Apache Friends website: https://www.apachefriends.org/
+- - Ensure you have a code editor or IDE of your choice (e.g., Visual Studio Code, Sublime Text, Atom) installed for editing the application files.
+- - Hostinger Account: Sign up for a hosting plan with Hostinger that meets your application's requirements (storage, bandwidth, etc.). Hostinger
+
 
 XAMPP Installation:
 
