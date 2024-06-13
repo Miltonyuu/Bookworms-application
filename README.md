@@ -11,7 +11,6 @@ Bookworms Connect demonstrably improves the customer shopping experience. By cre
 
 
 ## Installation
-Prerequisites:
 
 Download and install XAMPP for your operating system from the official Apache Friends website: https://www.apachefriends.org/
 Ensure you have a code editor or IDE of your choice (e.g., Visual Studio Code, Sublime Text, Atom) installed for editing the application files.
@@ -39,7 +38,7 @@ Import the database included in the in files (shop_db.sql)
 
 Configure Application Database Connection:
 
-Locate the PHP file(s) in your Bookworms application that handle database connection (e.g., config.php, database.php).
+- Locate the PHP file(s) in your Bookworms application that handle database connection (e.g., config.php, database.php).
 Edit these files to provide the following credentials:
 Database host (usually localhost)
 Database name (the name you created in step 2, e.g., bookworms_db)
@@ -47,12 +46,12 @@ Database username (your MySQL username)
 Database password (your MySQL password)
 Copy Application Files to Document Root:
 
-Open your XAMPP installation directory (usually C:\xampp\htdocs on Windows or /Applications/XAMPP/htdocs on macOS).
+- Open your XAMPP installation directory (usually C:\xampp\htdocs on Windows or /Applications/XAMPP/htdocs on macOS).
 Create a new directory for your Bookworms application (e.g., bookworms).
 Copy all the application files (PHP, HTML, CSS, and other assets) from your Git repository into this newly created directory.
 Verify Installation:
 
-Open a web browser and navigate to the URL of your application (e.g., http://localhost/bookworms/ if your application directory is named bookworms).
+- Open a web browser and navigate to the URL of your application (e.g., http://localhost/bookworms/ if your application directory is named bookworms).
 If the installation is successful, you should see your Bookworms application running in the browser.
 
 
